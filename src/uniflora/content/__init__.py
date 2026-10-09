@@ -1,0 +1,1 @@
+"""Packaged public content resources."""

@@ -1,0 +1,10 @@
+*
+!Dockerfile
+!docker-entrypoint.sh
+!pyproject.toml
+!README.md
+!alembic.ini
+!src/
+!src/**
+!migrations/
+!migrations/**

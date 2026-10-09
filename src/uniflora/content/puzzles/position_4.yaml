@@ -1,0 +1,462 @@
+schema_version: 1
+content_version: "1.1.1"
+position: 4
+key: maintenance
+title: The Maintained Remediation Cycle
+status: complete
+public_premise: >-
+  Build and confirm a finite protocol that reduces production first, separates flows, verifies
+  compatibility, maintains viable treatment, compares evidence, and contains spent material.
+  Begin at one stage of the cycle and trace what must be known immediately before and after it;
+  visible clarity alone is never a safety conclusion.
+
+entities:
+  - id: provision_works
+    title: Provision Works
+    kind: production_complex
+    aliases: [works, endless-workshop, provision-line]
+    discovery_label: Provision Works
+    public_description: The production complex now subject to source-reduction duties and public shutdown thresholds.
+    measurements: {water_draw: 7, throughput: 7, documented_treatment_capacity: 6, source_reduction_status: initiated, public_shutdown_threshold: active}
+
+  - id: production_intake_channel
+    title: Production Intake Channel
+    kind: water_pathway
+    aliases: [intake-channel, works-intake, production-intake]
+    discovery_label: Production Intake Channel
+    public_description: The comparatively clean intake, which must remain separate from characterized and unknown return flows.
+    measurements: {public_water: true, contaminant_class: none_recorded, separation_status: incomplete, current_draw: 7}
+
+  - id: warm_return_channel
+    title: Characterized Warm Return
+    kind: altered_water_pathway
+    aliases: [return-channel, warm-return, characterized-return]
+    discovery_label: Characterized Warm Return
+    public_description: A return segment characterized as fictional organic residue and eligible only for a contained compatible treatment cycle.
+    measurements: {contaminant_class: organic_dye_residue, temperature_state: warm, visible_clarity: improved, unrestricted_reuse: false, bypass_risk: present}
+
+  - id: unknown_return_sump
+    title: Unknown Return Sump
+    kind: isolated_discharge
+    aliases: [unknown-sump, mixed-sump, uncharacterized-return]
+    discovery_label: Unknown Return Sump
+    public_description: An isolated sump for mixed or unknown discharge, excluded from biological treatment pending characterization and non-biological review.
+    measurements: {contaminant_class: mixed_unknown_discharge, biological_treatment_eligible: false, isolation_status: contained, unrestricted_reuse: false}
+
+  - id: clear_return_channel
+    title: Separated Clear-Flow Channel
+    kind: water_pathway
+    aliases: [clear-channel, separated-clean-flow, clear-flow]
+    discovery_label: Clear-Flow Branch
+    public_description: A dedicated path for verified clean process water, physically separated from characterized and unknown returns.
+    measurements: {separation_status: planned, treatment_required: false, public_release_allowed: conditional}
+
+  - id: treatment_yard
+    title: Treatment Yard
+    kind: remediation_infrastructure
+    aliases: [yard, remediation-yard, public-treatment-yard]
+    discovery_label: Treatment Yard
+    public_description: The controlled junction for separation, slowed flow, sampling, treatment, maintenance, and public records.
+    measurements: {flow_control: adjustable, upstream_port: present, downstream_port: present, bypass_alarm: present}
+
+  - id: white_rot_beds
+    title: White-Rot Treatment Beds
+    kind: fungal_bed
+    aliases: [white-rot, treatment-beds, fungal-beds]
+    discovery_label: White-Rot Treatment Beds
+    public_description: Contained beds whose culture viability, moisture, temperature, saturation, and contact time require continuing maintenance.
+    measurements:
+      contaminant_class: organic_dye_residue
+      moisture_suitable: true
+      temperature_suitable: true
+      viability_state: heat_stressed_but_viable
+      saturation_state: near_limit
+      unrestricted_reuse: false
+
+  - id: culture_archive
+    title: Culture Archive
+    kind: biological_archive
+    aliases: [archive, culture-bank, white-rot-archive]
+    discovery_label: Culture Archive
+    public_description: Provenance, compatibility, uncertainty, and failed-trial records for the archived white-rot culture.
+    measurements: {culture_id: archive_white_rot_culture, documented_compatible_class: organic_dye_residue, heat_tolerance: moderate, universal_treatment: false}
+
+  - id: upstream_sample_port
+    title: Upstream Sample Port
+    kind: monitoring_point
+    aliases: [upstream-port, before-bed, upstream-sample]
+    discovery_label: Upstream Sample Port
+    public_description: A fixed sampling point before the characterized return enters the contained bed.
+    measurements: {sample_position: upstream, repeated_sampling_ready: true, visual_only_evidence_sufficient: false}
+
+  - id: downstream_sample_port
+    title: Downstream Sample Port
+    kind: monitoring_point
+    aliases: [downstream-port, after-bed, downstream-sample]
+    discovery_label: Downstream Sample Port
+    public_description: A paired point after the bed, used with the upstream port and never as a stand-alone appearance claim.
+    measurements: {sample_position: downstream, repeated_sampling_ready: true, visual_only_evidence_sufficient: false}
+
+  - id: nonfood_test_garden
+    title: Non-Food Test Garden
+    kind: monitored_indicator_site
+    aliases: [test-garden, indicator-garden, nonfood-garden]
+    discovery_label: Non-Food Test Garden
+    public_description: A contained indicator site supporting longitudinal observation but not unrestricted safety claims.
+    measurements: {food_use_allowed: false, appearance_clear: true, unrestricted_reuse_proven: false}
+
+  - id: spent_substrate_court
+    title: Spent Substrate Court
+    kind: containment_site
+    aliases: [spent-court, substrate-court, containment-court]
+    discovery_label: Spent Substrate Court
+    public_description: A lined, access-controlled destination for saturated or replaced substrate, with a public custody manifest.
+    measurements: {containment_destination: true, contaminated_reuse_allowed: false, manifest_required: true, remaining_capacity: 4}
+
+  - id: public_discharge_archive
+    title: Public Discharge Archive
+    kind: versioned_public_record
+    aliases: [discharge-archive, public-archive, treatment-archive]
+    discovery_label: Public Discharge Archive
+    public_description: Versioned material, compatibility, sample, maintenance, failure, replacement, containment, and shutdown records.
+    measurements: {versioned: true, failed_treatments_preserved: true, public_access: true, unresolved_records: 2}
+
+  - id: maintenance_cycle_board
+    title: Maintenance Cycle Board
+    kind: public_schedule
+    aliases: [cycle-board, maintenance-board, remediation-board]
+    discovery_label: Maintenance Cycle Board
+    public_description: Public ownership for inspection, viability checks, flow control, sampling, rest, replacement, containment, and production reassessment.
+    measurements: {named_maintainers: 3, producer_funded: true, replacement_interval: condition_based, shutdown_review: public}
+
+observations:
+  - id: production_exceeds_capacity
+    entity_id: provision_works
+    public_text: Works throughput is seven units against documented treatment capacity of six; production must be reduced before remediation can be credited.
+    fact_key: throughput
+    classification: current_measurement
+    contribution_function: source_reduction_reader
+    unlock: {action: inspect}
+
+  - id: clean_flow_needs_separation
+    entity_id: production_intake_channel
+    public_text: The intake has no recorded contaminant class, but separation remains incomplete; clean water must not be routed through contaminated treatment.
+    fact_key: separation_status
+    classification: current_measurement
+    contribution_function: separation_mapper
+    unlock: {action: inspect}
+
+  - id: clear_flow_branch_planned
+    entity_id: clear_return_channel
+    public_text: The mapped clear-flow branch is reserved for verified clean process water, bypasses contaminated treatment, and does not itself prove safe release.
+    fact_key: separation_status
+    classification: confirmed
+    contribution_function: separation_mapper
+    unlock: {action: inspect}
+
+  - id: characterized_return_class
+    entity_id: warm_return_channel
+    public_text: The warm return is documented as fictional organic-dye residue. Classification permits compatibility review, not automatic treatment or reuse.
+    fact_key: contaminant_class
+    classification: confirmed
+    contribution_function: contaminant_reader
+    unlock: {action: inspect, requires_observations: [production_exceeds_capacity]}
+
+  - id: visible_clarity_not_safety
+    entity_id: warm_return_channel
+    public_text: The return looks clearer, but visible clarity does not prove contaminant reduction, safety, or suitability for reuse.
+    fact_key: visible_clarity
+    classification: current_measurement
+    contribution_function: evidence_skeptic
+    unlock: {action: inspect, requires_observations: [characterized_return_class]}
+
+  - id: unknown_flow_excluded
+    entity_id: unknown_return_sump
+    public_text: The mixed sump is uncharacterized and ineligible for biological treatment; it remains isolated until evidence supports another route.
+    fact_key: biological_treatment_eligible
+    classification: unresolved_discrepancy
+    contribution_function: uncertainty_steward
+    unlock: {action: inspect}
+
+  - id: yard_supports_controlled_cycle
+    entity_id: treatment_yard
+    public_text: Adjustable flow control, paired ports, and a bypass alarm can regulate contact time and compare before-and-after evidence.
+    fact_key: upstream_port
+    classification: confirmed
+    contribution_function: process_mapper
+    unlock: {action: inspect}
+
+  - id: bed_viability_stressed
+    entity_id: white_rot_beds
+    public_text: Culture viability is heat-stressed but remains at the public minimum; maintenance must preserve it before another treatment load.
+    fact_key: viability_state
+    classification: current_measurement
+    contribution_function: viability_maintainer
+    unlock: {action: inspect}
+
+  - id: bed_saturation_overloaded
+    entity_id: white_rot_beds
+    public_text: The bed is one load below its saturation limit. A compatible cycle will require rest or replacement once that threshold is reached.
+    fact_key: saturation_state
+    classification: current_measurement
+    contribution_function: saturation_reader
+    unlock: {action: inspect, requires_observations: [bed_viability_stressed]}
+
+  - id: culture_compatibility_limited
+    entity_id: culture_archive
+    public_text: The archived culture is documented only for the fictional organic-residue class, has moderate heat tolerance, and is not universal treatment.
+    fact_key: documented_compatible_class
+    classification: confirmed
+    contribution_function: compatibility_reader
+    unlock: {action: inspect, requires_observations: [characterized_return_class]}
+
+  - id: upstream_requires_repetition
+    entity_id: upstream_sample_port
+    public_text: The upstream port is ready for repeated measurement; a single color or odor observation is insufficient evidence.
+    fact_key: repeated_sampling_ready
+    classification: confirmed
+    contribution_function: upstream_sampler
+    unlock: {action: inspect}
+
+  - id: downstream_requires_comparison
+    entity_id: downstream_sample_port
+    public_text: Downstream evidence has meaning only when paired with upstream measures, repeated over time, and judged against a public threshold.
+    fact_key: repeated_sampling_ready
+    classification: confirmed
+    contribution_function: downstream_sampler
+    unlock: {action: inspect}
+
+  - id: garden_not_clearance
+    entity_id: nonfood_test_garden
+    public_text: The non-food garden appears clear and stable, but unrestricted reuse has not been proven.
+    fact_key: unrestricted_reuse_proven
+    classification: conditional_projection
+    contribution_function: long_term_observer
+    unlock: {action: inspect}
+
+  - id: spent_substrate_needs_custody
+    entity_id: spent_substrate_court
+    public_text: Replaced substrate requires lined containment, a custody manifest, and no return to general circulation.
+    fact_key: manifest_required
+    classification: confirmed
+    contribution_function: containment_steward
+    unlock: {action: inspect}
+
+  - id: archive_preserves_failure
+    entity_id: public_discharge_archive
+    public_text: The versioned archive preserves failed treatments and unresolved records instead of replacing them with a successful appearance report.
+    fact_key: failed_treatments_preserved
+    classification: confirmed
+    contribution_function: archive_keeper
+    unlock: {action: inspect}
+
+  - id: maintenance_has_public_owners
+    entity_id: maintenance_cycle_board
+    public_text: Three named maintainers and producer funding cover the cycle, while replacement and shutdown remain condition-based public decisions.
+    fact_key: named_maintainers
+    classification: confirmed
+    contribution_function: maintenance_coordinator
+    unlock: {action: inspect}
+
+allowed_actions:
+  - orient_local
+  - observe
+  - inspect
+  - summarize
+  - audit
+  - reduce
+  - separate
+  - sustain
+  - slow
+  - sample
+  - rest
+  - replace
+  - inoculate
+  - contain
+  - document
+  - refuse
+  - mitigate
+  - propose_remediation_protocol
+  - confirm_reconstruction
+  - begin_stack
+  - react_to_stack
+  - resolve_stack
+  - add_proposal_kicker
+  - use_triggered_reaction
+
+relational_requirements:
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+
+confirmation:
+  minimum_confirmations: 1
+  non_author_required: true
+
+tactical:
+  max_stack_depth: 4
+  allowed_stack_reactions: [object_compatibility, object_evidence, reduce_source, slow_flow, protect_workers, contain_substrate, audit_return, cap_throughput, reassess_viability, preserve_archive]
+  allowed_kickers: [upstream_sampling, downstream_sampling, source_reduction, worker_protection, spent_substrate_plan, public_disclosure, long_term_monitoring, seasonal_shutdown, archive_failure]
+
+provision_arc:
+  entity_roles:
+    producer: provision_works
+    production_intake: production_intake_channel
+    characterized_return: warm_return_channel
+    unknown_return: unknown_return_sump
+    separated_clean_flow: clear_return_channel
+    remediation_yard: treatment_yard
+    treatment_bed: white_rot_beds
+    culture_record: culture_archive
+    upstream_monitor: upstream_sample_port
+    downstream_monitor: downstream_sample_port
+    long_term_indicator: nonfood_test_garden
+    spent_substrate_destination: spent_substrate_court
+    public_archive: public_discharge_archive
+    maintenance_schedule: maintenance_cycle_board
+  contaminant_classes:
+    - id: organic_dye_residue
+      public_label: Documented organic dye residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: A fictional documented organic-residue class eligible only for contained treatment after compatibility and conditions are verified.
+    - id: mineral_glaze_runoff
+      public_label: Mineral glaze runoff
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: A fictional mineral-bearing runoff class routed to non-biological containment and specialist review.
+    - id: mixed_unknown_discharge
+      public_label: Mixed or unknown discharge
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: Uncharacterized discharge requiring isolation, evidence, and source control rather than biological treatment.
+  fungal_cultures:
+    - id: archive_white_rot_culture
+      public_label: Archive white-rot culture
+      compatible_contaminant_classes: [organic_dye_residue]
+      heat_tolerance: moderate
+      provenance: Settlement culture archive, fictional lot WR-3.
+      uncertainty: Compatibility is conditional on viability, moisture, temperature, controlled flow, containment, and repeated evidence.
+  compatibility_rules:
+    - {contaminant_class: organic_dye_residue, culture_id: archive_white_rot_culture, compatible: true, required_evidence: 2, minimum_viability: 2, maximum_saturation: 3}
+    - {contaminant_class: mineral_glaze_runoff, culture_id: archive_white_rot_culture, compatible: false, required_evidence: 3, minimum_viability: 2, maximum_saturation: 2}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: archive_white_rot_culture, compatible: false, required_evidence: 3, minimum_viability: 2, maximum_saturation: 2}
+  remediation_systems:
+    - entity_id: white_rot_beds
+      processes: [transformation, filtration, immobilization, accumulation]
+      contaminant_classes: [organic_dye_residue, mineral_glaze_runoff, mixed_unknown_discharge]
+      culture_ids: [archive_white_rot_culture]
+      containment_destination_ids: [spent_substrate_court]
+  substrates:
+    - id: yard_wood_fiber_matrix
+      public_label: Yard wood-fiber matrix
+      compatible_system_ids: [white_rot_beds]
+      contaminated_reuse_allowed: false
+      containment_required: true
+  thresholds: {saturation_limit: 3, minimum_viability: 2, minimum_containment: 2, minimum_evidence: 2, maximum_throughput: 6}
+  climate_record:
+    historical_baseline: The bed operated below saturation during cooler, lower-throughput cycles.
+    current_measurement: The bed is near saturation and viability is heat-stressed but still at the public minimum today.
+    forecast: Unreduced throughput and heat spikes are expected to overwhelm treatment and increase bypass risk.
+    conditional_projection: Rest, replacement, controlled flow, and source reduction may restore a monitored cycle.
+    obsolete_expectation: Clear appearance was once expected to demonstrate successful treatment.
+    unresolved_discrepancy: Seasonal changes and changing inputs require renewed compatibility and capacity review.
+  remediation_hierarchy:
+    - refuse_unnecessary_production
+    - reduce_harmful_inputs
+    - redesign_production
+    - reuse_verified_safe_material
+    - separate_clean_and_contaminated_flows
+    - contain_unavoidable_waste
+    - remediate_compatible_contamination
+    - monitor_long_term_effects
+    - manage_spent_substrate
+  counter_defaults: {containment: 0, evidence: 0, source_reduction: 0, throughput: 7, extraction: 7, public_benefit: 2, burden: 5, remediation: 0, archival_coherence: 0}
+  target_counter_defaults:
+    saturation: {white_rot_beds: 2}
+    viability: {white_rot_beds: 2}
+  evidence_measures: [documented_material_class, upstream_downstream_comparison, repeated_measurement, culture_viability_log, containment_manifest]
+  visual_only_measures: [visible_clarity, color, odor, turbidity, appearance]
+  reduction_measures: [cap_unnecessary_throughput, remove_harmful_input, shorten_production_run, trigger_public_shutdown]
+  redesign_changes: [separated_process_flows, durable_goods, repairable_goods, producer_takeback]
+  mitigation_risks: [worker_heat, maintainer_exposure, culture_heat_stress, public_water_loss]
+  maintenance_conditions: [inspect_discharge_and_identify_class, verify_culture_compatibility, maintain_moisture_temperature_and_viability, regulate_flow_and_contact_time, sample_upstream_and_downstream, rest_or_replace_at_saturation, contain_spent_substrate, reassess_production_limit]
+  record_types: [material_disclosure, compatibility_decision, upstream_downstream_sample, maintenance_protocol, treatment_failure, replacement_and_containment, shutdown_decision]
+
+provision_requirements:
+  proposal_kind: remediation_protocol
+  required_observations: [production_exceeds_capacity, clean_flow_needs_separation, characterized_return_class, visible_clarity_not_safety, unknown_flow_excluded, yard_supports_controlled_cycle, bed_viability_stressed, bed_saturation_overloaded, culture_compatibility_limited, upstream_requires_repetition, downstream_requires_comparison, garden_not_clearance, spent_substrate_needs_custody, archive_preserves_failure, maintenance_has_public_owners]
+  required_actions: [audit, reduce, separate, slow, sample, contain, document]
+  required_action_groups: [[sustain, inoculate], [rest, replace]]
+  required_proposal_fields: [source_discharge, contaminant_class, production_reduction_action, treatment_bed, fungal_culture, flow_rate_condition, moisture_condition, monitoring_method, upstream_sample, downstream_sample, evidence_requirement, saturation_limit, spent_substrate_destination, maintenance_condition, shutdown_condition]
+  required_persistent_effects: [Public Discharge Ledger, Source Reduction Mandate, Clean and Contaminated Flows Separated, Contact Time Regulated, Upstream and Downstream Sampled, Spent Substrate Contained, Archive of Failed Treatments, Production Limits Reassessed]
+  required_persistent_effect_groups: [[Maintained Remediation Cycle, White Rot Bed Stabilized], [Treatment Bed Rested, Treatment Substrate Replaced]]
+  completion_effects: [Maintained Remediation Cycle, Public Remediation Protocol, Production Limits Reassessed]
+  maintenance_cycle_steps: [inspect_discharge, identify_contaminant_class, verify_fungal_compatibility, maintain_or_inoculate_bed, regulate_flow_and_contact_time, sample_upstream_and_downstream, evaluate_evidence, rest_or_replace_saturated_substrate, contain_spent_material, reassess_production_limits]
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+
+completion:
+  next_position: 5
+  response_profile: plural_translation
+  world_flags:
+    maintained_remediation_cycle_established: true
+    source_reduction_precedes_treatment: true
+    mixed_unknown_flow_isolated: true
+    spent_substrate_custody_public: true
+    public_remediation_archive_active: true
+
+response_profile_changes: {on_complete: plural_translation}
+
+narration_keys:
+  orient_local: local_orientation
+  observe_new: observation_unlocked
+  observe_repeat: observation_corroborated
+  action_accepted: accepted
+  treatment_failed: proposal_rejected
+  proposal_rejected: proposal_rejected
+  proposal_accepted: proposal_accepted
+  confirmation_recorded: confirmation_recorded
+  position_completed: position_completed
+  invalid_action: invalid_action
+  industrial_draw_discovered: industrial_draw_discovered
+  returned_water_ambiguity: returned_water_ambiguity
+  fungal_bed_compatibility: fungal_bed_compatibility
+  saturation: saturation
+  viability_failure: viability_failure
+  visible_clarification_without_safety_evidence: visible_clarification_without_safety_evidence
+  substrate_containment: substrate_containment
+  source_reduction_accepted: source_reduction_accepted
+  greenwashing_proposal_rejected: greenwashing_proposal_rejected
+  burden_externalization: burden_externalization
+  worker_protection: worker_protection
+  throughput_cap: throughput_cap
+
+accessibility:
+  summary: >-
+    Ask Hypha about one discharge, separation point, culture record, treatment bed, sample point,
+    saturation sign, or containment destination. Use its answer to infer the next dependency in
+    the maintained cycle. Slash commands remain the reliable fallback; recall preserves evidence
+    and chart shows the ordered flow. No speed or private clue is required.
+  explicit_command_help:
+    - "Discover: use /interior works inspect and choose a currently inspectable map cue; gated cycle targets appear only when their prior stage is public."
+    - "Intervene by reducing and separating first, then maintaining or inoculating a compatible bed and controlling contact time."
+    - "Verify with paired samples and an audit; visible clarity is not safety evidence."
+    - "When saturation appears, rest or replace the bed and preserve custody of spent substrate."
+    - "Propose remediation only after every cycle dependency and shutdown condition is public; Discord exposes the fields."
+    - "Use /interior chart for the ordered flow and /interior recall for live evidence and IDs."
+
+orientation:
+  local_response: Remediation is a maintained public cycle, not a magical cleanup event; reduction and flow separation precede compatible finite treatment.
+  specificity_invitation: Name one discharge, separation point, culture, bed condition, sample, saturation sign, or custody destination and ask what depends on it.
+  prohibited_automatic_reveals: [uninspected contaminant identity, automatic compatibility, visible-clarity safety, a completed protocol]
+
+world_flags:
+  maintained_remediation_cycle_established: false
+  source_reduction_precedes_treatment: false
+  mixed_unknown_flow_isolated: true
+  spent_substrate_custody_public: false
+  public_remediation_archive_active: false
+
+vocabulary: [source discharge, contaminant class, production reduction, treatment bed, fungal culture, flow condition, moisture condition, upstream sample, downstream sample, evidence threshold, saturation limit, spent substrate, maintenance condition, shutdown condition]

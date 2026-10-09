@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "uniflora-missing-interior"
+version = "0.1.0"
+description = "A public-only, persistent Discord text adventure about mutual aid."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "aiohttp>=3.9,<4",
+  "aiosqlite>=0.20,<1",
+  "alembic>=1.13,<2",
+  "asyncpg>=0.29,<1",
+  "discord.py>=2.4,<3",
+  "google-genai>=2.28,<3",
+  "rapidfuzz>=3,<4",
+  "hypothesis>=6,<7",
+  "openai>=2,<3",
+  "pytest",
+  "pydantic>=2.7,<3",
+  "pydantic-settings>=2.7,<3",
+  "PyYAML>=6.0.2,<7",
+  "resvg_py>=0.3.3,<0.4",
+  "SQLAlchemy[asyncio]>=2.0.30,<3",
+  "tzdata>=2024.1; platform_system == 'Windows'",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2,<9",
+  "pytest-asyncio>=0.23,<1",
+  "ruff>=0.6,<1",
+]
+
+[project.scripts]
+missing-interior = "uniflora.app:main"
+missing-interior-web = "uniflora.web_game:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/uniflora"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --basetemp=.pytest-tmp"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+  "legacy_content: assertions tied to the pre-v2 position narratives and packaged puzzle content",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+

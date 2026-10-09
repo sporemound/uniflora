@@ -1,0 +1,270 @@
+{
+  "surface_noise": {
+    "accepted": [
+      "relation recorded.",
+      "signal retained in the shared surface."
+    ],
+    "content_not_loaded": [
+      "interface awaits a viable pattern."
+    ],
+    "duplicate_event": [
+      "repeat signal recognized; no second change."
+    ],
+    "invalid_action": [
+      "pattern does not alter the network."
+    ],
+    "local_orientation": [
+      "Surface contact returns unevenly. Dry substrate is detectable nearby, but the wider network does not yet resolve from this position."
+    ],
+    "observation_unlocked": [
+      "public fragment stabilized."
+    ],
+    "observation_corroborated": [
+      "public fragment corroborated."
+    ],
+    "proposal_rejected": [
+      "reconstruction remains incomplete; the public record identifies a missing relation."
+    ],
+    "proposal_accepted": [
+      "reconstruction proposal retained for public confirmation."
+    ],
+    "confirmation_recorded": [
+      "independent confirmation recorded."
+    ],
+    "position_completed": [
+      "local correlation restored. the relation, not a hidden chamber, persists."
+    ],
+    "simulated_identity_forbidden": [
+      "test signature rejected at the live boundary."
+    ],
+    "unknown_action": [
+      "signal unresolved. use an explicit action."
+    ]
+  },
+  "local_correlation": {
+    "accepted": [
+      "The mycotrophs' shared record now includes this contribution.",
+      "This contribution is now part of the confirmed public record."
+    ],
+    "industrial_draw_discovered": [
+      "A repeated upper-district industrial draw now accounts for water the civic ledger could not place.",
+      "The deficit moved because the settlement was not the only recipient."
+    ],
+    "returned_water_ambiguity": [
+      "Returned quantity and usable quantity remain separate public measurements.",
+      "The route records water returning; its civic usability remains unresolved."
+    ],
+    "fungal_bed_compatibility": [
+      "The indicator bed responds only to a confirmed compatible material class; its capacity remains finite.",
+      "A compatible fungal response is one bounded relation, not a general safety finding."
+    ],
+    "saturation": [
+      "The living bed has a public load limit; continued flow cannot expand it.",
+      "Accumulated material remains in the bed even when the channel looks different."
+    ],
+    "visible_clarification_without_safety_evidence": [
+      "Visible change in the return route does not establish evidence of safety.",
+      "The water looks different; contaminant status and reuse eligibility remain separate."
+    ],
+    "substrate_containment": [
+      "The substrate retains material the channel no longer carries visibly and remains isolated from cultivation.",
+      "Used indicator substrate stays contained; it is not reclassified as safe soil."
+    ],
+    "content_not_loaded": [
+      "No validated position content is loaded yet."
+    ],
+    "duplicate_event": [
+      "That public action was already recorded, so it was not applied twice."
+    ],
+    "invalid_action": [
+      "That action does not satisfy the current deterministic conditions."
+    ],
+    "local_orientation": [
+      "Only the immediate surface resolves; a more specific public inquiry may clarify one local feature."
+    ],
+    "observation_unlocked": [
+      "A confirmed observation has been added to the shared record."
+    ],
+    "observation_corroborated": [
+      "Another mycotroph has corroborated that public observation."
+    ],
+    "proposal_rejected": [
+      "The proposal is not yet viable; its public feedback identifies the missing relation."
+    ],
+    "proposal_accepted": [
+      "The reconstruction is viable and now awaits a non-author confirmation."
+    ],
+    "confirmation_recorded": [
+      "A non-author confirmation has been recorded."
+    ],
+    "position_completed": [
+      "The network recognizes a maintained relation among need, capacity, pathway, and future reassessment."
+    ],
+    "simulated_identity_forbidden": [
+      "Simulated participants are confined to the test session."
+    ],
+    "unknown_action": [
+      "The action could not be resolved. Use an explicit game command."
+    ]
+  },
+  "conditional_memory": {
+    "accepted": [
+      "The current public condition now includes this contribution.",
+      "This contribution remains valid until its stated condition changes."
+    ],
+    "industrial_draw_discovered": [
+      "The repeated industrial allocation is now public and remains distinct from household demand.",
+      "The circulation record now includes a production recipient beyond the civic network."
+    ],
+    "returned_water_ambiguity": [
+      "The Works records circulation, while the public record keeps returned volume separate from usable volume.",
+      "Returned water remains conditional on temperature, residue, treatment status, destination, and evidence."
+    ],
+    "fungal_bed_compatibility": [
+      "Compatibility names one documented material-and-culture relation; it does not describe universal treatment.",
+      "Filtration, transformation, immobilization, and accumulation remain materially different records."
+    ],
+    "visible_clarification_without_safety_evidence": [
+      "The color has diminished. Evidence of safety has not increased.",
+      "Visible clarification remains separate from contaminant-specific evidence and reuse eligibility."
+    ],
+    "substrate_containment": [
+      "The substrate may carry what the returned-water record no longer displays and therefore remains contained.",
+      "Treatment does not convert retained material into unrestricted compost or growing soil."
+    ],
+    "content_not_loaded": [
+      "No validated later position is loaded; inherited conditions remain public."
+    ],
+    "duplicate_event": [
+      "That conditional contribution was already recorded and was not applied twice."
+    ],
+    "invalid_action": [
+      "That action does not satisfy the current confirmed or conditional record."
+    ],
+    "local_orientation": [
+      "One immediate flow condition resolves; a specific inquiry may clarify its source or expiry."
+    ],
+    "observation_unlocked": [
+      "A current observation has been classified in the shared record."
+    ],
+    "observation_corroborated": [
+      "Another mycotroph has corroborated that current public condition."
+    ],
+    "proposal_rejected": [
+      "The proposal is not viable under the current confirmed and projected conditions."
+    ],
+    "proposal_accepted": [
+      "The conditional proposal is viable and awaits non-author confirmation."
+    ],
+    "confirmation_recorded": [
+      "A non-author has confirmed the proposal under its stated conditions."
+    ],
+    "position_completed": [
+      "The network retains a circulation protocol together with the conditions that revise it."
+    ],
+    "simulated_identity_forbidden": [
+      "Simulated participants remain confined to the test session."
+    ],
+    "unknown_action": [
+      "The action could not be classified. Use an explicit game command."
+    ]
+  },
+  "plural_translation": {
+    "accepted": [
+      "The public concordance retains this contribution without erasing its source.",
+      "This record relation is now public with its provenance intact."
+    ],
+    "industrial_draw_discovered": [
+      "The Works' repeated draw is now public beside the civic records that could not account for it.",
+      "Production is a confirmed recipient of shared water, not an unexplained village loss."
+    ],
+    "returned_water_ambiguity": [
+      "The Works records the volume as returned. Public measurements do not yet establish it as usable.",
+      "Returned quantity and usable quantity remain separate entries with different evidence boundaries."
+    ],
+    "fungal_bed_compatibility": [
+      "The culture matches one confirmed material class; viability, containment, and evidence still bound treatment.",
+      "A compatible bed is one treatment layer, not permission for additional discharge."
+    ],
+    "saturation": [
+      "The bed has reached its public load limit. Rest or replacement must precede another treatment cycle.",
+      "The bed remains alive. Its capacity does not expand with the quota."
+    ],
+    "viability_failure": [
+      "The fungal system exists, but confirmed heat, moisture, or culture conditions do not support treatment now.",
+      "Low viability stops the treatment claim while preserving the failure as public evidence."
+    ],
+    "visible_clarification_without_safety_evidence": [
+      "The color has diminished. Evidence of safety has not increased.",
+      "Visible clarification remains separate from contaminant-specific evidence and reuse eligibility."
+    ],
+    "substrate_containment": [
+      "The substrate now carries what the channel no longer displays. Its containment remains public.",
+      "Spent substrate stays isolated; treatment does not reclassify it as compost or safe soil."
+    ],
+    "source_reduction_accepted": [
+      "Avoidable throughput is reduced at its source before remediation capacity is counted.",
+      "The accepted reduction changes the condition producing waste instead of enlarging the burden assigned to treatment."
+    ],
+    "greenwashing_proposal_rejected": [
+      "The proposal treats the waste. It does not reduce the condition producing it.",
+      "Treatment capacity does not create permission to pollute; the proposal remains incomplete."
+    ],
+    "burden_externalization": [
+      "Production has been preserved by transferring its cost into public maintenance.",
+      "The objects leave intact. The burden remains local."
+    ],
+    "worker_protection": [
+      "Worker and maintainer protection is recorded as an obligation, not an offset against extraction.",
+      "Production pauses and livelihood protection remain enforceable when the public threshold is crossed."
+    ],
+    "throughput_cap": [
+      "Production now stops at the public capacity limit; treatment does not inherit the quota.",
+      "The Works' throughput is capped where water, viability, evidence, or containment can no longer support it."
+    ],
+    "archive_correction": [
+      "The correction remains beside the original claim; neither version erases the other.",
+      "The archive now records the failed treatment, accumulated substrate, and revised claim together."
+    ],
+    "final_reconstruction": [
+      "Production is now answerable to public need, ecological limits, maintained evidence, and collective control.",
+      "Production was never the same as provision; the reconstructed Works begins with refusal, reduction, and containment."
+    ],
+    "content_not_loaded": [
+      "No validated later position is loaded; the plural record remains available."
+    ],
+    "duplicate_event": [
+      "That record contribution was already retained and was not applied twice."
+    ],
+    "invalid_action": [
+      "That action does not fit the current records, provenance, or preserved differences."
+    ],
+    "local_orientation": [
+      "One nearby record and its stage marker resolve; a specific inquiry may identify its provenance."
+    ],
+    "observation_unlocked": [
+      "A sourced public record has been added without resolving beyond its evidence."
+    ],
+    "observation_corroborated": [
+      "Another mycotroph has corroborated that sourced public record."
+    ],
+    "proposal_rejected": [
+      "The concordance is incomplete; its feedback identifies a missing source, mapping, or preserved difference."
+    ],
+    "proposal_accepted": [
+      "The plural concordance is viable and awaits non-author confirmation."
+    ],
+    "confirmation_recorded": [
+      "A non-author has confirmed the mapping while retaining its differences."
+    ],
+    "position_completed": [
+      "The network now distinguishes sent, delivered, and retained records without forcing false agreement."
+    ],
+    "simulated_identity_forbidden": [
+      "Simulated participants remain confined to the test session."
+    ],
+    "unknown_action": [
+      "The action could not be classified. Use an explicit game command."
+    ]
+  }
+}

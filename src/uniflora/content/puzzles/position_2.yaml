@@ -1,0 +1,485 @@
+schema_version: 1
+content_version: "2.1.1"
+position: 2
+key: translation
+title: Translation
+status: complete
+public_premise: >-
+  Three accurate public records describe the same circulation with incompatible terms and
+  apparent totals. Progress requires tracing provenance, mapping sent, delivered, and retained
+  measurements, and preserving differences that should not be erased. Begin with any one record,
+  instrument, signature, term, or margin note; comparison becomes possible only after its public
+  provenance is established.
+entities:
+  - id: circulation_ledger
+    title: Circulation Ledger
+    kind: public_record
+    aliases: [ledger, sent-record, source-ledger]
+    discovery_label: Circulation Ledger — SENT
+    public_description: A signed source-side record made when water left the Veil.
+    measurements: {stage: sent, sequence: 1}
+  - id: nursery_intake_sensor
+    title: Nursery Intake Sensor
+    kind: public_record
+    aliases: [intake, delivered-record, intake-sensor]
+    discovery_label: Nursery Intake Sieve — DELIVERED
+    public_description: A destination-side reading made when water crossed into the Nursery.
+    measurements: {stage: delivered, sequence: 2}
+  - id: nursery_retention_survey
+    title: Nursery Retention Survey
+    kind: public_record
+    aliases: [retention, retained-record, survey]
+    discovery_label: Nursery Retention Survey — RETAINED LATER
+    public_description: A later survey of water remaining after the Nursery's first use interval.
+    measurements: {stage: retained, sequence: 3}
+  - id: archive_glossary
+    title: Archive Glossary
+    kind: terminology
+    aliases: [glossary, definitions, concordance]
+    discovery_label: CONCORDANCE, NOT CORRECTION inset
+    public_description: A damaged but readable mapping of source, boundary, and retention terms.
+  - id: provenance_index
+    title: Provenance Index
+    kind: provenance
+    aliases: [provenance, signatures, index]
+    discovery_label: Three equal record seals
+    public_description: Public signatures, instruments, stages, and timestamps for the records.
+  - id: margin_recorder
+    title: Margin Recorder
+    kind: minority_record
+    aliases: [margin, minority-report, dissent]
+    discovery_label: Later-retention margin note
+    public_description: A less-used account warning that retention is not the same as delivery.
+  - id: relay_dialect_node
+    title: Relay Dialect Node
+    kind: terminology
+    aliases: [dialect, relay-language, old-terms]
+    discovery_label: Faded relay-language fragment
+    public_description: An older vocabulary in which every successful handoff is called receipt.
+  - id: provision_works
+    title: The Provision Works
+    kind: production_complex
+    aliases: [works, endless workshop, provision complex]
+    discovery_label: Metered upper branch — destination not recorded
+    public_description: A large upper-district production and distribution complex whose quotas, inputs, outputs, and ownership are recorded across separate public ledgers.
+    resources: {water: 0}
+    measurements: {disclosure_level: partial, quota_control: remote, local_shutdown_authority: false}
+  - id: production_intake_channel
+    title: Production Intake Channel
+    kind: allocation_pathway
+    aliases: [intake channel, works intake, production draw]
+    discovery_label: Metered production intake
+    public_description: The metered branch carrying shared water toward the Provision Works under changing allocation labels.
+    resources: {}
+    measurements: {ledger_category: circulated, repeated_allocation: true}
+  - id: warm_return_channel
+    title: Warm Return Channel
+    kind: altered_water_pathway
+    aliases: [warm return, works return, altered return]
+    discovery_label: Warm visibly altered return flow
+    public_description: The Works return route, where returned quantity, temperature, dissolved residue, treatment status, reuse eligibility, and destination remain separate facts.
+    resources: {}
+    measurements: {temperature_state: elevated, treatment_status: partial, reuse_eligible: false}
+  - id: works_allocation_ledger
+    title: Works Allocation Ledger
+    kind: public_record
+    aliases: [works ledger, allocation ledger, circulated-use record]
+    discovery_label: Quota-side allocation record
+    public_description: A quota-side record that describes repeated production withdrawal as circulated or temporary shared use.
+    measurements: {boundary: intake_meter, source_group: quota_office}
+  - id: treatment_yard
+    title: Treatment Yard
+    kind: treatment_infrastructure
+    aliases: [yard, treatment works, conditioning yard]
+    discovery_label: Public conditioning yard
+    public_description: A public-facing conditioning yard containing settling space, limited fungal beds, containment stores, and separately routed runoff.
+    resources: {}
+    measurements: {disclosure_level: partial, mixed_flow_accepted: false}
+  - id: white_rot_beds
+    title: White Rot Beds
+    kind: fungal_treatment_bed
+    aliases: [white rot, fungal beds, treatment beds]
+    discovery_label: Maintained fungal treatment beds
+    public_description: Maintained fungal beds compatible with a narrow organic-residue class under suitable viability, contact time, saturation, and containment conditions.
+    resources: {}
+    measurements: {viability: 3, saturation: 0, proves_safety: false}
+  - id: spent_substrate_court
+    title: Spent Substrate Court
+    kind: containment_store
+    aliases: [spent court, substrate court, used substrate]
+    discovery_label: Classified substrate isolation area
+    public_description: A classified isolation area for used remediation substrate; stored material is not compost and is prohibited from food-growing soil.
+    resources: {}
+    measurements: {containment: 2, food_soil_reuse_allowed: false}
+observations:
+  - id: source_sent_measurement
+    entity_id: circulation_ledger
+    public_text: The signed ledger records the quantity sent from the source.
+    fact_key: source_sent_measurement
+    unlock: {action: observe, entity_id: circulation_ledger}
+    contribution_function: record_observer
+  - id: intake_delivered_measurement
+    entity_id: nursery_intake_sensor
+    public_text: The calibrated intake sensor records the quantity delivered across the boundary.
+    fact_key: intake_delivered_measurement
+    unlock: {action: observe, entity_id: nursery_intake_sensor}
+    contribution_function: record_observer
+  - id: survey_retained_measurement
+    entity_id: nursery_retention_survey
+    public_text: The later survey records the quantity retained after one use interval.
+    fact_key: survey_retained_measurement
+    unlock: {action: observe, entity_id: nursery_retention_survey}
+    contribution_function: record_observer
+  - id: stage_term_mapping
+    entity_id: archive_glossary
+    public_text: Sent names source departure; delivered names boundary arrival; retained names a later remainder.
+    fact_key: stage_term_mapping
+    unlock: {action: observe, entity_id: archive_glossary}
+    contribution_function: terminologist
+  - id: records_have_distinct_provenance
+    entity_id: provenance_index
+    public_text: The records were made by different instruments at successive stages; all signatures validate.
+    fact_key: records_have_distinct_provenance
+    unlock: {action: observe, entity_id: provenance_index}
+    contribution_function: provenance_auditor
+  - id: retention_minor_report
+    entity_id: margin_recorder
+    public_text: A minority note insists that later retention must remain visible rather than being corrected to delivery.
+    fact_key: retention_minor_report
+    unlock: {action: observe, entity_id: margin_recorder}
+    contribution_function: dissent_archivist
+  - id: receipt_term_ambiguity
+    entity_id: relay_dialect_node
+    public_text: The older relay dialect uses receipt for both boundary delivery and later possession.
+    fact_key: receipt_term_ambiguity
+    unlock:
+      action: observe
+      entity_id: relay_dialect_node
+      requires_observations: [stage_term_mapping]
+    contribution_function: terminologist
+  - id: chronology_resolves_difference
+    entity_id: provenance_index
+    public_text: Chronology can explain a numerical difference without declaring any accurate record false.
+    fact_key: chronology_resolves_difference
+    unlock:
+      action: observe
+      entity_id: provenance_index
+      requires_observations: [records_have_distinct_provenance]
+    contribution_function: provenance_auditor
+  - id: summary_must_preserve_stages
+    entity_id: archive_glossary
+    public_text: A shared summary is accurate only if it preserves each stage and its provenance.
+    fact_key: summary_must_preserve_stages
+    unlock:
+      action: observe
+      entity_id: archive_glossary
+      requires_observations: [stage_term_mapping]
+    contribution_function: public_editor
+  - id: provision_works_named
+    entity_id: provision_works
+    public_text: The unnamed upper allocation resolves as the Provision Works, a production complex governed by distant quotas and locally maintained infrastructure.
+    fact_key: provision_works_named
+    unlock:
+      action: observe
+      entity_id: provision_works
+      requires_observations:
+        [source_sent_measurement, intake_delivered_measurement, survey_retained_measurement,
+         stage_term_mapping, records_have_distinct_provenance, retention_minor_report]
+    contribution_function: production_record_reader
+  - id: works_withdrawal_called_circulation
+    entity_id: works_allocation_ledger
+    public_text: The quota office records water crossing the Works intake meter as circulated, while water maintainers record the same crossing as withdrawn from public availability.
+    fact_key: works_withdrawal_called_circulation
+    unlock:
+      action: observe
+      entity_id: works_allocation_ledger
+      requires_observations: [provision_works_named]
+    contribution_function: allocation_terminologist
+    classification: preserved_difference
+  - id: intake_boundary_changes_quantity
+    entity_id: production_intake_channel
+    public_text: Withdrawn, circulated, temporary, and repeated allocation describe different boundaries around the same production intake rather than interchangeable totals.
+    fact_key: intake_boundary_changes_quantity
+    unlock:
+      action: observe
+      entity_id: production_intake_channel
+      requires_observations: [works_withdrawal_called_circulation]
+    contribution_function: measurement_boundary_reader
+  - id: warm_return_volume_not_usability
+    entity_id: warm_return_channel
+    public_text: Returned names volume crossing back from production; reusable additionally requires public temperature, residue, treatment, and destination evidence.
+    fact_key: warm_return_volume_not_usability
+    unlock:
+      action: observe
+      entity_id: warm_return_channel
+      requires_observations: [intake_boundary_changes_quantity]
+    contribution_function: return_term_auditor
+    classification: unresolved_discrepancy
+  - id: treated_term_boundary
+    entity_id: treatment_yard
+    public_text: Works records use treated for conditioned flow, while yard maintainers reserve it for a contaminant-specific process with containment and evidence recorded.
+    fact_key: treated_term_boundary
+    unlock:
+      action: observe
+      entity_id: treatment_yard
+      requires_observations: [warm_return_volume_not_usability]
+    contribution_function: treatment_boundary_reader
+    classification: preserved_difference
+  - id: fungal_processes_are_distinct
+    entity_id: white_rot_beds
+    public_text: Degradation, transformation, filtration, immobilization, accumulation, and indicator response name materially different processes and cannot be summarized as removal.
+    fact_key: fungal_processes_are_distinct
+    unlock:
+      action: observe
+      entity_id: white_rot_beds
+      requires_observations: [treated_term_boundary]
+    contribution_function: material_process_translator
+  - id: clarity_is_not_safety_evidence
+    entity_id: white_rot_beds
+    public_text: Reduced color, odor, or turbidity is a visible change; it does not by itself increase evidence that returned water is safe or reusable.
+    fact_key: clarity_is_not_safety_evidence
+    unlock:
+      action: observe
+      entity_id: white_rot_beds
+      requires_observations: [fungal_processes_are_distinct]
+    contribution_function: evidence_boundary_reader
+  - id: substrate_retains_material
+    entity_id: spent_substrate_court
+    public_text: Some material absent from downstream water remains accumulated or immobilized in substrate, which therefore requires classification and containment rather than composting.
+    fact_key: substrate_retains_material
+    unlock:
+      action: observe
+      entity_id: spent_substrate_court
+      requires_observations: [clarity_is_not_safety_evidence]
+    contribution_function: substrate_record_translator
+allowed_actions:
+  - orient_local
+  - observe
+  - summarize
+  - compare_records
+  - clarify_record
+  - classify_contradiction
+  - relay_record
+  - annotate_difference
+  - propose_translation
+  - confirm_reconstruction
+  - begin_stack
+  - react_to_stack
+  - resolve_stack
+  - add_proposal_kicker
+  - use_triggered_reaction
+relational_requirements:
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+translation:
+  record_entity_ids: [circulation_ledger, nursery_intake_sensor, nursery_retention_survey]
+  glossary_entity_id: archive_glossary
+  provenance_entity_id: provenance_index
+  minority_entity_id: margin_recorder
+  required_observations:
+    [source_sent_measurement, intake_delivered_measurement, survey_retained_measurement,
+     stage_term_mapping, records_have_distinct_provenance, retention_minor_report]
+  required_comparisons: 2
+  allowed_classifications: [different_stages, different_scales, terminology, unresolved]
+  correct_classification: different_stages
+  mapping_terms: [sent, delivered, retained]
+  preservation_terms: [preserve, remains, difference, distinct, unresolved, minority]
+  required_public_relays: 1
+confirmation: {minimum_confirmations: 1, non_author_required: true}
+tactical:
+  max_stack_depth: 4
+  allowed_stack_reactions:
+    [challenge_mapping, request_provenance, preserve_difference, clarify_scale, relay_summary]
+  allowed_kickers: [cite_provenance, preserve_minority, accessibility_glossary]
+  strain_threshold: 3
+  strain_reserve_penalty: 1
+  repair_threshold: 2
+  coherence_threshold: 2
+provision_arc:
+  entity_roles:
+    provision_works: provision_works
+    production_intake_channel: production_intake_channel
+    warm_return_channel: warm_return_channel
+    allocation_record: works_allocation_ledger
+    treatment_yard: treatment_yard
+    white_rot_beds: white_rot_beds
+    spent_substrate_court: spent_substrate_court
+    terminology_ledger: archive_glossary
+    provenance_index: provenance_index
+  contaminant_classes:
+    - id: organic_dye_residue
+      public_label: Organic dye residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: A broad organic color-residue class with limited recorded compatibility and unresolved final safety.
+    - id: wood_treatment_residue
+      public_label: Wood-treatment residue
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: A persistent process residue not accepted by the configured biological bed.
+    - id: mineral_glaze_runoff
+      public_label: Mineral glaze runoff
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: A mineral-bearing runoff class requiring separation and contaminant-specific assessment.
+    - id: oily_maintenance_residue
+      public_label: Oily maintenance residue
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: A maintenance residue kept outside the configured fungal treatment flow.
+    - id: saline_wash_water
+      public_label: Saline wash water
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: A dissolved-residue flow for which visual clarification cannot establish reuse eligibility.
+    - id: mixed_unknown_discharge
+      public_label: Mixed unknown discharge
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: An unresolved mixture that must be characterized and separated before any biological treatment claim.
+  fungal_cultures:
+    - id: yard_white_rot_culture
+      public_label: Yard white-rot archive culture
+      compatible_contaminant_classes: [organic_dye_residue]
+      heat_tolerance: moderate
+      provenance: Preserved in the public culture record with outcomes limited to a organic-residue class.
+      uncertainty: No compatibility is claimed for mineral, oily, saline, wood-treatment, or mixed unknown discharge.
+  compatibility_rules:
+    - {contaminant_class: organic_dye_residue, culture_id: yard_white_rot_culture, compatible: true, minimum_viability: 2, maximum_saturation: 3, required_evidence: 2}
+    - {contaminant_class: wood_treatment_residue, culture_id: yard_white_rot_culture, compatible: false, minimum_viability: 2, maximum_saturation: 3, required_evidence: 3}
+    - {contaminant_class: mineral_glaze_runoff, culture_id: yard_white_rot_culture, compatible: false, minimum_viability: 2, maximum_saturation: 3, required_evidence: 3}
+    - {contaminant_class: oily_maintenance_residue, culture_id: yard_white_rot_culture, compatible: false, minimum_viability: 2, maximum_saturation: 3, required_evidence: 3}
+    - {contaminant_class: saline_wash_water, culture_id: yard_white_rot_culture, compatible: false, minimum_viability: 2, maximum_saturation: 3, required_evidence: 3}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: yard_white_rot_culture, compatible: false, minimum_viability: 2, maximum_saturation: 3, required_evidence: 3}
+  remediation_systems:
+    - entity_id: white_rot_beds
+      processes: [transformation, filtration, accumulation, indicator_response]
+      contaminant_classes: [organic_dye_residue]
+      culture_ids: [yard_white_rot_culture]
+      containment_destination_ids: [spent_substrate_court]
+      moisture_required: true
+      temperature_required: true
+      contact_time_required: true
+  substrates:
+    - id: classified_yard_substrate
+      public_label: Classified yard-bed substrate
+      compatible_system_ids: [white_rot_beds]
+      contaminated_reuse_allowed: false
+      containment_required: true
+  thresholds:
+    saturation_limit: 3
+    minimum_viability: 2
+    minimum_containment: 2
+    minimum_evidence: 2
+    maximum_throughput: 6
+  climate_record:
+    historical_baseline: Earlier records assumed stable condensation, groundwater recovery, and maintenance intervals.
+    current_measurement: Current heat, evaporation, and low-flow concentration no longer match those inherited intervals.
+    forecast: Public water and fungal viability remain under greater pressure during the longer heat period.
+    conditional_projection: Higher production draw or lower viability increases maintenance and evidence requirements deterministically.
+    obsolete_expectation: The Works ledger still treats historical return and recovery rates as reliable allocation baselines.
+    unresolved_discrepancy: Withdrawn, returned, treated, and reusable quantities remain separated by incompatible reporting boundaries.
+  remediation_hierarchy:
+    - refuse_unnecessary_production
+    - reduce_harmful_inputs
+    - redesign_production
+    - reuse_verified_safe_material
+    - separate_clean_and_contaminated_flows
+    - contain_unavoidable_waste
+    - remediate_compatible_contamination
+    - monitor_long_term_effects
+    - manage_spent_substrate
+  counter_defaults:
+    containment: 2
+    evidence: 0
+    source_reduction: 0
+    throughput: 4
+    extraction: 2
+    public_benefit: 1
+    burden: 2
+    remediation: 0
+    archival_coherence: 0
+  target_counter_defaults:
+    saturation: {white_rot_beds: 0}
+    viability: {white_rot_beds: 3}
+  evidence_measures: [upstream_sampling, downstream_sampling, repeated_measurement, indicator_observation, substrate_handling_record, production_disclosure]
+  visual_only_measures: [color, odor, turbidity]
+  reduction_measures: [water_draw, throughput, harmful_input, waste_output]
+  redesign_changes: [durability, repairability, source_separation, closed_loop_reuse]
+  mitigation_risks: [heat, worker_burden, runoff, substrate_exposure, donor_strain]
+  maintenance_conditions: [maintain, monitor, inspect, reassess, rest, replace]
+  record_types: [measurement, provenance, glossary_entry, uncertainty, failed_treatment, handling_requirement]
+completion:
+  world_flags:
+    translation_concordance: true
+    plural_records_preserved: true
+  next_position: 3
+  response_profile: plural_translation
+response_profile_changes: {on_completion: plural_translation}
+narration_keys:
+  orient_local: local_orientation
+  observe_new: observation_unlocked
+  observe_repeat: observation_corroborated
+  action_accepted: accepted
+  proposal_rejected: proposal_rejected
+  proposal_accepted: proposal_accepted
+  confirmation_recorded: confirmation_recorded
+  position_completed: position_completed
+  industrial_draw_discovered: industrial_draw_discovered
+  returned_water_ambiguity: returned_water_ambiguity
+  fungal_bed_compatibility: fungal_bed_compatibility
+  visible_clarification_without_safety_evidence: visible_clarification_without_safety_evidence
+  substrate_containment: substrate_containment
+accessibility:
+  summary: >-
+    Ask Hypha about one record, instrument, signature, term, or margin note, then compare what the
+    public record establishes. Mention or reply to Hypha for ordinary language; slash commands
+    remain the reliable fallback. Recall preserves provenance and disagreement, while chart shows
+    the action flow and concordance requirements. No speed, private clue, or forced agreement is
+    required.
+  accepted_input_modes: [natural_language, explicit_command]
+  explicit_command_help:
+    - "Discover: use /interior act observe and choose an inspectable public cue; Hypha reveals its record or entity only when its prerequisites are public."
+    - "Compare and clarify two public records before classifying their difference."
+    - "Relay or annotate an account without replacing its own term or provenance."
+    - "Propose a translation only after all three stages and the minority warning are public; Discord exposes the concordance fields."
+    - "Another participant confirms or challenges the proposal; the author cannot self-confirm."
+    - "Use /interior chart for the full flow and /interior recall for public record IDs and established differences."
+orientation:
+  local_response: One nearby record surface resolves, including its own stage marker and signature.
+  specificity_invitation: Name one visible record, instrument, term, signature, or margin note and ask what it establishes.
+  prohibited_automatic_reveals:
+    - all record names
+    - complete terminology mapping
+    - every provenance relation
+    - unresolved minority reports
+    - complete public-state recap
+presentation:
+  image_asset: assets/position_2_translation.png
+  image_alt_text: >-
+    A sepia botanical-field-guide panorama titled Translation, showing a public settlement court
+    where workers compare signed diagrams, measurement boards, vessels, planted specimens, and
+    circulation records without collapsing their distinct sources or stages.
+  introduction: |-
+    ## POSITION 2 — TRANSLATION
+
+    The circulation holds. Its public records do not appear to agree.
+
+    A source ledger, a boundary sensor, and a later retention survey describe the same movement through different instruments, terms, and moments. Their apparent contradiction cannot be resolved by choosing one record as authoritative and discarding the others.
+
+    Translation requires comparison before consensus. Trace where each record was made, clarify what its terms measure, and preserve the minority warning that delivery and later retention are not interchangeable.
+
+    No hidden record decides the answer. Provenance, differences, annotations, and summaries remain public.
+
+    Functions remain temporary. Readers, comparators, terminologists, provenance auditors, relays, dissent archivists, and editors may each expose a different part of the relation.
+
+    Begin with one record or instrument. Mention or reply to Hypha to ask what it establishes, or use `/interior chart` for the concise action flow. `/interior accessibility` remains a fallback when inference stalls.
+
+    Agreement is not accuracy if it erases when and where a measurement became true.
+vocabulary: [sent, delivered, retained, returned, reusable, withdrawn, circulated, treated, clarified, degraded, immobilized, accumulated, transformed, provenance, chronology, terminology, minority, difference]
+world_flags:
+  translation_concordance: false
+  plural_records_preserved: false
+  material_terms_ledger: false
+  remediation_processes_distinguished: false

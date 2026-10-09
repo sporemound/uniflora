@@ -1,0 +1,739 @@
+schema_version: 1
+content_version: "0.4.0-provision-works"
+position: 5
+key: memory
+title: Memory
+status: complete
+public_premise: >-
+  The Provision Works archive contains assurances, revisions, physical measurements, and
+  omissions that were each recorded from a different institutional position. Players must
+  preserve a versioned history of a failed fungal treatment: visibly clearer water was called
+  safe, retained material accumulated in substrate, the substrate was reused where it should
+  not have been, and the burden entered the drainage system again. Correction must preserve
+  every earlier version, its uncertainty, and any conflict that remains unresolved. Begin with
+  one assurance, revision, physical trace, affected place, or handling record; no single surface
+  contains the whole history.
+
+entities:
+  - id: provision_works
+    title: The Provision Works
+    kind: industrial_complex
+    aliases: [the works, endless workshop, production complex]
+    discovery_label: Works quota and scarcity postings
+    public_description: >-
+      A large production complex whose successive ledgers call the same water withdrawn,
+      circulated, returned, and temporarily allocated. Quota changes and delayed repairs show
+      policy without requiring a single villainous author.
+    resources: {water_draw: 9, production_quota: 10, local_benefit: 3, exported_surplus: 8}
+    measurements:
+      current_output: 10
+      disclosure_level: partial
+      source_reduction_status: incomplete
+      shutdown_threshold: absent
+
+  - id: production_intake_channel
+    title: Production Intake Channel
+    kind: water_pathway
+    aliases: [works intake, intake channel, reserved supply channel]
+    discovery_label: Blue public-water route entering the Works
+    public_description: >-
+      A public-water route entering the Works. Older ledgers classify it as shared civic
+      circulation even when its destination and repeated priority are omitted.
+    resources: {water_flow: 8}
+    measurements:
+      destination: provision_works
+      accounting_category: circulated
+      public_reuse_eligibility: false
+
+  - id: warm_return_channel
+    title: Warm Return Channel
+    kind: altered_water_pathway
+    aliases: [works return, return channel, warm channel]
+    discovery_label: Rust-orange return-water route
+    public_description: >-
+      Water leaves production through this route. Returned volume does not establish usable
+      volume, and old forms changed the word treated to returned without adding measurements.
+    resources: {returned_volume: 6}
+    measurements:
+      temperature_state: elevated
+      dissolved_residue_state: unresolved
+      treatment_status: historically_disputed
+      reuse_eligibility: unconfirmed
+
+  - id: treatment_yard
+    title: Treatment Yard
+    kind: remediation_infrastructure
+    aliases: [conditioning yard, separation court, treatment court]
+    discovery_label: Treatment-yard correction desk
+    public_description: >-
+      A public work area for separating flows, maintaining bounded fungal systems, recording
+      samples, and isolating material. Its infrastructure never establishes safety by itself.
+    resources: {maintenance_capacity: 3}
+    measurements:
+      clean_flow_route: marked
+      contaminated_flow_route: historically_incomplete
+      public_monitoring: partial
+
+  - id: white_rot_beds
+    title: White Rot Beds
+    kind: fungal_treatment_system
+    aliases: [white beds, fungal beds, old treatment beds]
+    discovery_label: White-rot treatment notice
+    public_description: >-
+      Bounded beds used for some confirmed organic residue classes. An old success
+      notice recorded reduced color while omitting declining viability and retained substrate
+      load.
+    resources: {maintenance_capacity: 2}
+    measurements:
+      contaminant_class: organic_dye_residue
+      moisture_suitable: true
+      temperature_suitable: false
+      contact_time_status: historically_unrecorded
+      visible_clarity: improved
+
+  - id: blackwater_berm
+    title: Blackwater Berm
+    kind: containment_barrier
+    aliases: [containment berm, runoff berm, black berm]
+    discovery_label: Blackwater containment berm
+    public_description: >-
+      An inoculated barrier that can slow spread, filter particles, immobilize some material,
+      and indicate change. It cannot classify unknown discharge or make land food-safe.
+    resources: {containment_capacity: 3}
+    measurements:
+      contaminant_class: mixed_unknown_discharge
+      moisture_suitable: true
+      temperature_suitable: true
+      food_safety_claim: false
+
+  - id: spent_substrate_court
+    title: Spent Substrate Court
+    kind: controlled_material_store
+    aliases: [substrate court, spent court, isolation store]
+    discovery_label: Spent-substrate inventory marks
+    public_description: >-
+      A public store for used remediation material. The material remains classified by retained
+      burden; it is not automatically compost and requires an explicit long-term handling plan.
+    resources: {containment_capacity: 6}
+    measurements:
+      containment_destination: true
+      reuse_prohibited: true
+      historical_inventory_gap: true
+      isolation_status: repairable
+
+  - id: culture_archive
+    title: Culture Archive
+    kind: living_archive
+    aliases: [fungal library, living culture library, strain archive]
+    discovery_label: Fungal culture outcome ledger
+    public_description: >-
+      A public library of treatment cultures and prior outcomes. Provenance,
+      contaminant compatibility, heat tolerance, failures, and uncertainty remain attached to
+      each entry.
+    resources: {archive_coherence: 4, culture_viability: 3}
+    measurements:
+      provenance_status: preserved
+      outcome_history: incomplete
+      uncertainty_status: public
+
+  - id: clear_water_test_garden
+    title: Clear-Water Test Garden
+    kind: nonfood_indicator_garden
+    aliases: [test garden, indicator garden, clear water garden]
+    discovery_label: Clear-water test-garden log
+    public_description: >-
+      A monitored non-food planting used for long-term observation. Its response can add public
+      evidence but can never establish safety without other measurements.
+    resources: {observation_capacity: 4}
+    measurements:
+      food_use_allowed: false
+      indicator_status: stressed
+      proof_of_safety: false
+
+  - id: public_well_seven
+    title: Public Well Seven
+    kind: shared_water_source
+    aliases: [well seven, civic well, seventh well]
+    discovery_label: Public-well recovery records
+    public_description: >-
+      A shared source whose current recovery is slower than both its historical baseline and the
+      assumption embedded in the Works' expansion records.
+    resources: {public_water: 5}
+    measurements:
+      historical_recovery: 7
+      current_recovery: 4
+      production_draw: 5
+      public_availability: constrained
+
+  - id: retired_nursery_plot
+    title: Retired Nursery Plot
+    kind: affected_nonfood_region
+    aliases: [old nursery, retired plot, former growing plot]
+    discovery_label: Retired nursery transfer slips
+    public_description: >-
+      A former growing area where spent treatment substrate was once routed as useful soil
+      amendment. It is now excluded from food production while the retained burden is assessed.
+    resources: {land_capacity: 2}
+    measurements:
+      food_use_prohibited: true
+      substrate_reuse_recorded: true
+      runoff_connection: clear_water_test_garden
+
+  - id: assurance_archive
+    title: Assurance Archive
+    kind: versioned_public_archive
+    aliases: [record wall, assurance wall, works archive]
+    discovery_label: Layered assurance record wall
+    public_description: >-
+      Contracts, quota notices, summaries, correction slips, and unsigned filing conventions are
+      shown in sequence. Later versions may annotate earlier claims but may not replace them.
+    resources: {archive_coherence: 3}
+    measurements:
+      versioning_required: true
+      prior_versions_preserved: true
+      unresolved_conflicts_visible: true
+
+observations:
+  - id: original_limited_works_claim
+    entity_id: assurance_archive
+    public_text: >-
+      The opening charter says the Works will remain limited to durable regional goods and will
+      not outrank civic water. The named signatories are institutional offices, not a hidden
+      culprit.
+    fact_key: original_limited_works_claim
+    unlock: {action: inspect, entity_id: assurance_archive, distinct_user_count: 1}
+    contribution_function: provenance
+    classification: historical_baseline
+
+  - id: original_public_water_assurance
+    entity_id: assurance_archive
+    public_text: >-
+      A later assurance still promises that production draw will not reduce public availability,
+      but it measures only scheduled delivery to the Works and not recovery at the well.
+    fact_key: original_public_water_assurance
+    unlock:
+      action: inspect
+      entity_id: assurance_archive
+      requires_observations: [original_limited_works_claim]
+      distinct_user_count: 1
+    contribution_function: boundary_analysis
+    classification: historical_baseline
+
+  - id: later_circulated_water_revision
+    entity_id: assurance_archive
+    public_text: >-
+      The next summary changes public withdrawal to circulated allocation and calls all returned
+      volume treated. It does not preserve a measurement showing that the returned water was
+      usable.
+    fact_key: later_circulated_water_revision
+    unlock:
+      action: inspect
+      entity_id: assurance_archive
+      requires_observations: [original_public_water_assurance]
+      distinct_user_count: 1
+    contribution_function: translation
+    classification: preserved_difference
+
+  - id: visible_clarification_success_claim
+    entity_id: white_rot_beds
+    public_text: >-
+      A treatment notice declares success after color and turbidity fell. Its evidence column
+      contains no contaminant-specific comparison, substrate inventory, or long-term observation.
+    fact_key: visible_clarification_success_claim
+    unlock:
+      action: inspect
+      entity_id: white_rot_beds
+      requires_observations: [later_circulated_water_revision]
+      distinct_user_count: 1
+    contribution_function: evidence_review
+    classification: obsolete_expectation
+
+  - id: substrate_accumulation_evidence
+    entity_id: spent_substrate_court
+    public_text: >-
+      Surviving inventory marks show that the water looked clearer because material accumulated
+      in the substrate. Some compounds may have transformed, some were retained, and some remain
+      unresolved.
+    fact_key: substrate_accumulation_evidence
+    unlock:
+      action: inspect
+      entity_id: spent_substrate_court
+      requires_observations: [visible_clarification_success_claim]
+      distinct_user_count: 1
+    contribution_function: material_accounting
+    classification: confirmed
+
+  - id: unsuitable_substrate_reuse_record
+    entity_id: retired_nursery_plot
+    public_text: >-
+      Transfer slips routed used substrate to this plot under the new label conditioned growing
+      medium. No record established that the retained material was suitable for reuse.
+    fact_key: unsuitable_substrate_reuse_record
+    unlock:
+      action: inspect
+      entity_id: retired_nursery_plot
+      requires_observations: [substrate_accumulation_evidence]
+      distinct_user_count: 1
+    contribution_function: handling_audit
+    classification: provenance
+
+  - id: affected_region_reentry_observation
+    entity_id: clear_water_test_garden
+    public_text: >-
+      The non-food indicator garden records a repeated stress pattern after runoff from the
+      retired plot. This shows that the burden re-entered the drainage relation; it does not
+      diagnose a human health outcome.
+    fact_key: affected_region_reentry_observation
+    unlock:
+      action: inspect
+      entity_id: clear_water_test_garden
+      requires_observations: [unsuitable_substrate_reuse_record]
+      distinct_user_count: 1
+    contribution_function: affected_region_observation
+    classification: current_measurement
+
+  - id: omitted_failure_summary
+    entity_id: assurance_archive
+    public_text: >-
+      The next annual summary retains the visibly clearer result but omits the substrate transfer,
+      the garden observation, and the change in reuse terminology. The omission accumulated across
+      routine revisions rather than appearing as one dramatic forgery.
+    fact_key: omitted_failure_summary
+    unlock:
+      action: inspect
+      entity_id: assurance_archive
+      requires_observations: [affected_region_reentry_observation]
+      distinct_user_count: 2
+    contribution_function: archival_comparison
+    classification: preserved_difference
+
+  - id: unresolved_contaminant_scope
+    entity_id: culture_archive
+    public_text: >-
+      The culture record supports compatibility with one broad organic-residue class.
+      It cannot resolve the full historical mixture, and the extent of transformation versus
+      accumulation remains uncertain.
+    fact_key: unresolved_contaminant_scope
+    unlock:
+      action: inspect
+      entity_id: culture_archive
+      requires_observations: [substrate_accumulation_evidence]
+      distinct_user_count: 1
+    contribution_function: uncertainty_recording
+    classification: unresolved_discrepancy
+
+  - id: changed_shortage_definition
+    entity_id: provision_works
+    public_text: >-
+      Successive quota forms change shortages from production-caused constraints to temporary
+      civic scarcity. The system preserved every record of scarcity except the decision that
+      produced it.
+    fact_key: changed_shortage_definition
+    unlock:
+      action: inspect
+      entity_id: provision_works
+      requires_observations: [omitted_failure_summary]
+      distinct_user_count: 1
+    contribution_function: production_audit
+    classification: preserved_difference
+
+  - id: current_well_recovery_discrepancy
+    entity_id: public_well_seven
+    public_text: >-
+      Current recovery remains below the historical baseline while the Works ledger counts its
+      intake as temporary circulation. The two records use incompatible boundaries around the same
+      water.
+    fact_key: current_well_recovery_discrepancy
+    unlock:
+      action: inspect
+      entity_id: public_well_seven
+      requires_observations: [changed_shortage_definition]
+      distinct_user_count: 1
+    contribution_function: public_water_observation
+    classification: unresolved_discrepancy
+
+  - id: warm_return_usable_ambiguity
+    entity_id: warm_return_channel
+    public_text: >-
+      Returned volume is recorded, but temperature, residue, and reuse eligibility are not jointly
+      measured. Returned therefore remains different from publicly usable.
+    fact_key: warm_return_usable_ambiguity
+    unlock:
+      action: inspect
+      entity_id: warm_return_channel
+      requires_observations: [current_well_recovery_discrepancy]
+      distinct_user_count: 1
+    contribution_function: return_audit
+    classification: unresolved_discrepancy
+
+  - id: intake_category_provenance
+    entity_id: production_intake_channel
+    public_text: >-
+      The label shared circulation originated in a production accounting form and was later copied
+      into civic summaries without its destination field.
+    fact_key: intake_category_provenance
+    unlock: {action: inspect, entity_id: production_intake_channel, distinct_user_count: 1}
+    contribution_function: provenance
+    classification: provenance
+
+  - id: containment_not_treatment
+    entity_id: blackwater_berm
+    public_text: >-
+      The berm's oldest maintenance note says slows spread and retains material. A later index
+      shortens this to treated, even though no compatibility or safety claim was established.
+    fact_key: containment_not_treatment
+    unlock: {action: inspect, entity_id: blackwater_berm, distinct_user_count: 1}
+    contribution_function: process_distinction
+    classification: preserved_difference
+
+  - id: correction_handling_requirement
+    entity_id: treatment_yard
+    public_text: >-
+      The correction desk now requires every treatment record to retain the contaminant class,
+      evidence boundary, substrate destination, uncertainty, and unresolved conflict alongside the
+      earlier claim.
+    fact_key: correction_handling_requirement
+    unlock:
+      action: inspect
+      entity_id: treatment_yard
+      requires_observations: [unresolved_contaminant_scope, warm_return_usable_ambiguity]
+      distinct_user_count: 2
+    contribution_function: correction_design
+    classification: conditional_projection
+
+allowed_actions:
+  - orient_local
+  - observe
+  - inspect
+  - summarize
+  - sample
+  - contain
+  - document
+  - audit
+  - sustain
+  - mitigate
+  - propose_memory_archive
+  - confirm_reconstruction
+  - begin_stack
+  - react_to_stack
+  - resolve_stack
+  - add_proposal_kicker
+  - use_triggered_reaction
+
+relational_requirements:
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+
+resource_values:
+  public_water: 1
+  archive_coherence: 2
+  containment_capacity: 2
+  maintenance_capacity: 1
+
+confirmation:
+  minimum_confirmations: 1
+  non_author_required: true
+
+completion:
+  world_flags:
+    archive_of_failed_treatments: true
+    prior_versions_preserved: true
+    failed_substrate_reuse_recorded: true
+    unresolved_conflict_preserved: true
+  next_position: 6
+  response_profile: plural_translation
+
+narration_keys:
+  orient_local: local_orientation
+  observe_new: observation_unlocked
+  observe_repeat: observation_corroborated
+  action_accepted: accepted
+  treatment_failed: proposal_rejected
+  proposal_rejected: proposal_rejected
+  proposal_accepted: proposal_accepted
+  confirmation_recorded: confirmation_recorded
+  position_completed: archive_correction
+  invalid_action: invalid_action
+  industrial_draw_discovered: industrial_draw_discovered
+  returned_water_ambiguity: returned_water_ambiguity
+  fungal_bed_compatibility: fungal_bed_compatibility
+  saturation: saturation
+  viability_failure: viability_failure
+  visible_clarification_without_safety_evidence: visible_clarification_without_safety_evidence
+  substrate_containment: substrate_containment
+  greenwashing_proposal_rejected: greenwashing_proposal_rejected
+  burden_externalization: burden_externalization
+  worker_protection: worker_protection
+  archive_correction: archive_correction
+
+accessibility:
+  summary: >-
+    Ask Hypha about one assurance, revision, measurement, failure trace, affected place, or
+    handling record, then place versions and physical evidence beside one another. Mention or
+    reply for ordinary language; slash commands remain the reliable fallback. Recall preserves
+    every confirmed version and obligation, while chart shows the action flow. No speed, private
+    clue, or deletion of an earlier record is required.
+  accepted_input_modes: [natural_language, explicit_command]
+  public_recap_available: true
+  explicit_action_equivalents: true
+  no_timing_penalty: true
+  explicit_command_help:
+    - "Discover: use /interior works inspect and choose a currently inspectable map or record cue; later targets appear only when their prerequisite evidence is public."
+    - "Audit a claim against public evidence and document original, revised, failed, or corrected versions without overwriting them."
+    - "Contain any confirmed spent material and keep its handling obligation attached to the record."
+    - "Propose memory only after versions, evidence, uncertainty, correction, unresolved conflict, and custody are public."
+    - "Another participant confirms or challenges the archive; the author cannot self-confirm."
+    - "Use /interior chart for the full flow and /interior recall for live versions, evidence, and IDs."
+
+orientation:
+  local_response: >-
+    One archive surface resolves into layered notices: an assurance, a revised category, a clear
+    water claim, a substrate transfer, and an omitted garden observation remain physically
+    adjacent without yet being reconciled.
+  specificity_invitation: >-
+    Inspect one record-bearing entity, physical trace, affected region, or handling destination;
+    no single surface contains the complete history.
+  prohibited_automatic_reveals:
+    - every archive version
+    - the full failed-treatment sequence
+    - undiscovered substrate handling
+    - unmeasured contaminant identity
+    - a falsely resolved conflict
+    - complete public-state recap
+
+tactical:
+  max_stack_depth: 4
+  allowed_stack_reactions:
+    [object_evidence, object_compatibility, contain_substrate, audit_return, protect_workers, reassess_viability, preserve_archive]
+  allowed_kickers:
+    [archive_failure, public_disclosure, spent_substrate_plan, long_term_monitoring, worker_protection]
+  strain_threshold: 3
+  strain_reserve_penalty: 1
+  repair_threshold: 2
+  coherence_threshold: 3
+
+provision_arc:
+  entity_roles:
+    provision_works: provision_works
+    production_intake_channel: production_intake_channel
+    warm_return_channel: warm_return_channel
+    industrial_producer: provision_works
+    production_intake: production_intake_channel
+    returned_water: warm_return_channel
+    treatment_yard: treatment_yard
+    treatment_bed: white_rot_beds
+    containment_berm: blackwater_berm
+    spent_substrate_store: spent_substrate_court
+    culture_library: culture_archive
+    indicator_garden: clear_water_test_garden
+    public_water_source: public_well_seven
+    affected_region: retired_nursery_plot
+    versioned_archive: assurance_archive
+
+  contaminant_classes:
+    - id: organic_dye_residue
+      public_label: Organic dye residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A broad class that may be compatible with a documented culture. Reduced color
+        alone cannot establish transformation, removal, or safety.
+    - id: wood_treatment_residue
+      public_label: Wood-treatment residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A residue class whose treatment eligibility depends on the public compatibility
+        record and bounded evidence; real materials are outside the game's model.
+    - id: mineral_glaze_runoff
+      public_label: Mineral glaze runoff
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A mineral-heavy runoff class routed to separation, containment, and professional
+        assessment rather than assumed biological treatment.
+    - id: oily_maintenance_residue
+      public_label: Oily maintenance residue
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A broad maintenance class that is not accepted by the configured fungal systems.
+    - id: saline_wash_water
+      public_label: Saline wash water
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A wash-water class for which clarity says nothing about reuse eligibility.
+    - id: mixed_unknown_discharge
+      public_label: Mixed unknown discharge
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        An unresolved mixture that must be characterized and contained; it cannot enter a
+        biological treatment claim by default.
+
+  fungal_cultures:
+    - id: archive_white_rot_line
+      public_label: Archive white-rot line
+      compatible_contaminant_classes: [organic_dye_residue, wood_treatment_residue]
+      heat_tolerance: moderate
+      provenance: Preserved in the public Culture Archive with bounded compatibility records.
+      uncertainty: Compatibility does not prove complete transformation, safety, or unlimited capacity.
+    - id: berm_indicator_line
+      public_label: Berm indicator line
+      compatible_contaminant_classes: []
+      heat_tolerance: high
+      provenance: Preserved as an indicator and containment-support culture, not a universal treatment.
+      uncertainty: Its response can reveal changing conditions but cannot establish contaminant safety.
+
+  compatibility_rules:
+    - {contaminant_class: organic_dye_residue, culture_id: archive_white_rot_line, compatible: true, minimum_viability: 2, maximum_saturation: 3, required_evidence: 2}
+    - {contaminant_class: wood_treatment_residue, culture_id: archive_white_rot_line, compatible: true, minimum_viability: 2, maximum_saturation: 2, required_evidence: 3}
+    - {contaminant_class: mineral_glaze_runoff, culture_id: archive_white_rot_line, compatible: false}
+    - {contaminant_class: oily_maintenance_residue, culture_id: archive_white_rot_line, compatible: false}
+    - {contaminant_class: saline_wash_water, culture_id: archive_white_rot_line, compatible: false}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: archive_white_rot_line, compatible: false}
+    - {contaminant_class: organic_dye_residue, culture_id: berm_indicator_line, compatible: false}
+    - {contaminant_class: wood_treatment_residue, culture_id: berm_indicator_line, compatible: false}
+    - {contaminant_class: mineral_glaze_runoff, culture_id: berm_indicator_line, compatible: false}
+    - {contaminant_class: oily_maintenance_residue, culture_id: berm_indicator_line, compatible: false}
+    - {contaminant_class: saline_wash_water, culture_id: berm_indicator_line, compatible: false}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: berm_indicator_line, compatible: false}
+
+  remediation_systems:
+    - entity_id: white_rot_beds
+      processes: [biodegradation, transformation, filtration, accumulation]
+      contaminant_classes: [organic_dye_residue, wood_treatment_residue]
+      culture_ids: [archive_white_rot_line]
+      containment_destination_ids: [spent_substrate_court]
+      moisture_required: true
+      temperature_required: true
+      contact_time_required: true
+    - entity_id: blackwater_berm
+      processes: [filtration, immobilization, containment, indicator_response]
+      contaminant_classes: [mineral_glaze_runoff, oily_maintenance_residue, saline_wash_water, mixed_unknown_discharge]
+      culture_ids: [berm_indicator_line]
+      containment_destination_ids: [spent_substrate_court]
+      moisture_required: true
+      temperature_required: true
+      contact_time_required: true
+
+  substrates:
+    - id: bounded_woody_filter_medium
+      public_label: Bounded woody filter medium
+      compatible_system_ids: [white_rot_beds]
+      contaminated_reuse_allowed: false
+      containment_required: true
+    - id: berm_filter_medium
+      public_label: Berm filter medium
+      compatible_system_ids: [blackwater_berm]
+      contaminated_reuse_allowed: false
+      containment_required: true
+
+  thresholds:
+    saturation_limit: 3
+    minimum_viability: 2
+    minimum_containment: 2
+    minimum_evidence: 2
+    maximum_throughput: 6
+
+  climate_record:
+    historical_baseline: Cooler seasons once allowed longer moisture retention and predictable well recovery.
+    current_measurement: Heat periods are longer, condensation is lower, and Public Well Seven recovers more slowly.
+    forecast: Continued heat and low flow will concentrate burden and shorten maintenance intervals.
+    conditional_projection: Lower throughput and protected water can keep bounded systems viable enough for monitoring.
+    obsolete_expectation: Annual cooling and groundwater recovery will automatically restore prior treatment capacity.
+    unresolved_discrepancy: Records disagree on how much decline comes from climate stress versus repeated production draw.
+
+  remediation_hierarchy:
+    - refuse_unnecessary_production
+    - reduce_harmful_inputs
+    - redesign_production
+    - reuse_verified_safe_material
+    - separate_clean_and_contaminated_flows
+    - contain_unavoidable_waste
+    - remediate_compatible_contamination
+    - monitor_long_term_effects
+    - manage_spent_substrate
+
+  counter_defaults:
+    containment: 1
+    evidence: 1
+    source_reduction: 0
+    throughput: 8
+    extraction: 8
+    public_benefit: 2
+    burden: 7
+    remediation: 1
+    archival_coherence: 0
+  target_counter_defaults:
+    saturation: {white_rot_beds: 3, blackwater_berm: 1}
+    viability: {white_rot_beds: 1, blackwater_berm: 2}
+
+  evidence_measures:
+    [public_record_comparison, substrate_retention_record, affected_region_observation, upstream_downstream_sample]
+  visual_only_measures: [color, odor, turbidity, visible_clarity, appearance]
+  reduction_measures: [production_throughput, harmful_input, water_draw, waste_output]
+  redesign_changes: [durable_goods, repairable_goods, verified_safe_reuse, public_need_only]
+  mitigation_risks:
+    [worker_burden, labor_burden, heat_exposure, public_water_loss, archive_erasure, substrate_exposure]
+  maintenance_conditions: [monitor_viability, inspect_containment, reassess_saturation, preserve_records]
+  record_types:
+    [original_claim, later_revision, failed_treatment, physical_evidence, affected_observation, uncertainty, correction, unresolved_conflict]
+
+provision_requirements:
+  proposal_kind: memory_archive
+  required_observations:
+    - original_limited_works_claim
+    - original_public_water_assurance
+    - later_circulated_water_revision
+    - visible_clarification_success_claim
+    - substrate_accumulation_evidence
+    - unsuitable_substrate_reuse_record
+    - affected_region_reentry_observation
+    - omitted_failure_summary
+    - unresolved_contaminant_scope
+    - changed_shortage_definition
+    - current_well_recovery_discrepancy
+    - warm_return_usable_ambiguity
+    - correction_handling_requirement
+  required_actions: [inspect, audit, document, contain]
+  required_proposal_fields:
+    - original_claim
+    - later_revision
+    - physical_evidence
+    - affected_observation
+    - uncertainty
+    - correction
+    - unresolved_conflict
+    - handling_requirement
+  required_persistent_effects:
+    - Archive of Failed Treatments
+    - Versioned Public Record
+    - Public Discharge Ledger
+    - Spent Substrate Contained
+  completion_effects:
+    - Archive of Failed Treatments
+    - Versioned Public Archive
+    - Original Claims Preserved
+    - Substrate Reuse Failure Recorded
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+
+response_profile_changes: {on_completion: plural_translation}
+reinterpretation_rules:
+  original_claim: Preserve the original wording, provenance, and measurement boundary.
+  later_revision: Attach the revision without overwriting the claim it changes.
+  physical_evidence: Keep visible change separate from contaminant-specific evidence.
+  uncertainty: Record what transformation, accumulation, and downstream effect remain unresolved.
+  correction: Publish the correction beside every prior version.
+  unresolved_conflict: Preserve disagreement until public evidence resolves it.
+vocabulary:
+  [original_claim, later_revision, physical_evidence, affected_region, uncertainty, correction, unresolved_conflict, accumulation, containment, provenance]
+world_flags:
+  archive_of_failed_treatments: false
+  prior_versions_preserved: false
+  failed_substrate_reuse_recorded: false
+  unresolved_conflict_preserved: false

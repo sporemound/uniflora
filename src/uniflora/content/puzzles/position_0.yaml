@@ -1,0 +1,194 @@
+schema_version: 1
+content_version: "1.4.0"
+position: 0
+key: dry_network
+title: The Dry Network
+status: complete
+public_premise: >-
+  Before the wider network resolves, something knocks beneath the dry paving: a warm
+  rootglass seed with three seams. The first participant may name it and choose one
+  irreversible fate with /interior act awaken name:<name> fate:<plant|open|keep>.
+  Its answer will physically mark the settlement. Beyond it, the interface detects a
+  northern reserve, an eastern growth deficit, a damaged route, and several measurements
+  whose relation is not yet legible. Restore viability without making another region
+  unable to participate.
+entities:
+  - id: northern_reservoir
+    title: Northern Reservoir
+    kind: reservoir
+    aliases: [north, reservoir, donor]
+    discovery_label: northern reserve
+    public_description: A bounded northern store connected to the old circulation mesh.
+    resources: {water: 12}
+    measurements: {stable_capacity: 12}
+  - id: eastern_growth
+    title: Eastern Growth Region
+    kind: growth_region
+    aliases: [east, growth, recipient]
+    discovery_label: eastern interrupted growth
+    public_description: A living region reporting interrupted growth.
+    resources: {water: 1}
+    measurements: {minimum_viability: 6}
+  - id: damaged_circulation
+    title: Damaged Circulation Path
+    kind: pathway
+    aliases: [path, pathway, circulation]
+    discovery_label: damaged route with an unreadable middle
+    public_description: A route between north and east with an unreadable middle segment.
+    resources: {}
+    measurements: {integrity: damaged}
+  - id: southern_mire
+    title: Southern Mire
+    kind: wetland
+    aliases: [south, mire]
+    discovery_label: damp southern ground
+    public_description: A damp southern region with water that may not be usable elsewhere.
+    resources: {water: 3}
+    measurements: {salinity: high}
+  - id: western_exchange
+    title: Western Exchange Bed
+    kind: exchange_region
+    aliases: [west, exchange]
+    discovery_label: western bed with intermittent readings
+    public_description: A western bed with intermittent exchange readings.
+    resources: {water: 2}
+    measurements: {evaporation_loss: 0.8}
+observations:
+  - id: northern_usable_capacity
+    entity_id: northern_reservoir
+    public_text: The northern reservoir holds 12 water units; at least 4 must remain in reserve.
+    fact_key: north_capacity_and_reserve
+    unlock: {action: observe, entity_id: northern_reservoir, distinct_user_count: 1}
+    contribution_function: observer
+  - id: eastern_viability_deficit
+    entity_id: eastern_growth
+    public_text: The eastern region holds 1 water unit and requires 6 for minimum viability.
+    fact_key: east_need_and_threshold
+    unlock: {action: observe, entity_id: eastern_growth, distinct_user_count: 1}
+    contribution_function: cultivator
+  - id: circulation_break
+    entity_id: damaged_circulation
+    public_text: The north-to-east circulation path is damaged; transfer cannot remain viable unless the path is repaired or explicitly accounted for.
+    fact_key: damaged_pathway_cause
+    unlock: {action: observe, entity_id: damaged_circulation, distinct_user_count: 1}
+    contribution_function: binder
+  - id: southern_salinity
+    entity_id: southern_mire
+    public_text: The southern mire contains 3 water units, but salinity makes them unsuitable for eastern growth.
+    fact_key: south_resource_unsuitable
+    unlock: {action: observe, entity_id: southern_mire, distinct_user_count: 1}
+    contribution_function: counterweight
+  - id: western_loss
+    entity_id: western_exchange
+    public_text: The western bed holds 2 water units and loses 0.8 units during each attempted transfer.
+    fact_key: west_transfer_loss
+    unlock: {action: observe, entity_id: western_exchange, distinct_user_count: 1}
+    contribution_function: witness
+allowed_actions:
+  - awaken_vessel
+  - orient_local
+  - observe
+  - connect
+  - offer
+  - request_support
+  - summarize
+  - propose_reconstruction
+  - confirm_reconstruction
+  - begin_stack
+  - react_to_stack
+  - resolve_stack
+  - add_proposal_kicker
+  - use_triggered_reaction
+relational_requirements:
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+resource_values: {water: 1.0}
+sustainability:
+  donor_entity_id: northern_reservoir
+  recipient_entity_id: eastern_growth
+  resource_id: water
+  pathway_entity_id: damaged_circulation
+  minimum_donor_reserve: 4
+  minimum_recipient_viability: 6
+  allowed_pathway_actions: [repair, account]
+reconstruction:
+  required_observations: [northern_usable_capacity, eastern_viability_deficit, circulation_break]
+  required_fields: [donor_id, recipient_id, resource_id, amount, pathway_id, pathway_action, maintenance_condition]
+  maintenance_terms: [monitor, reassess, check, review, measure, revisit, maintain]
+confirmation:
+  minimum_confirmations: 1
+  non_author_required: true
+tactical:
+  max_stack_depth: 4
+  allowed_stack_reactions: [object_pathway, repair_pathway, reassess_pathway, sustain, mitigate_donor]
+  allowed_kickers: [monitoring, protect_donor, document]
+  strain_threshold: 3
+  strain_reserve_penalty: 1
+  repair_threshold: 2
+  coherence_threshold: 2
+completion:
+  world_flags:
+    eastern_growth_viable: true
+    northern_reserve_preserved: true
+    circulation_path_restored: true
+  next_position: 1
+  response_profile: local_correlation
+response_profile_changes: {on_completion: local_correlation}
+narration_keys:
+  orient_local: local_orientation
+  observe_new: observation_unlocked
+  observe_repeat: observation_corroborated
+  action_accepted: accepted
+  proposal_rejected: proposal_rejected
+  proposal_accepted: proposal_accepted
+  confirmation_recorded: confirmation_recorded
+  position_completed: position_completed
+accessibility:
+  summary: >-
+    Start with the warm object beneath the paving, then inspect one nearby need, capacity, or
+    damaged relation at a time. You may mention or reply to Hypha in ordinary language; slash
+    commands remain the reliable fallback. Use recall for established facts and chart for the
+    current action families and completion checks. No speed, voice, private clue, or hidden
+    inventory is required.
+  accepted_input_modes: [natural_language, explicit_command]
+  explicit_command_help:
+    - "/interior act awaken name:<name> fate:<plant|open|keep> — first participant chooses; the mark is permanent"
+    - "After awakening, use /interior act observe and choose an inspectable public cue; Hypha will name the entity its observation establishes."
+    - "When the relation is legible, use /interior act reconstruct; Discord displays the required fields and maintenance may be one word such as monitor."
+    - "Another participant confirms or challenges the proposal; the author cannot self-confirm."
+    - "Use /interior chart for the action flow and /interior recall for confirmed public facts."
+orientation:
+  local_response: >-
+    Surface contact returns unevenly. Dry substrate is detectable nearby. A northern reserve,
+    eastern interrupted growth, a damaged route with an unreadable middle, damp southern ground,
+    and a western bed with intermittent readings are locally distinguishable, but the wider
+    network does not yet resolve from this position.
+  specificity_invitation: Name or ask about one nearby object, dry surface, need, capacity, or possible connection.
+  prohibited_automatic_reveals:
+    - all region names
+    - full network layout
+    - unrevealed routes
+    - unsolved measurements
+    - complete public-state recap
+triggered_presentations:
+  - id: route_03_settlement_vista
+    condition:
+      counter: repair
+      target: damaged_circulation
+      minimum: 1
+    image_asset: assets/route_03_settlement_vista.png
+    image_alt_text: >-
+      An atmospheric illustrated panorama of a dry inhabited basin, with pale clustered
+      buildings, cultivated terraces, narrow water channels, botanical workspaces, and
+      unlabeled archival sketches of roots and circulation-like forms around its margins.
+    introduction: >-
+      Route 03 carries more than water. As the repaired pathway stabilizes, a wider image
+      resolves: an inhabited basin structured around old channels, cultivated surfaces,
+      and layered botanical records. The image is an atmospheric panorama, not a confirmed
+      map of the network; unnamed regions, routes, and measurements remain unresolved.
+vocabulary: [capacity, deficit, pathway, reserve, viability, reassessment]
+world_flags:
+  eastern_growth_viable: false
+  northern_reserve_preserved: false
+  circulation_path_restored: false

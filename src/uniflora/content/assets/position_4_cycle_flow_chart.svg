@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2200" viewBox="0 0 1600 2200" role="img" aria-labelledby="title desc">
+  <title id="title">Position 4 cycle flow chart: THE MAINTAINED REMEDIATION CYCLE</title>
+  <desc id="desc">A public flow chart showing asynchronous workflow areas, interleavable preparation, required evidence, proposal contents, and completion checks for Position 4.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#0b251d"/><stop offset="1" stop-color="#03110d"/></radialGradient>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#ddd6b5"/></marker>
+    <style>
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#dedcc9}
+      .title{font-size:55px;font-weight:800;letter-spacing:4px;fill:#e5d9ae}
+      .subtitle{font-size:24px;fill:#bdbb95}
+      .phase{fill:#0c2019;stroke-width:2.5;rx:18}
+      .phase-title{font-size:27px;font-weight:800}
+      .lead{font-size:22px;font-weight:650;fill:#f0ead1}
+      .body{font-size:19px}
+      .side-title{font-size:23px;font-weight:800;fill:#efbb3e}
+      .side{font-size:18px}
+      .panel{fill:#091a15;stroke:#a99865;stroke-width:2;rx:16}
+      .note{fill:#0a1d17;stroke:#5dc5d2;stroke-width:2;stroke-dasharray:7 5;rx:14}
+      .arrow{fill:none;stroke:#ddd6b5;stroke-width:3;marker-end:url(#arrowhead)}
+    </style>
+  </defs>
+  <rect width="1600" height="2200" fill="url(#bg)"/>
+  <text id="svg-title" x="800" y="68" text-anchor="middle" class="title" style="font-size:40px">POSITION 4 — THE MAINTAINED REMEDIATION CYCLE</text>
+  <text x="800" y="110" text-anchor="middle" class="subtitle">Reduce first, separate flows, verify compatibility, maintain finite treatment, and contain residue.</text>
+  <rect x="55" y="140" width="1490" height="64" class="panel" stroke="#d49b27"/>
+  <text x="800" y="180" text-anchor="middle" class="lead">PREPARATION MAY RETURN TO EARLIER WORK · ONLY RESPONSE PAUSES ORDINARY ACTIONS</text>
+
+  <rect x="45" y="235" width="335" height="475" class="panel"/>
+  <text x="70" y="278" class="side-title">POSITION OBJECTIVE</text>
+  <text x="70" y="320" class="side">Construct a finite remediation</text>
+<text x="70" y="346" class="side">protocol whose evidence, capacity,</text>
+<text x="70" y="372" class="side">maintenance, and containment are</text>
+<text x="70" y="398" class="side">explicit.</text>
+<text x="70" y="431" class="side">Treatment cannot substitute for</text>
+<text x="70" y="457" class="side">reducing production at the source.</text>
+  <text x="70" y="570" class="side-title">SCALES OF PLAY</text>
+  <text x="70" y="610" class="side">Position = the full chapter</text>
+  <text x="70" y="645" class="side">Cycle = one collective attempt</text>
+  <text x="70" y="680" class="side">Turn = one accepted primary action</text>
+
+  <rect x="45" y="740" width="335" height="420" class="panel"/>
+  <text x="70" y="783" class="side-title">PUBLIC RULES</text>
+  <text x="70" y="825" class="body">• Preparation activities may</text>
+<text x="70" y="853" class="body">  interleave</text>
+<text x="70" y="881" class="body">• Evidence prerequisites still</text>
+<text x="70" y="909" class="body">  apply</text>
+<text x="70" y="937" class="body">• One primary action per</text>
+<text x="70" y="965" class="body">  participant per cycle</text>
+<text x="70" y="993" class="body">• A counted contributor may</text>
+<text x="70" y="1021" class="body">  assemble the proposal</text>
+<text x="70" y="1049" class="body">• A proposal author cannot self-</text>
+<text x="70" y="1077" class="body">  confirm</text>
+<text x="70" y="1105" class="body">• Failure preserves confirmed</text>
+<text x="70" y="1133" class="body">  discoveries</text>
+
+  <rect x="45" y="1190" width="335" height="380" class="panel"/>
+  <text x="70" y="1233" class="side-title">COMMAND SURFACES</text>
+  <text x="70" y="1275" class="body">• /interior position</text>
+<text x="70" y="1303" class="body">• /interior map</text>
+<text x="70" y="1331" class="body">• /interior chart</text>
+<text x="70" y="1359" class="body">• /interior recall</text>
+<text x="70" y="1387" class="body">• /interior accessibility</text>
+<text x="70" y="1415" class="body">• Discord exposes fields for</text>
+<text x="70" y="1443" class="body">  position-specific commands</text>
+
+  <rect x="415" y="235" width="770" height="215" class="phase" stroke="#96c95d"/><text x="445" y="278" class="phase-title" fill="#96c95d">1. RENEWAL</text><text x="445" y="314" class="lead">Hypha updates the cycle</text><text x="465" y="351" class="body">• Apply viability and saturation</text>
+<text x="465" y="378" class="body">• Refresh maintenance windows</text>
+<text x="465" y="405" class="body">• Report evidence and containment state</text><path d="M800 450 V472" class="arrow"/><rect x="415" y="475" width="770" height="215" class="phase" stroke="#75bd66"/><text x="445" y="518" class="phase-title" fill="#75bd66">2. INSPECTION</text><text x="445" y="554" class="lead">Establish prerequisites</text><text x="465" y="591" class="body">• inspect Works, return, and culture archive</text>
+<text x="465" y="618" class="body">• Confirm discharge and culture identity</text>
+<text x="465" y="645" class="body">• Do not infer safety from appearance</text><path d="M800 690 V712" class="arrow"/><rect x="415" y="715" width="770" height="215" class="phase" stroke="#53c6d6"/><text x="445" y="758" class="phase-title" fill="#53c6d6">3. SEPARATION</text><text x="445" y="794" class="lead">Keep flows distinct</text><text x="465" y="831" class="body">• works separate</text>
+<text x="465" y="858" class="body">• Route clean and contaminated flows</text>
+<text x="465" y="885" class="body">• Prevent mixed-flow treatment</text><path d="M800 930 V952" class="arrow"/><rect x="415" y="955" width="770" height="215" class="phase" stroke="#6f95ee"/><text x="445" y="998" class="phase-title" fill="#6f95ee">4. MAINTENANCE</text><text x="445" y="1034" class="lead">Prepare finite treatment</text><text x="465" y="1071" class="body">• sustain or inoculate</text>
+<text x="465" y="1098" class="body">• slow flow and preserve contact time</text>
+<text x="465" y="1125" class="body">• rest or replace saturated substrate</text><path d="M800 1170 V1192" class="arrow"/><rect x="415" y="1195" width="770" height="215" class="phase" stroke="#bd76e0"/><text x="445" y="1238" class="phase-title" fill="#bd76e0">5. EVIDENCE</text><text x="445" y="1274" class="lead">Measure performance</text><text x="465" y="1311" class="body">• sample upstream and downstream</text>
+<text x="465" y="1338" class="body">• works audit</text>
+<text x="465" y="1365" class="body">• Compare evidence, not color alone</text><path d="M800 1410 V1432" class="arrow"/><rect x="415" y="1435" width="770" height="215" class="phase" stroke="#ec9c35"/><text x="445" y="1478" class="phase-title" fill="#ec9c35">6. PROPOSAL</text><text x="445" y="1514" class="lead">Write the protocol</text><text x="465" y="1551" class="body">• propose remediation</text>
+<text x="465" y="1578" class="body">• Include reduction, compatibility, limits</text>
+<text x="465" y="1605" class="body">• Name monitoring, custody, and shutdown</text><path d="M800 1650 V1672" class="arrow"/><rect x="415" y="1675" width="770" height="215" class="phase" stroke="#ed6c58"/><text x="445" y="1718" class="phase-title" fill="#ed6c58">7. RESPONSE</text><text x="445" y="1754" class="lead">Challenge weak links</text><text x="465" y="1791" class="body">• stack-react · stack-resolve</text>
+<text x="465" y="1818" class="body">• object evidence or compatibility</text>
+<text x="465" y="1845" class="body">• protect workers and preserve archive</text><path d="M800 1890 V1912" class="arrow"/><rect x="415" y="1915" width="770" height="215" class="phase" stroke="#ddca43"/><text x="445" y="1958" class="phase-title" fill="#ddca43">8. REASSESSMENT</text><text x="445" y="1994" class="lead">Maintain or stop</text><text x="465" y="2031" class="body">• Update viability and saturation</text>
+<text x="465" y="2058" class="body">• Contain spent substrate</text>
+<text x="465" y="2085" class="body">• Complete Position 4 or reopen maintenance</text>
+
+  <rect x="1220" y="235" width="330" height="410" class="note"/>
+  <text x="1245" y="278" class="side-title">EVIDENCE TO MAKE PUBLIC</text>
+  <text x="1245" y="320" class="body">• Characterized discharge</text>
+<text x="1245" y="348" class="body">• Compatible culture</text>
+<text x="1245" y="376" class="body">• Up/downstream samples</text>
+<text x="1245" y="404" class="body">• Bed viability</text>
+<text x="1245" y="432" class="body">• Saturation</text>
+<text x="1245" y="460" class="body">• Containment custody</text>
+
+  <rect x="1220" y="690" width="330" height="460" class="note" stroke="#bd76e0"/>
+  <text x="1245" y="733" class="side-title">PROPOSAL MUST INCLUDE</text>
+  <text x="1245" y="775" class="body">• source reduction</text>
+<text x="1245" y="803" class="body">• flow and moisture</text>
+<text x="1245" y="831" class="body">• culture and substrate</text>
+<text x="1245" y="859" class="body">• evidence threshold</text>
+<text x="1245" y="887" class="body">• saturation limit</text>
+<text x="1245" y="915" class="body">• shutdown condition</text>
+
+  <rect x="1220" y="1195" width="330" height="380" class="note" stroke="#ed6c58"/>
+  <text x="1245" y="1238" class="side-title">COMPLETION CHECKS</text>
+  <text x="1245" y="1280" class="body">• 3 distinct contributors</text>
+<text x="1245" y="1308" class="body">• non-author confirmation</text>
+<text x="1245" y="1336" class="body">• capacity remains finite</text>
+<text x="1245" y="1364" class="body">• spent material contained</text>
+
+  <rect x="1220" y="1620" width="330" height="300" class="note" stroke="#ddca43"/>
+  <text x="1245" y="1663" class="side-title">AT REASSESSMENT</text>
+  <text x="1245" y="1705" class="body">• Apply accepted changes</text>
+<text x="1245" y="1733" class="body">• Advance persistent counters</text>
+<text x="1245" y="1761" class="body">• Retain burdens and</text>
+<text x="1245" y="1789" class="body">  disagreements</text>
+<text x="1245" y="1817" class="body">• Open another cycle unless the</text>
+<text x="1245" y="1845" class="body">  position is complete</text>
+
+  <rect x="60" y="2140" width="1480" height="1" fill="#a99865"/>
+  <text x="80" y="2180" class="side" fill="#efbb3e">PUBLIC RECORD: confirmed facts, contributions, scars, and unresolved burdens persist.</text>
+  <text x="1520" y="2180" text-anchor="end" class="side" fill="#5dc5d2">THE MISSING INTERIOR · POSITION 4</text>
+</svg>

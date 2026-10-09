@@ -1,0 +1,45 @@
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+*.pem
+*.key
+*.p12
+*credentials*.json
+*secret*.json
+
+# Runtime state and generated output
+.venv/
+node_modules/
+__pycache__/
+.pytest_cache/
+.pytest-tmp*/
+.ruff_cache/
+*.py[cod]
+*.log
+*.sqlite
+*.sqlite3
+*.db
+data/
+backups/
+logs/
+dist/
+build/
+*.egg-info/
+activity/.wrangler/
+activity/public/preview-*-state.json
+activity/public/preview-ufo-reports.json
+activity/public/science/uap-public-reports.json
+activity/public/data/dynamical/
+
+# Local release and scratch material
+*.zip
+*.patch
+.first-return-*/
+.integrated-release/
+.boundary-visibility/
+src/uniflora/*.before-*.py
+src/uniflora/*broken-backup.py

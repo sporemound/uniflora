@@ -1,0 +1,23 @@
+schema_version: 2
+id: threshold
+ordinal: 0
+content_key: threshold_orientation
+content_version: 2.0.0
+title: Threshold
+public_premise: A shared signal is present, but no single view explains it.
+
+entities:
+  - id: signal
+    label: Signal
+    aliases:
+      - trace
+      - shared signal
+
+observations:
+  - id: signal_present
+    entity_id: signal
+    public_text: The signal remains visible from more than one approach.
+    counts_as_primary: true
+
+initial_visible_entity_ids:
+  - signal

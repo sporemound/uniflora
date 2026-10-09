@@ -1,0 +1,75 @@
+{
+  "artifactId": "artifact-phase3-sr03",
+  "datasetFilename": "activity-data.json",
+  "environment": "test",
+  "fallbackFilename": "scientific-plate.png",
+  "interaction": {
+    "dragToSelect": true,
+    "hoverReadout": true,
+    "linkedTimeWindow": true,
+    "resetControl": true,
+    "timeBases": [
+      "Zulu",
+      "Facility local",
+      "Source original",
+      "Pacific",
+      "Mountain",
+      "Central",
+      "Eastern"
+    ]
+  },
+  "limitations": [
+    "This deterministic Phase 3 fixture demonstrates the dashboard and publication path; it is not a production scientific observation.",
+    "A misconfigured source clock remains a viable ordinary explanation for the declared transmission offset.",
+    "The synthetic line-voltage waveform cannot establish the physical origin of the packet."
+  ],
+  "manifestFilename": "manifest-phase3b.json",
+  "provenance": {
+    "analysisMethod": "line-voltage-timing-study",
+    "analysisMethodVersion": "1.0.0",
+    "artifactDefinitionHash": "abab142a2c132b3ce418080c88057bf7c460bed410f94490458ce00b799d23e8",
+    "inputDatasetHash": "ef6e52801d82152c7aff61ab95dc4e78f9aeafbf9c7bb595dc94861399d4c828",
+    "stateHeadHash": "531225e7d753e51510ba9b2bd0898853e71492e41433a708cba758a829636bcb"
+  },
+  "renderer": "missing-interior-native-svg-canvas",
+  "schemaVersion": "3.0.0",
+  "title": "SR-03 line-voltage and timing study",
+  "views": [
+    {
+      "eventField": "events",
+      "id": "waveform",
+      "series": [
+        {
+          "defaultVisible": true,
+          "id": "rawVoltageV",
+          "label": "Raw voltage",
+          "unit": "V"
+        },
+        {
+          "defaultVisible": true,
+          "id": "calibratedVoltageV",
+          "label": "Calibrated voltage",
+          "unit": "V"
+        },
+        {
+          "defaultVisible": false,
+          "id": "residualVoltageV",
+          "label": "Calibration residual",
+          "unit": "V"
+        }
+      ],
+      "type": "linked-timeseries",
+      "uncertaintyField": "uncertaintyV",
+      "x": "timeSeconds"
+    },
+    {
+      "id": "spectrogram",
+      "type": "linked-spectrogram",
+      "units": "dB/Hz",
+      "value": "powerDb",
+      "x": "timeSeconds",
+      "y": "frequencyHz"
+    }
+  ],
+  "visualizationId": "viz_2a9e46b71ddb09824835b2f2"
+}

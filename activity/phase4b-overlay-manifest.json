@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "4B",
+  "name": "Persistent collaborative findings",
+  "overlayType": "cumulative activity collaboration replacement",
+  "baseReference": {
+    "filename": "v2-phase-3b-interactive-scientific-activity(1).zip",
+    "sha256": "010944852325BB3F356ADF86385B2D907B138C66B1D9FA510DADAA1A56DC380C"
+  },
+  "allowedRoots": [
+    "activity/"
+  ],
+  "files": [
+    {
+      "path": "activity/PHASE4B.md",
+      "sha256": "51E990DEBE533D5B2A2EACC7BD9FD076EE000F71532991A534A3DF30093AF768",
+      "bytes": 2453
+    },
+    {
+      "path": "activity/src/App.tsx",
+      "sha256": "09E54D967F2A23F59335EA736BBA26203F55A773F0617E92E954665186B7DEFF",
+      "bytes": 11692
+    },
+    {
+      "path": "activity/src/components/ScientificWorkspace.tsx",
+      "sha256": "264E46706824CD4A023AEE29C3630582B2F44D91DDBE4601A19345C57D582618",
+      "bytes": 24398
+    },
+    {
+      "path": "activity/src/components/SharedFindingsPanel.tsx",
+      "sha256": "2BFE571FBC51229AEEEF3DD2D99F61C18AF7074271C341D5B2C508926EC8EAF3",
+      "bytes": 7954
+    },
+    {
+      "path": "activity/src/hooks/useInvestigationRoom.ts",
+      "sha256": "D0BD154674CE0F52FC2AAB8FE27FE1743D7D17F25B0BB36C5AEAB17325547AA1",
+      "bytes": 10635
+    },
+    {
+      "path": "activity/src/lib/investigation-room.ts",
+      "sha256": "544625D32E011AE49671B30E023B58D26AA0DCB4AB65EBCEB28FEA8BD8A3B23A",
+      "bytes": 2698
+    },
+    {
+      "path": "activity/src/shared/investigation-room.ts",
+      "sha256": "0ED50A60E15522F39B9E1FCE553B69130B5613F6B6B25A9B790B10EBDDA10F93",
+      "bytes": 5259
+    },
+    {
+      "path": "activity/src/styles.css",
+      "sha256": "606010AF7CA2D429ECC7BE6882760B2C98B707130867E13A737051B615E62B82",
+      "bytes": 20496
+    },
+    {
+      "path": "activity/tools/phase4b_reference_model.mjs",
+      "sha256": "E61B9B7B2F87F019145CA3D852BA5B2CE2528A3A9CDB68F370CDA66811C95D40",
+      "bytes": 3654
+    },
+    {
+      "path": "activity/tools/register_phase4b_script.mjs",
+      "sha256": "C6701ABB80D078F6804D44C15BDB37573ED3FE90E7516FEE01A1265527C04BD0",
+      "bytes": 601
+    },
+    {
+      "path": "activity/tools/validate_phase4b.mjs",
+      "sha256": "4B46273F5071EDE0563E4F5CC641B68CBE8FC5745D526283703FE7C309778D1B",
+      "bytes": 4644
+    },
+    {
+      "path": "activity/worker/index.ts",
+      "sha256": "1FA3378F57DF6AA846F7DD3FC0F7B3C5D9D6B9B973A6FFDA363AB3801B5F2CE3",
+      "bytes": 22863
+    },
+    {
+      "path": "activity/worker/lib/investigation-room.ts",
+      "sha256": "EB7731A142813075DB7F697FD03A7A041563D79C9635C0EE042302E40B860C5B",
+      "bytes": 20008
+    },
+    {
+      "path": "activity/worker/lib/room-ticket.ts",
+      "sha256": "26AA41178E87090D7BF5B439D1AF916454599EF870E2ED86CDF9037CFAE9EF8C",
+      "bytes": 4573
+    }
+  ],
+  "validation": [
+    "node activity/tools/validate_phase3b.mjs",
+    "node activity/tools/validate_phase4b.mjs",
+    "isolated tsc --noEmit type-check with Cloudflare and React ambient stubs"
+  ],
+  "notes": [
+    "Relative paths only.",
+    "No production database or Discord mutation.",
+    "Requires the Phase 4A INVESTIGATION_ROOMS binding and ROOM_TICKET_SECRET configuration.",
+    "Run activity/tools/register_phase4b_script.mjs to add the npm validation script without replacing package.json."
+  ]
+}

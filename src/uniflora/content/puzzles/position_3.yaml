@@ -1,0 +1,363 @@
+schema_version: 1
+content_version: "1.0.0"
+position: 3
+key: reciprocity
+title: The Provision Works
+status: complete
+public_premise: Decide whether the Provision Works offers reciprocal public provision or transfers extraction, heat, waste, risk, and maintenance burdens to the settlement.
+
+entities:
+  - id: provision_works
+    title: Provision Works
+    kind: production_complex
+    aliases: [works, endless-workshop, provision-line]
+    discovery_label: Provision Works
+    public_description: A water-fed production complex promising goods and employment while keeping quotas, inputs, and return-flow liabilities only partly public.
+    resources: {goods: 8.0, labor: 5.0}
+    measurements:
+      water_draw: 8
+      production_quota: 10
+      local_benefit: 2
+      exported_surplus: 8
+      waste_output: 6
+      source_reduction_status: none
+      disclosure_level: partial
+      shutdown_threshold: unrecognized
+
+  - id: warm_return_channel
+    title: Warm water route — altered flow
+    discovery_label: Warm water route — altered flow
+    kind: route
+    discovery_label: A visibly altered return water channel with a warmer surface and a sealed margin
+    public_description: The Works return flow. It looks clearer than the raw discharge but remains warm, incompletely characterized, and unsuitable for unrestricted reuse.
+    measurements:
+      contaminant_class: organic_dye_residue
+      temperature_state: warm
+      residue_status: incompletely_characterized
+      visible_clarity: improved
+      reuse_eligible: false 
+
+  - id: production_intake_channel
+    title: Production Intake Channel
+    kind: water_pathway
+    aliases: [intake-channel, works-intake, production-intake]
+    discovery_label: A channel carrying water toward the works before the public share is met
+    public_description: The diversion carrying settlement water into production before public and ecological allocations are met.
+    measurements: {allocation_order: production_first, public_water: true, average_draw: 8, dry_season_limit: 5}
+
+  - id: treatment_yard
+    title: Treatment Yard
+    kind: remediation_infrastructure
+    aliases: [yard, remediation-yard, public-treatment-yard]
+    discovery_label: A treatment yard where public labor and monitoring manage the works return flow
+    public_description: Public land, labor, and monitoring used to manage the Works return flow after production creates the burden.
+    resources: {labor: -3.0, land: -2.0}
+    measurements: {funded_by_producer: false, public_labor_shifts: 6, maintenance_backlog: 3}
+
+  - id: white_rot_beds
+    title: White-Rot Treatment Beds
+    kind: fungal_bed
+    aliases: [white-rot, treatment-beds, fungal-beds]
+    discovery_label: Contained fungal beds arranged in a narrow treatment court
+    public_description: Contained treatment beds for a narrow documented organic-residue class, with finite capacity and continuing maintenance needs.
+    measurements:
+      contaminant_class: organic_dye_residue
+      moisture_suitable: true
+      temperature_suitable: true
+      unlimited_capacity: false
+      unrestricted_reuse: false
+
+  - id: spent_substrate_court
+    title: Spent Substrate Court
+    kind: containment_site
+    aliases: [spent-court, substrate-court, containment-court]
+    discovery_label: A lined containment court for exhausted treatment material
+    public_description: A lined, access-controlled destination for exhausted treatment material pending documented containment and disposition.
+    measurements: {containment_destination: true, contaminated_reuse_allowed: false, producer_funded: false, remaining_capacity: 4}
+
+  - id: public_well_seven
+    title: Public Well Seven
+    kind: public_water_source
+    aliases: [well-seven, public-well, seventh-well]
+    discovery_label: A public well with a loss of recovery and a visible pump house
+    public_description: A settlement well whose recovery depends on the same aquifer allocation claimed by the Works.
+    measurements: {historical_recovery: reliable, current_recovery: delayed, public_priority: nominal, dry_season_drawdown: 4}
+
+  - id: heat_court
+    title: Heat Court
+    kind: settlement_district
+    aliases: [hot-court, worker-court, southern-court]
+    discovery_label: The worker district nearest the works exhaust and warm return
+    public_description: The worker district nearest the Works exhaust and warm return, where cooling, illness, and lost-rest costs accumulate locally.
+    measurements: {heat_exposure: 7, cooling_access: 2, lost_rest_shifts: 5, protected_heat_stops: false}
+
+  - id: provision_burden_ledger
+    title: Provision and Burden Ledger
+    kind: public_record
+    aliases: [burden-ledger, works-charter, quota-ledger]
+    discovery_label: A public ledger of quotas, maintenance duties, and returned goods
+    public_description: The surviving charter, quota, maintenance, returned-goods, and distribution records showing who controls production and who carries upkeep.
+    measurements:
+      quota_setter: works_directorate
+      settlement_veto: false
+      maintainer_decision_seats: 1
+      repairable_returns: 6
+      producer_takeback: false
+
+observations:
+  - id: works_benefit_claim
+    entity_id: provision_works
+    public_text: The Works reports abundant goods and employment, but only two benefit units remain local while eight units of surplus leave the settlement.
+    fact_key: local_benefit
+    classification: confirmed
+    contribution_function: benefit_reader
+    unlock: {action: inspect}
+
+  - id: intake_exceeds_dry_limit
+    entity_id: production_intake_channel
+    public_text: Production draw averages eight units against a dry-season limit of five and is scheduled before public and ecological allocation.
+    fact_key: average_draw
+    classification: current_measurement
+    contribution_function: water_tender
+    unlock: {action: inspect}
+
+  - id: clear_return_not_safe
+    entity_id: warm_return_channel
+    public_text: The return looks clearer, but its residue is incompletely characterized and the record marks it ineligible for unrestricted reuse.
+    fact_key: reuse_eligible
+    classification: current_measurement
+    contribution_function: return_sampler
+    unlock: {action: inspect}
+
+  - id: remediation_cost_externalized
+    entity_id: treatment_yard
+    public_text: Six public labor shifts and public land maintain treatment infrastructure that the producer does not fund.
+    fact_key: funded_by_producer
+    classification: confirmed
+    contribution_function: remediation_maintainer
+    unlock: {action: inspect}
+
+  - id: finite_biological_capacity
+    entity_id: white_rot_beds
+    public_text: The fungal beds apply only to a documented compatible residue class. They are neither universal disposal nor unlimited capacity.
+    fact_key: unlimited_capacity
+    classification: confirmed
+    contribution_function: compatibility_reader
+    unlock: {action: inspect}
+
+  - id: spent_material_liability
+    entity_id: spent_substrate_court
+    public_text: Exhausted substrate cannot return to general circulation; public funds currently maintain a court with only four capacity units remaining.
+    fact_key: contaminated_reuse_allowed
+    classification: current_measurement
+    contribution_function: containment_steward
+    unlock: {action: inspect}
+
+  - id: well_recovery_discrepancy
+    entity_id: public_well_seven
+    public_text: Well Seven changed from reliable to delayed recovery as the Works received production-first priority.
+    fact_key: current_recovery
+    classification: unresolved_discrepancy
+    contribution_function: well_keeper
+    unlock: {action: inspect}
+
+  - id: worker_heat_burden
+    entity_id: heat_court
+    public_text: Heat Court records high exposure, low cooling access, five lost-rest shifts, and no protected heat-stop rule.
+    fact_key: heat_exposure
+    classification: current_measurement
+    contribution_function: worker_advocate
+    unlock: {action: inspect}
+
+  - id: control_and_maintenance_gap
+    entity_id: provision_burden_ledger
+    public_text: The Works directorate sets quotas without a settlement veto; maintainers hold one decision seat, and six repairable returns have no producer take-back route.
+    fact_key: quota_setter
+    classification: confirmed
+    contribution_function: allocation_auditor
+    unlock: {action: inspect}
+
+allowed_actions:
+  - orient_local
+  - observe
+  - inspect
+  - summarize
+  - audit
+  - reduce
+  - redesign
+  - mitigate
+  - contain
+  - document
+  - refuse
+  - propose_reciprocity
+  - confirm_reconstruction
+  - begin_stack
+  - react_to_stack
+  - resolve_stack
+  - add_proposal_kicker
+  - use_triggered_reaction
+
+relational_requirements:
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+
+confirmation:
+  minimum_confirmations: 1
+  non_author_required: true
+
+tactical:
+  max_stack_depth: 4
+  allowed_stack_reactions: [reduce_source, protect_workers, contain_substrate, audit_return, cap_throughput]
+  allowed_kickers: [source_reduction, worker_protection, spent_substrate_plan, public_disclosure, repairability_standard, seasonal_shutdown]
+
+provision_arc:
+  entity_roles:
+    producer: provision_works
+    production_intake: production_intake_channel
+    altered_return: warm_return_channel
+    remediation_yard: treatment_yard
+    treatment_bed: white_rot_beds
+    spent_substrate_destination: spent_substrate_court
+    public_water_source: public_well_seven
+    worker_district: heat_court
+    control_record: provision_burden_ledger
+  contaminant_classes:
+    - id: organic_dye_residue
+      public_label: Documented organic dye residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: A documented organic-residue class eligible only for contained treatment after compatibility and operating conditions are verified.
+    - id: mineral_glaze_runoff
+      public_label: Mineral glaze runoff
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: A mineral-bearing runoff class routed to non-biological containment and specialist review.
+    - id: mixed_unknown_discharge
+      public_label: Mixed or unknown discharge
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: Uncharacterized discharge requiring isolation, evidence, and source control rather than biological treatment.
+  fungal_cultures:
+    - id: archive_white_rot_culture
+      public_label: Archive white-rot culture
+      compatible_contaminant_classes: [organic_dye_residue]
+      heat_tolerance: moderate
+      provenance: Settlement culture archive, lot WR-3.
+      uncertainty: Compatibility remains conditional on viability, moisture, temperature, controlled flow, containment, and repeated evidence.
+  compatibility_rules:
+    - {contaminant_class: organic_dye_residue, culture_id: archive_white_rot_culture, compatible: true, required_evidence: 2, minimum_viability: 2, maximum_saturation: 3}
+    - {contaminant_class: mineral_glaze_runoff, culture_id: archive_white_rot_culture, compatible: false, required_evidence: 3, minimum_viability: 2, maximum_saturation: 2}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: archive_white_rot_culture, compatible: false, required_evidence: 3, minimum_viability: 2, maximum_saturation: 2}
+  remediation_systems:
+    - entity_id: white_rot_beds
+      processes: [transformation, filtration, immobilization]
+      contaminant_classes: [organic_dye_residue, mineral_glaze_runoff, mixed_unknown_discharge]
+      culture_ids: [archive_white_rot_culture]
+      containment_destination_ids: [spent_substrate_court]
+  substrates:
+    - id: yard_wood_fiber_matrix
+      public_label: Yard wood-fiber matrix
+      compatible_system_ids: [white_rot_beds]
+      contaminated_reuse_allowed: false
+      containment_required: true
+  thresholds: {saturation_limit: 3, minimum_viability: 2, minimum_containment: 2, minimum_evidence: 2, maximum_throughput: 6}
+  climate_record:
+    historical_baseline: Well recovery and public cooling were reliable before production-first allocation.
+    current_measurement: Intake draw exceeds the dry-season limit while heat and maintenance burdens remain local.
+    forecast: Continued throughput is expected to deepen drawdown and exhaust containment capacity.
+    conditional_projection: Source reduction and funded maintenance may stabilize burdens if public thresholds are enforced.
+    obsolete_expectation: Abundant output was once expected to distribute benefits without transferring costs.
+    unresolved_discrepancy: The exact Works share of well delay remains unresolved while the measured timing is preserved.
+  remediation_hierarchy:
+    - refuse_unnecessary_production
+    - reduce_harmful_inputs
+    - redesign_production
+    - reuse_verified_safe_material
+    - separate_clean_and_contaminated_flows
+    - contain_unavoidable_waste
+    - remediate_compatible_contamination
+    - monitor_long_term_effects
+    - manage_spent_substrate
+  counter_defaults: {containment: 0, evidence: 0, source_reduction: 0, throughput: 8, extraction: 7, public_benefit: 2, burden: 6, remediation: 0, archival_coherence: 0}
+  target_counter_defaults:
+    saturation: {white_rot_beds: 0}
+    viability: {white_rot_beds: 2}
+  evidence_measures: [documented_material_class, repeated_upstream_downstream_comparison, compatibility_record, containment_manifest, public_burden_ledger]
+  visual_only_measures: [visible_clarity, color, odor, appearance]
+  reduction_measures: [cap_unnecessary_throughput, remove_harmful_input, shorten_production_run, public_shutdown_threshold]
+  redesign_changes: [durable_goods, repairable_goods, producer_takeback, separated_process_flows]
+  mitigation_risks: [worker_heat, maintainer_exposure, lost_livelihood, public_water_loss]
+  maintenance_conditions: [monitor_moisture_and_temperature, inspect_viability, reassess_saturation, replace_and_contain_spent_substrate]
+  record_types: [material_disclosure, public_discharge_ledger, maintenance_log, failed_treatment_record, shutdown_decision]
+
+provision_requirements:
+  proposal_kind: reciprocity
+  required_observations: [works_benefit_claim, intake_exceeds_dry_limit, clear_return_not_safe, remediation_cost_externalized, finite_biological_capacity, spent_material_liability, well_recovery_discrepancy, worker_heat_burden, control_and_maintenance_gap]
+  required_actions: [audit, reduce, mitigate, contain]
+  required_proposal_fields: [producer, public_benefit, local_burden, source_reduction_action, material_disclosure, maintenance_obligation, containment_plan, worker_protection, shutdown_condition]
+  required_persistent_effects: [Public Discharge Ledger, Source Reduction Mandate, Worker Protection, Spent Substrate Contained]
+  completion_effects: [Producer-Funded Remediation, Burden Ledger, Public Shutdown Right, Donor and Maintainer Protection]
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+
+completion:
+  next_position: 4
+  response_profile: plural_translation
+  world_flags:
+    reciprocity_charter_ratified: true
+    producer_funded_remediation_required: true
+    public_shutdown_right_established: true
+    maintainer_protection_established: true
+
+response_profile_changes: {on_complete: plural_translation}
+
+narration_keys:
+  orient_local: local_orientation
+  observe_new: observation_unlocked
+  observe_repeat: observation_corroborated
+  action_accepted: accepted
+  treatment_failed: proposal_rejected
+  proposal_rejected: proposal_rejected
+  proposal_accepted: proposal_accepted
+  confirmation_recorded: confirmation_recorded
+  position_completed: position_completed
+  invalid_action: invalid_action
+  industrial_draw_discovered: industrial_draw_discovered
+  returned_water_ambiguity: returned_water_ambiguity
+  fungal_bed_compatibility: fungal_bed_compatibility
+  visible_clarification_without_safety_evidence: visible_clarification_without_safety_evidence
+  substrate_containment: substrate_containment
+  source_reduction_accepted: source_reduction_accepted
+  greenwashing_proposal_rejected: greenwashing_proposal_rejected
+  burden_externalization: burden_externalization
+  worker_protection: worker_protection
+  throughput_cap: throughput_cap
+
+accessibility:
+  summary: Static public narration, explicit slash commands, and recaps remain available without timing penalties.
+  explicit_command_help:
+    - "/interior orient"
+    - "/interior works inspect target:<entity>"
+    - "/interior works audit target:<entity> claim:<public-claim-id> comparison:<public-observation-sample-or-record-id>"
+    - "/interior works reduce target:provision_works measure:cap_unnecessary_throughput amount:<number> condition:<confirmed-observation-id-or-empty>"
+    - "/interior act mitigate target:heat_court risk:worker_heat detail:<protection-and-livelihood-condition>"
+    - "/interior works contain target:white_rot_beds destination:spent_substrate_court condition:<custody-condition>"
+    - "/interior propose reciprocity producer:provision_works public_benefit:<text> local_burden:<text> source_reduction_action:<text> material_disclosure:<text> maintenance_obligation:<text> containment_plan:<text> worker_protection:<text> shutdown_condition:<text> open_stack:<true-or-false>"
+    - "/interior act confirm proposal_id:<id>"
+    - "/interior act stack-react stack_id:<id> reaction:<reduce_source|protect_workers|contain_substrate|audit_return|cap_throughput> detail:<public-evidence-id>"
+    - "/interior act stack-resolve stack_id:<id>"
+
+orientation:
+  local_response: The Provision Works offers goods and jobs, but reciprocity depends on who controls production and who carries water, heat, waste, risk, and maintenance.
+  specificity_invitation: Inspect the Works and its pathways, then name source reduction, disclosure, maintenance, containment, worker protection, and a shutdown threshold.
+  prohibited_automatic_reveals: [uninspected burden totals, compatibility conclusions, a completed reciprocity charter]
+
+world_flags:
+  reciprocity_charter_ratified: false
+  producer_funded_remediation_required: false
+  public_shutdown_right_established: false
+  maintainer_protection_established: false
+
+vocabulary: [producer, public benefit, local burden, source reduction, material disclosure, maintenance obligation, containment plan, worker protection, shutdown condition]

@@ -1,0 +1,60 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "uniflora-web",
+	"main": "./worker/index.ts",
+	"compatibility_date": "2026-07-25",
+	"preview_urls": false,
+	"assets": {
+		"binding": "ASSETS",
+		"not_found_handling": "single-page-application",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"d1_databases": [
+		{
+			"binding": "PUBLIC_DB",
+			"database_name": "uniflora-public",
+			"migrations_dir": "migrations",
+			"database_id": "00000000-0000-0000-0000-000000000001"
+		},
+		{
+			"binding": "CHAT_DB",
+			"database_name": "uniflora-chat",
+			"migrations_dir": "chat-migrations",
+			"database_id": "00000000-0000-0000-0000-000000000002"
+		}
+	],
+	"vars": {
+		"SESSION_TTL_SECONDS": "43200",
+		"HYPHA_MAX_CLOCK_SKEW_SECONDS": "300",
+		"ROOM_TICKET_TTL_SECONDS": "90",
+		"UFOSINT_CACHE_SECONDS": "300",
+		"UFOSINT_CANDIDATE_LIMIT": "200",
+		"UFOSINT_LOOKBACK_DAYS": "365",
+		"UFOSINT_MIN_QUALITY_SCORE": "51",
+		"V2_TEST_STREAM_ID": "discord-test",
+		"V2_LIVE_STREAM_ID": "web-live",
+		"V2_LIVE_CONTENT_VERSION": "2.1.0-static-roles",
+		"HYPHA_CHAT_ENABLED": "true",
+		"HYPHA_LIVE_CHAT_ENABLED": "false",
+		"ALLOW_LIVE_STATE_PUBLISHING": "true"
+	},
+	"observability": {
+		"enabled": false
+	},
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "LIVE_ROOMS",
+				"class_name": "InvestigationRoom"
+			}
+		]
+	},
+	"exports": {
+		"InvestigationRoom": {
+			"type": "durable-object",
+			"storage": "sqlite"
+		}
+	}
+}

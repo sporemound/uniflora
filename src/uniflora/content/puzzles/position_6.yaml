@@ -1,0 +1,929 @@
+schema_version: 1
+content_version: "0.4.0-provision-works"
+position: 6
+key: reconstruction
+title: Reconstruction
+status: complete
+public_premise: >-
+  The final task is to make production answerable to public need, ecological limits, livelihoods,
+  water, waste, and public memory. Constraining and retrofitting the Works, distributing production,
+  ending unnecessary lines, operating seasonally, reclaiming the site, and worker-community
+  ownership are all viable models. Every valid model must reduce throughput before expanding
+  remediation, protect public water, separate flows, contain spent substrate, preserve work or fund
+  a transition, maintain public evidence and history, and give the settlement authority to reassess
+  or stop production. Production was never the same as provision. Remediation begins after refusal,
+  reduction, and containment--not instead of them. The settlement did not need a system capable of
+  absorbing unlimited damage. It needed the authority to prevent damage from being treated as
+  inevitable. Begin with one production line, public need, resource boundary, livelihood,
+  governance surface, remediation limit, reclaimed space, or inherited obligation; alternatives
+  become viable only when their consequences are made public together.
+
+entities:
+  - id: provision_works
+    title: The Provision Works
+    kind: industrial_complex
+    aliases: [the works, endless workshop, production complex]
+    discovery_label: Works output and quota board
+    public_description: >-
+      A complex that began with useful regional production and now devotes most capacity to
+      disposable, duplicate, decorative, or low-durability goods ordered at a distance. The
+      reconstruction may constrain, divide, convert, seasonally operate, reclaim, or publicly own it.
+    resources: {production_capacity: 12, local_benefit: 3, exported_surplus: 9, labor_positions: 6}
+    measurements:
+      current_output: 12
+      verified_public_need_output: 5
+      current_water_draw: 9
+      waste_output: 8
+      source_reduction_status: pending
+
+  - id: production_intake_channel
+    title: Production Intake Channel
+    kind: water_pathway
+    aliases: [works intake, intake channel, reserved supply channel]
+    discovery_label: Production-priority intake meter
+    public_description: >-
+      The route by which shared water receives production priority. A reconstruction must place a
+      public cap here rather than treating all intake as an automatically renewable circulation.
+    resources: {water_flow: 9}
+    measurements:
+      destination: provision_works
+      public_priority: disputed
+      production_draw: 9
+      cap_status: absent
+
+  - id: warm_return_channel
+    title: Warm Return Channel
+    kind: altered_water_pathway
+    aliases: [works return, return channel, warm channel]
+    discovery_label: Altered return-water gauge
+    public_description: >-
+      Water returned from production with altered temperature or unresolved dissolved residue.
+      Returned volume remains different from reusable public water until public measurements say
+      otherwise.
+    resources: {returned_volume: 7}
+    measurements:
+      temperature_state: elevated
+      dissolved_residue_state: unresolved
+      treatment_status: partial
+      reuse_eligibility: unconfirmed
+
+  - id: treatment_yard
+    title: Treatment Yard
+    kind: remediation_infrastructure
+    aliases: [conditioning yard, separation court, treatment court]
+    discovery_label: Clean/contaminated route board
+    public_description: >-
+      A public yard for separating clean and contaminated flows, maintaining bounded treatment
+      systems, taking samples, and directing retained material to containment. It is infrastructure,
+      not permission for continuing avoidable discharge.
+    resources: {maintenance_capacity: 4, separation_capacity: 5}
+    measurements:
+      clean_flow_route: marked
+      contaminated_flow_route: marked
+      public_monitoring: available
+
+  - id: white_rot_beds
+    title: White Rot Beds
+    kind: fungal_treatment_system
+    aliases: [white beds, fungal beds, treatment beds]
+    discovery_label: Bounded treatment-bed controls
+    public_description: >-
+      Bounded beds compatible with only some characterized organic residue classes.
+      Viability, moisture, heat, contact time, saturation, evidence, and substrate handling remain
+      public constraints.
+    resources: {maintenance_capacity: 3}
+    measurements:
+      contaminant_class: organic_dye_residue
+      moisture_suitable: true
+      temperature_suitable: true
+      contact_time_status: regulated
+      visible_clarity: improved
+
+  - id: blackwater_berm
+    title: Blackwater Berm
+    kind: containment_barrier
+    aliases: [containment berm, runoff berm, black berm]
+    discovery_label: Runoff containment berm
+    public_description: >-
+      An inoculated boundary that slows runoff and supports filtration, immobilization, containment,
+      and indicator response. It does not classify an unknown mixture or establish food safety.
+    resources: {containment_capacity: 4}
+    measurements:
+      contaminant_class: mixed_unknown_discharge
+      moisture_suitable: true
+      temperature_suitable: true
+      food_safety_claim: false
+
+  - id: spent_substrate_court
+    title: Spent Substrate Court
+    kind: controlled_material_store
+    aliases: [substrate court, spent court, isolation store]
+    discovery_label: Spent-material custody ledger
+    public_description: >-
+      A publicly controlled destination for saturated remediation material. Classification,
+      isolation, monitoring, reuse prohibition, and long-term handling survive every ownership or
+      production model.
+    resources: {containment_capacity: 7}
+    measurements:
+      containment_destination: true
+      reuse_prohibited: true
+      isolation_status: maintained
+      public_inventory: required
+
+  - id: culture_archive
+    title: Culture Archive
+    kind: living_archive
+    aliases: [fungal library, living culture library, strain archive]
+    discovery_label: Fungal culture catalogue
+    public_description: >-
+      A public fungal culture library that preserves compatibility records, provenance,
+      heat tolerance, prior outcomes, and uncertainty. It supports bounded research and maintenance,
+      not universal cleanup claims.
+    resources: {archive_coherence: 5, culture_viability: 4}
+    measurements:
+      provenance_status: preserved
+      compatibility_matrix: public
+      uncertainty_status: public
+
+  - id: clear_water_test_garden
+    title: Clear-Water Test Garden
+    kind: nonfood_indicator_garden
+    aliases: [test garden, indicator garden, clear water garden]
+    discovery_label: Non-food indicator plot
+    public_description: >-
+      A monitored non-food planting for long-term indicator observation. It can reveal change and
+      add evidence, but cannot independently establish that water, soil, or substrate is safe.
+    resources: {observation_capacity: 5}
+    measurements:
+      food_use_allowed: false
+      monitoring_status: active
+      proof_of_safety: false
+
+  - id: public_well_seven
+    title: Public Well Seven
+    kind: shared_water_source
+    aliases: [well seven, civic well, seventh well]
+    discovery_label: Public-well recovery gauge
+    public_description: >-
+      A shared source with slower recovery under prolonged heat and repeated industrial draw. Its
+      public reserve provides the ecological basis for a hard production-water cap.
+    resources: {public_water: 5, recovery_capacity: 4}
+    measurements:
+      historical_recovery: 7
+      current_recovery: 4
+      extraction_pressure: high
+      public_availability: constrained
+
+  - id: heat_court
+    title: Heat Court
+    kind: worker_residential_district
+    aliases: [hot district, heat district, workers court]
+    discovery_label: Worker homes beside the hot Works
+    public_description: >-
+      A district where longer heat periods and waste heat overlap with livelihood dependence on the
+      Works. Worker protection and transition support must be obligations, never offsets against
+      ecological limits.
+    resources: {livelihoods: 6, cooling_capacity: 2}
+    measurements:
+      climate_heat_burden: high
+      production_heat_burden: high
+      transition_plan: absent
+
+  - id: waste_yard
+    title: Waste Yard
+    kind: returned_goods_store
+    aliases: [returns yard, reject store, broken goods yard]
+    discovery_label: Returned and broken goods yard
+    public_description: >-
+      Returned, broken, unsold, rejected, and over-packaged goods make planned disposability
+      physically public. Durable redesign and repair reduce this yard more effectively than adding
+      treatment capacity.
+    resources: {stored_goods: 9, salvage_capacity: 3}
+    measurements:
+      repairable_fraction: partial
+      unnecessary_output_evidence: high
+      packaging_burden: high
+
+  - id: reconstruction_assembly
+    title: Reconstruction Assembly
+    kind: public_governance_space
+    aliases: [public assembly, reconstruction table, transition council]
+    discovery_label: Open reconstruction table
+    public_description: >-
+      An open decision space where water maintainers, workers, archive keepers, treatment
+      maintainers, residents, and repairers compare viable models. No permanent class owns a
+      contribution function.
+    resources: {public_deliberation: 8}
+    measurements:
+      public_control: proposed
+      distant_veto_allowed: false
+      non_author_confirmation: required
+
+  - id: civic_repair_workshop
+    title: Civic Repair Workshop
+    kind: reclaimed_production_space
+    aliases: [repair hall, reuse workshop, civic workshop]
+    discovery_label: Repair-and-reuse workshop bay
+    public_description: >-
+      A proposed conversion of production space toward durable repair, verified-safe reuse, useful
+      regional goods, training, and livelihood continuity at lower throughput.
+    resources: {repair_capacity: 6, transition_positions: 4}
+    measurements:
+      public_need_alignment: high
+      distant_novelty_output: zero
+      worker_transition_capacity: 4
+
+  - id: soil_restoration_workshop
+    title: Soil-Restoration Workshop
+    kind: reclaimed_nonfood_research_space
+    aliases: [restoration workshop, nonfood soil lab, organic materials workshop]
+    discovery_label: Low-throughput non-food materials bench
+    public_description: >-
+      A low-throughput public workspace for non-food indicator research and verified-safe organic
+      material only. Contaminated substrate remains excluded and routed to containment.
+    resources: {research_capacity: 3}
+    measurements:
+      food_production_status: prohibited
+      contaminated_substrate_allowed: false
+      verified_safe_material_only: true
+
+  - id: public_memory_archive
+    title: Public Memory Archive
+    kind: versioned_public_archive
+    aliases: [failed treatment archive, civic record archive, historical ledger]
+    discovery_label: Versioned record of prior failure
+    public_description: >-
+      The original assurances, revised definitions, failed-treatment record, correction, uncertainty,
+      and unresolved conflicts remain available to every future audit and reassessment.
+    resources: {archive_coherence: 6}
+    measurements:
+      prior_versions_preserved: true
+      failed_treatments_visible: true
+      deletion_authority: none
+
+observations:
+  - id: unnecessary_output_quota
+    entity_id: provision_works
+    public_text: >-
+      Current output is twelve public units while verified regional need accounts for five. The
+      remainder is dominated by seasonal decoration, duplicate tools, brittle containers,
+      packaging, and other low-durability distant orders.
+    fact_key: unnecessary_output_quota
+    unlock: {action: inspect, entity_id: provision_works, distinct_user_count: 1}
+    contribution_function: production_audit
+    classification: current_measurement
+
+  - id: distant_surplus_control
+    entity_id: provision_works
+    public_text: >-
+      Charter Holder notices set quotas and receive most accumulated surplus while water, heat,
+      repair, waste, monitoring, and ecological risk remain local. Employment is real, but it does
+      not erase who controls the exchange.
+    fact_key: distant_surplus_control
+    unlock:
+      action: inspect
+      entity_id: provision_works
+      requires_observations: [unnecessary_output_quota]
+      distinct_user_count: 1
+    contribution_function: control_analysis
+    classification: provenance
+
+  - id: production_water_competition
+    entity_id: production_intake_channel
+    public_text: >-
+      Production receives nine units of priority draw while Public Well Seven currently recovers
+      four. Calling the route circulated does not remove its competition with civic water.
+    fact_key: production_water_competition
+    unlock: {action: inspect, entity_id: production_intake_channel, distinct_user_count: 1}
+    contribution_function: public_water_accounting
+    classification: current_measurement
+
+  - id: returned_water_use_limit
+    entity_id: warm_return_channel
+    public_text: >-
+      Seven units return, but elevated temperature and unresolved dissolved residue prevent the
+      returned volume from being counted as seven usable public units.
+    fact_key: returned_water_use_limit
+    unlock: {action: inspect, entity_id: warm_return_channel, distinct_user_count: 1}
+    contribution_function: return_audit
+    classification: current_measurement
+
+  - id: public_water_cap_basis
+    entity_id: public_well_seven
+    public_text: >-
+      A public cap must follow current recovery, essential use, forecast heat, and measured reuse
+      eligibility. Historical recovery is an obsolete expectation, not a present production budget.
+    fact_key: public_water_cap_basis
+    unlock:
+      action: inspect
+      entity_id: public_well_seven
+      requires_observations: [production_water_competition, returned_water_use_limit]
+      distinct_user_count: 2
+    contribution_function: ecological_limit
+    classification: conditional_projection
+
+  - id: worker_livelihood_dependency
+    entity_id: heat_court
+    public_text: >-
+      Six livelihood positions depend on the Works while workers also carry heat and maintenance
+      burdens. Closure without wages, training, ownership, replacement work, or transition support
+      would transfer another cost onto the same district.
+    fact_key: worker_livelihood_dependency
+    unlock: {action: inspect, entity_id: heat_court, distinct_user_count: 1}
+    contribution_function: livelihood_analysis
+    classification: current_measurement
+
+  - id: reconstruction_model_range
+    entity_id: reconstruction_assembly
+    public_text: >-
+      The assembly records six viable directions: constrain and retrofit; distribute production;
+      deprioritize unnecessary lines; operate seasonally; reclaim yards and warehouses for public
+      use; or establish worker-community ownership. Models may be combined.
+    fact_key: reconstruction_model_range
+    unlock:
+      action: inspect
+      entity_id: reconstruction_assembly
+      requires_observations: [unnecessary_output_quota, distant_surplus_control]
+      distinct_user_count: 1
+    contribution_function: model_design
+    classification: conditional_projection
+
+  - id: community_control_requirement
+    entity_id: reconstruction_assembly
+    public_text: >-
+      Every model gives public or worker-community institutions enforceable access to accounts,
+      caps, maintenance duties, surplus allocation, reassessment, and shutdown. Distant ownership
+      cannot override local viability.
+    fact_key: community_control_requirement
+    unlock:
+      action: inspect
+      entity_id: reconstruction_assembly
+      requires_observations: [reconstruction_model_range, worker_livelihood_dependency]
+      distinct_user_count: 2
+    contribution_function: governance
+    classification: conditional_projection
+
+  - id: clean_contaminated_flow_plan
+    entity_id: treatment_yard
+    public_text: >-
+      Existing markings support separate destinations for protected clean flow and characterized
+      production discharge. A closed or partially closed loop is valid only where public
+      measurements establish reuse eligibility.
+    fact_key: clean_contaminated_flow_plan
+    unlock: {action: inspect, entity_id: treatment_yard, distinct_user_count: 1}
+    contribution_function: containment_design
+    classification: confirmed
+
+  - id: source_reduction_before_remediation
+    entity_id: white_rot_beds
+    public_text: >-
+      The maintained bed has bounded capacity. Adding another bed while avoidable output remains
+      unchanged would preserve production by transferring its cost into water, labor, maintenance,
+      and spent substrate.
+    fact_key: source_reduction_before_remediation
+    unlock:
+      action: inspect
+      entity_id: white_rot_beds
+      requires_observations: [unnecessary_output_quota, clean_contaminated_flow_plan]
+      distinct_user_count: 1
+    contribution_function: remediation_limits
+    classification: confirmed
+
+  - id: spent_substrate_handling_obligation
+    entity_id: spent_substrate_court
+    public_text: >-
+      Every treatment model must inventory saturation, isolate used medium, prohibit automatic
+      compost or soil reuse, maintain containment, and retain a public long-term destination.
+    fact_key: spent_substrate_handling_obligation
+    unlock: {action: inspect, entity_id: spent_substrate_court, distinct_user_count: 1}
+    contribution_function: substrate_handling
+    classification: confirmed
+
+  - id: culture_library_scope
+    entity_id: culture_archive
+    public_text: >-
+      A public culture library can preserve provenance, compatibility, heat tolerance, failed
+      pairings, and research uncertainty. It cannot turn an unknown or incompatible discharge into
+      a valid treatment claim.
+    fact_key: culture_library_scope
+    unlock: {action: inspect, entity_id: culture_archive, distinct_user_count: 1}
+    contribution_function: compatibility_review
+    classification: provenance
+
+  - id: indicator_garden_evidence_limit
+    entity_id: clear_water_test_garden
+    public_text: >-
+      The non-food garden supplies one long-term evidence stream. A stable plant response does not
+      replace upstream and downstream sampling, substrate records, or contaminant-specific review.
+    fact_key: indicator_garden_evidence_limit
+    unlock:
+      action: inspect
+      entity_id: clear_water_test_garden
+      requires_observations: [culture_library_scope]
+      distinct_user_count: 1
+    contribution_function: monitoring
+    classification: confirmed
+
+  - id: seasonal_viability_condition
+    entity_id: white_rot_beds
+    public_text: >-
+      Longer heat periods and lower moisture can reduce viability before infrastructure visibly
+      fails. Seasonal limits must respond to public heat, groundwater, flow, saturation, and
+      viability records rather than an old calendar.
+    fact_key: seasonal_viability_condition
+    unlock:
+      action: inspect
+      entity_id: white_rot_beds
+      requires_observations: [source_reduction_before_remediation, public_water_cap_basis]
+      distinct_user_count: 2
+    contribution_function: climate_reassessment
+    classification: forecast
+
+  - id: public_monitoring_maintenance_duty
+    entity_id: reconstruction_assembly
+    public_text: >-
+      Public monitoring includes production accounts, water caps, upstream and downstream evidence,
+      viability, saturation, containment, worker burden, maintenance funding, and scheduled review.
+      None of these duties may be exported to unpaid local care.
+    fact_key: public_monitoring_maintenance_duty
+    unlock:
+      action: inspect
+      entity_id: reconstruction_assembly
+      requires_observations: [community_control_requirement, indicator_garden_evidence_limit]
+      distinct_user_count: 2
+    contribution_function: maintenance_governance
+    classification: conditional_projection
+
+  - id: historical_failure_preservation
+    entity_id: public_memory_archive
+    public_text: >-
+      The visibly clearer water claim, accumulated substrate, unsuitable reuse, affected-region
+      observation, correction, and unresolved contaminant scope remain versioned. A new owner or
+      production model receives no authority to erase them.
+    fact_key: historical_failure_preservation
+    unlock: {action: inspect, entity_id: public_memory_archive, distinct_user_count: 1}
+    contribution_function: documentation
+    classification: preserved_difference
+
+  - id: repair_reuse_conversion
+    entity_id: civic_repair_workshop
+    public_text: >-
+      Existing space and skill can support durable repairs, verified-safe reuse, regional essentials,
+      and paid transition work at lower throughput. This preserves livelihoods by changing what
+      production serves.
+    fact_key: repair_reuse_conversion
+    unlock:
+      action: inspect
+      entity_id: civic_repair_workshop
+      requires_observations: [worker_livelihood_dependency, reconstruction_model_range]
+      distinct_user_count: 1
+    contribution_function: redesign
+    classification: conditional_projection
+
+  - id: safe_organic_processing_boundary
+    entity_id: soil_restoration_workshop
+    public_text: >-
+      Low-throughput materials research may use only verified-safe organic inputs in non-food work.
+      Spent remediation substrate and unresolved discharge remain outside this workshop and inside
+      the containment ledger.
+    fact_key: safe_organic_processing_boundary
+    unlock:
+      action: inspect
+      entity_id: soil_restoration_workshop
+      requires_observations: [spent_substrate_handling_obligation]
+      distinct_user_count: 1
+    contribution_function: safe_reuse_boundary
+    classification: confirmed
+
+  - id: returned_goods_throughput_evidence
+    entity_id: waste_yard
+    public_text: >-
+      Returned novelty goods, brittle containers, duplicate tools, and packaging show that much of
+      the current quota is neither durable nor locally necessary. Repairability and refusal prevent
+      more burden than downstream treatment.
+    fact_key: returned_goods_throughput_evidence
+    unlock: {action: inspect, entity_id: waste_yard, distinct_user_count: 1}
+    contribution_function: waste_audit
+    classification: current_measurement
+
+  - id: berm_containment_boundary
+    entity_id: blackwater_berm
+    public_text: >-
+      The berm can slow and contain runoff while characterization proceeds. Its existence neither
+      proves compatibility nor converts adjacent land to food-safe use.
+    fact_key: berm_containment_boundary
+    unlock: {action: inspect, entity_id: blackwater_berm, distinct_user_count: 1}
+    contribution_function: containment
+    classification: confirmed
+
+  - id: shutdown_reassessment_authority
+    entity_id: reconstruction_assembly
+    public_text: >-
+      Reassessment occurs when public-water recovery, heat, fungal viability, containment, evidence,
+      worker protection, or throughput crosses the published condition. Public or worker-community
+      authorities may reduce, seasonally pause, or shut the affected line without a distant veto.
+    fact_key: shutdown_reassessment_authority
+    unlock:
+      action: inspect
+      entity_id: reconstruction_assembly
+      requires_observations:
+        [public_monitoring_maintenance_duty, seasonal_viability_condition, historical_failure_preservation]
+      distinct_user_count: 3
+    contribution_function: shutdown_governance
+    classification: conditional_projection
+
+allowed_actions:
+  - orient_local
+  - observe
+  - inspect
+  - summarize
+  - sample
+  - separate
+  - inoculate
+  - slow
+  - contain
+  - rest
+  - replace
+  - refuse
+  - reduce
+  - redesign
+  - document
+  - audit
+  - sustain
+  - mitigate
+  - propose_production_reform
+  - confirm_reconstruction
+  - begin_stack
+  - react_to_stack
+  - resolve_stack
+  - add_proposal_kicker
+  - use_triggered_reaction
+
+relational_requirements:
+  minimum_distinct_users: 4
+  minimum_distinct_functions: 4
+  non_author_confirmation: true
+
+resource_values:
+  public_water: 2
+  livelihood: 2
+  maintenance_capacity: 1
+  containment_capacity: 2
+  archive_coherence: 2
+  public_control: 3
+
+confirmation:
+  minimum_confirmations: 1
+  non_author_required: true
+
+completion:
+  world_flags:
+    reconstruction_completed: true
+    production_answerable_to_public_need: true
+    distant_private_accumulation_overridden: true
+    livelihood_transition_secured: true
+    source_reduction_precedes_remediation: true
+    public_water_cap_enforced: true
+    historical_archive_preserved: true
+  next_position: null
+  response_profile: plural_translation
+
+narration_keys:
+  orient_local: local_orientation
+  observe_new: observation_unlocked
+  observe_repeat: observation_corroborated
+  action_accepted: accepted
+  treatment_failed: proposal_rejected
+  proposal_rejected: proposal_rejected
+  proposal_accepted: proposal_accepted
+  confirmation_recorded: confirmation_recorded
+  position_completed: final_reconstruction
+  invalid_action: invalid_action
+  industrial_draw_discovered: industrial_draw_discovered
+  returned_water_ambiguity: returned_water_ambiguity
+  fungal_bed_compatibility: fungal_bed_compatibility
+  saturation: saturation
+  viability_failure: viability_failure
+  visible_clarification_without_safety_evidence: visible_clarification_without_safety_evidence
+  substrate_containment: substrate_containment
+  source_reduction_accepted: source_reduction_accepted
+  greenwashing_proposal_rejected: greenwashing_proposal_rejected
+  burden_externalization: burden_externalization
+  worker_protection: worker_protection
+  throughput_cap: throughput_cap
+  archive_correction: archive_correction
+  final_reconstruction: final_reconstruction
+
+accessibility:
+  summary: >-
+    Ask Hypha about one production line, public need, resource boundary, livelihood, governance
+    surface, remediation limit, reclaimed space, or inherited obligation. Mention or reply for
+    ordinary language; slash commands remain the reliable fallback. Recall preserves the complete
+    public record and chart shows the action flow. Multiple models remain viable when they satisfy
+    the same public limits; no speed, private clue, or required ideology is involved.
+  accepted_input_modes: [natural_language, explicit_command]
+  public_recap_available: true
+  explicit_action_equivalents: true
+  no_timing_penalty: true
+  explicit_command_help:
+    - "Discover: use /interior works inspect and choose a currently inspectable text-scene cue; later targets appear only when their prerequisite evidence is public."
+    - "Change the relation by reducing first, then redesigning, separating flows, containing material, sustaining public systems, or mitigating transition burdens."
+    - "Document historical failures and bind them to current governance and maintenance duties."
+    - "Propose reconstruction only after output, water, waste, work, governance, remediation, memory, reassessment, and shutdown consequences are public."
+    - "Another participant confirms or challenges the model; the author cannot self-confirm."
+    - "Use /interior chart for the full flow and /interior recall for live evidence, constraints, and IDs."
+
+orientation:
+  local_response: >-
+    The Works resolves as one relation among a public well, intake and return channels, worker
+    homes, a treatment yard, a culture archive, a waste yard, repairable buildings, and a versioned
+    record of prior failure.
+  specificity_invitation: >-
+    Inspect one production line, resource boundary, livelihood, governance surface, remediation
+    limit, reclaimed space, or historical obligation before proposing how the relation changes.
+  prohibited_automatic_reveals:
+    - one mandatory reconstruction model
+    - undiscovered output and water measurements
+    - unconfirmed water reuse eligibility
+    - an unearned safety claim
+    - a hidden ideological solution
+    - complete public-state recap
+
+tactical:
+  max_stack_depth: 4
+  allowed_stack_reactions:
+    [object_compatibility, object_evidence, reduce_source, slow_flow, protect_workers, contain_substrate, audit_return, cap_throughput, reassess_viability, preserve_archive]
+  allowed_kickers:
+    [upstream_sampling, downstream_sampling, source_reduction, worker_protection, spent_substrate_plan, public_disclosure, long_term_monitoring, repairability_standard, seasonal_shutdown, archive_failure]
+  strain_threshold: 3
+  strain_reserve_penalty: 1
+  repair_threshold: 2
+  coherence_threshold: 4
+
+provision_arc:
+  entity_roles:
+    provision_works: provision_works
+    production_intake_channel: production_intake_channel
+    warm_return_channel: warm_return_channel
+    industrial_producer: provision_works
+    production_intake: production_intake_channel
+    returned_water: warm_return_channel
+    treatment_yard: treatment_yard
+    treatment_bed: white_rot_beds
+    containment_berm: blackwater_berm
+    spent_substrate_store: spent_substrate_court
+    culture_library: culture_archive
+    indicator_garden: clear_water_test_garden
+    public_water_source: public_well_seven
+    worker_district: heat_court
+    returned_goods_store: waste_yard
+    public_assembly: reconstruction_assembly
+    repair_and_reuse: civic_repair_workshop
+    restoration_research: soil_restoration_workshop
+    versioned_archive: public_memory_archive
+
+  contaminant_classes:
+    - id: organic_dye_residue
+      public_label: Organic dye residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A broad class that may be compatible with a documented culture. Reduced color
+        alone cannot establish transformation, removal, or safety.
+    - id: wood_treatment_residue
+      public_label: Wood-treatment residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A residue class whose treatment eligibility depends on the public compatibility
+        record and bounded evidence; real materials are outside the game's model.
+    - id: mineral_glaze_runoff
+      public_label: Mineral glaze runoff
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A mineral-heavy runoff class routed to separation, containment, and professional
+        assessment rather than assumed biological treatment.
+    - id: oily_maintenance_residue
+      public_label: Oily maintenance residue
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A broad maintenance class that is not accepted by the configured fungal systems.
+    - id: saline_wash_water
+      public_label: Saline wash water
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        A wash-water class for which clarity says nothing about reuse eligibility.
+    - id: mixed_unknown_discharge
+      public_label: Mixed unknown discharge
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: >-
+        An unresolved mixture that must be characterized and contained; it cannot enter a
+        biological treatment claim by default.
+
+  fungal_cultures:
+    - id: public_white_rot_line
+      public_label: Public white-rot line
+      compatible_contaminant_classes: [organic_dye_residue, wood_treatment_residue]
+      heat_tolerance: moderate
+      provenance: Preserved in the public Culture Archive with bounded compatibility records.
+      uncertainty: Compatibility does not prove complete transformation, safety, or unlimited capacity.
+    - id: warm_season_indicator_line
+      public_label: Warm-season indicator line
+      compatible_contaminant_classes: []
+      heat_tolerance: high
+      provenance: Preserved for indicator and containment support, not as a universal treatment culture.
+      uncertainty: Its response can add evidence of change but cannot establish contaminant safety.
+
+  compatibility_rules:
+    - {contaminant_class: organic_dye_residue, culture_id: public_white_rot_line, compatible: true, minimum_viability: 2, maximum_saturation: 3, required_evidence: 2}
+    - {contaminant_class: wood_treatment_residue, culture_id: public_white_rot_line, compatible: true, minimum_viability: 2, maximum_saturation: 2, required_evidence: 3}
+    - {contaminant_class: mineral_glaze_runoff, culture_id: public_white_rot_line, compatible: false}
+    - {contaminant_class: oily_maintenance_residue, culture_id: public_white_rot_line, compatible: false}
+    - {contaminant_class: saline_wash_water, culture_id: public_white_rot_line, compatible: false}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: public_white_rot_line, compatible: false}
+    - {contaminant_class: organic_dye_residue, culture_id: warm_season_indicator_line, compatible: false}
+    - {contaminant_class: wood_treatment_residue, culture_id: warm_season_indicator_line, compatible: false}
+    - {contaminant_class: mineral_glaze_runoff, culture_id: warm_season_indicator_line, compatible: false}
+    - {contaminant_class: oily_maintenance_residue, culture_id: warm_season_indicator_line, compatible: false}
+    - {contaminant_class: saline_wash_water, culture_id: warm_season_indicator_line, compatible: false}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: warm_season_indicator_line, compatible: false}
+
+  remediation_systems:
+    - entity_id: white_rot_beds
+      processes: [biodegradation, transformation, filtration, accumulation]
+      contaminant_classes: [organic_dye_residue, wood_treatment_residue]
+      culture_ids: [public_white_rot_line]
+      containment_destination_ids: [spent_substrate_court]
+      moisture_required: true
+      temperature_required: true
+      contact_time_required: true
+    - entity_id: blackwater_berm
+      processes: [filtration, immobilization, containment, indicator_response]
+      contaminant_classes: [mineral_glaze_runoff, oily_maintenance_residue, saline_wash_water, mixed_unknown_discharge]
+      culture_ids: [warm_season_indicator_line]
+      containment_destination_ids: [spent_substrate_court]
+      moisture_required: true
+      temperature_required: true
+      contact_time_required: true
+    - entity_id: clear_water_test_garden
+      processes: [indicator_response]
+      contaminant_classes: [organic_dye_residue, wood_treatment_residue, mineral_glaze_runoff, oily_maintenance_residue, saline_wash_water, mixed_unknown_discharge]
+      culture_ids: [warm_season_indicator_line]
+      containment_destination_ids: [spent_substrate_court]
+      moisture_required: true
+      temperature_required: true
+      contact_time_required: true
+
+  substrates:
+    - id: bounded_woody_filter_medium
+      public_label: Bounded woody filter medium
+      compatible_system_ids: [white_rot_beds]
+      contaminated_reuse_allowed: false
+      containment_required: true
+    - id: berm_filter_medium
+      public_label: Berm filter medium
+      compatible_system_ids: [blackwater_berm]
+      contaminated_reuse_allowed: false
+      containment_required: true
+    - id: nonfood_indicator_medium
+      public_label: Non-food indicator medium
+      compatible_system_ids: [clear_water_test_garden]
+      contaminated_reuse_allowed: false
+      containment_required: true
+
+  thresholds:
+    saturation_limit: 3
+    minimum_viability: 2
+    minimum_containment: 2
+    minimum_evidence: 2
+    maximum_throughput: 6
+
+  climate_record:
+    historical_baseline: Cooler seasons once supported predictable well recovery, condensation, and maintenance intervals.
+    current_measurement: Longer heat periods, lower condensation, and slower groundwater recovery now constrain water and fungal viability.
+    forecast: Low-flow heat periods will concentrate burden and shorten safe maintenance cycles if throughput remains high.
+    conditional_projection: Reduced throughput, protected public water, and seasonal review can keep bounded systems viable for monitored roles.
+    obsolete_expectation: Annual cooling and groundwater recovery will automatically restore the Works to its former operating envelope.
+    unresolved_discrepancy: Public records cannot fully separate climate-driven decline from the effects of repeated industrial extraction.
+
+  remediation_hierarchy:
+    - refuse_unnecessary_production
+    - reduce_harmful_inputs
+    - redesign_production
+    - reuse_verified_safe_material
+    - separate_clean_and_contaminated_flows
+    - contain_unavoidable_waste
+    - remediate_compatible_contamination
+    - monitor_long_term_effects
+    - manage_spent_substrate
+
+  counter_defaults:
+    containment: 2
+    evidence: 2
+    source_reduction: 0
+    throughput: 12
+    extraction: 9
+    public_benefit: 3
+    burden: 8
+    remediation: 1
+    archival_coherence: 2
+  target_counter_defaults:
+    saturation: {white_rot_beds: 2, blackwater_berm: 1, clear_water_test_garden: 0}
+    viability: {white_rot_beds: 2, blackwater_berm: 2, clear_water_test_garden: 2}
+
+  evidence_measures:
+    [dissolved_residue, usable_water_status, substrate_inventory, indicator_trend, production_ledger_comparison]
+  visual_only_measures: [color, odor, turbidity, visible_clarity, appearance]
+  reduction_measures: [production_throughput, water_draw, disposable_output, harmful_input, waste_output]
+  redesign_changes:
+    [durable_goods_standard, repair_and_reuse, distributed_civic_workshops, seasonal_operation, public_reclamation, worker_community_ownership]
+  mitigation_risks:
+    [worker_burden, labor_burden, heat_exposure, livelihood_loss, public_water_loss, archive_erasure, treatment_overload]
+  maintenance_conditions:
+    [monitor_viability, inspect_containment, sample_upstream_downstream, reassess_seasonal_limit, repair_public_infrastructure]
+  record_types:
+    [original_claim, later_revision, failed_treatment, physical_evidence, affected_observation, uncertainty, correction, unresolved_conflict, reconstruction_covenant]
+
+provision_requirements:
+  proposal_kind: reconstruction
+  required_observations:
+    - unnecessary_output_quota
+    - distant_surplus_control
+    - public_water_cap_basis
+    - worker_livelihood_dependency
+    - reconstruction_model_range
+    - community_control_requirement
+    - clean_contaminated_flow_plan
+    - source_reduction_before_remediation
+    - spent_substrate_handling_obligation
+    - culture_library_scope
+    - indicator_garden_evidence_limit
+    - seasonal_viability_condition
+    - public_monitoring_maintenance_duty
+    - historical_failure_preservation
+    - repair_reuse_conversion
+    - shutdown_reassessment_authority
+  required_actions:
+    [inspect, sample, audit, separate, reduce, redesign, contain, sustain, mitigate, document]
+  required_proposal_fields:
+    - production_line
+    - current_output
+    - revised_output
+    - public_need_served
+    - water_cap
+    - waste_reduction
+    - worker_transition
+    - ownership_or_governance
+    - remediation_obligation
+    - clean_flow_plan
+    - spent_substrate_plan
+    - monitoring
+    - maintenance
+    - historical_records
+    - reassessment
+    - shutdown_threshold
+  required_persistent_effects:
+    - Upstream and Downstream Sampled
+    - Public Discharge Ledger
+    - Clean and Contaminated Flows Separated
+    - Source Reduction Mandate
+    - Throughput Reduced
+    - Repairable Goods Standard
+    - Spent Substrate Contained
+    - Maintained Remediation Cycle
+    - Worker Protection
+    - Versioned Public Record
+    - Archive of Failed Treatments
+  completion_effects:
+    - Production Water Cap
+    - Community Ownership Framework
+    - Worker-Controlled Shutdown Threshold
+    - Throughput Reduced
+    - Indicator Garden Established
+    - Public Reconstruction Covenant
+  minimum_distinct_users: 4
+  minimum_distinct_functions: 4
+  non_author_confirmation: true
+
+response_profile_changes: {on_completion: plural_translation}
+reinterpretation_rules:
+  production: Production counts as provision only where verified public need and ecological limits govern it.
+  employment: Livelihood protection requires wages, transition work, training, or shared ownership; employment does not erase burden.
+  returned_water: Returned volume is not usable volume without public evidence.
+  remediation: Source reduction, separation, and containment precede any compatible fungal role.
+  public_control: Local and worker-community authority may enforce caps, reassessment, seasonal pause, and shutdown.
+  historical_memory: Every reconstruction inherits the versioned failed-treatment archive and its unresolved conflicts.
+vocabulary:
+  [constrain_and_retrofit, distribute_production, deprioritize_unnecessary_output, seasonal_operation, public_reclamation, worker_community_ownership, livelihood_transition, water_cap, source_reduction, public_monitoring, shutdown_authority]
+world_flags:
+  reconstruction_completed: false
+  production_answerable_to_public_need: false
+  distant_private_accumulation_overridden: false
+  livelihood_transition_secured: false
+  source_reduction_precedes_remediation: false
+  public_water_cap_enforced: false
+  historical_archive_preserved: false

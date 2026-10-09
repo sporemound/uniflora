@@ -1,0 +1,176 @@
+.audio-console {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin-block: 12px;
+  border: 1px solid var(--line, #343a32);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background:
+    linear-gradient(110deg, rgba(110, 168, 168, 0.055), transparent 38%),
+    var(--panel, #181b17);
+  color: inherit;
+}
+
+.audio-console__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.audio-console__heading h2 {
+  margin: 1px 0 0;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.audio-console__eyebrow {
+  color: var(--cyan, #6ea8a8);
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.audio-console__state {
+  flex: 0 0 auto;
+  border: 1px solid var(--line, #343a32);
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--muted, #a7ada1);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.audio-console[data-audio-state="on"] .audio-console__state {
+  border-color: color-mix(in srgb, var(--cyan, #6ea8a8) 55%, transparent);
+  color: var(--cyan, #6ea8a8);
+}
+
+.audio-console__description,
+.audio-console__status {
+  margin: 0;
+  color: var(--muted, #a7ada1);
+  font-size: 0.77rem;
+  line-height: 1.5;
+}
+
+.audio-console__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.audio-console__actions button {
+  min-height: 38px;
+  border: 1px solid var(--cyan, #6ea8a8);
+  border-radius: 5px;
+  padding: 7px 11px;
+  background: rgba(110, 168, 168, 0.1);
+  color: var(--warm, #e5d7b7);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.audio-console__actions button:hover:not(:disabled) {
+  background: rgba(110, 168, 168, 0.18);
+}
+
+.audio-console__actions button:disabled {
+  border-color: var(--line, #343a32);
+  color: color-mix(in srgb, var(--muted, #a7ada1) 52%, transparent);
+  cursor: not-allowed;
+}
+
+.audio-console__actions .audio-console__quiet-action {
+  border-color: var(--line, #343a32);
+  background: transparent;
+  color: var(--muted, #a7ada1);
+}
+
+.audio-console button:focus-visible,
+.audio-console summary:focus-visible,
+.audio-console input:focus-visible {
+  outline: 2px solid var(--warm, #e5d7b7);
+  outline-offset: 3px;
+}
+
+.audio-console__mixer {
+  border-top: 1px solid var(--line, #343a32);
+  padding-top: 8px;
+}
+
+.audio-console__mixer summary {
+  width: fit-content;
+  color: var(--warm, #e5d7b7);
+  font-size: 0.76rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.audio-console__sliders {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 12px 18px;
+  padding-top: 11px;
+}
+
+.audio-console__slider {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  color: var(--muted, #a7ada1);
+  font-size: 0.72rem;
+}
+
+.audio-console__slider > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.audio-console__slider output {
+  color: var(--warm, #e5d7b7);
+  font-variant-numeric: tabular-nums;
+}
+
+.audio-console__slider input {
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  accent-color: var(--cyan, #6ea8a8);
+  cursor: pointer;
+}
+
+.audio-console__status {
+  border-left: 2px solid var(--line, #343a32);
+  padding-left: 9px;
+}
+
+@media (max-width: 720px) {
+  .audio-console {
+    padding: 11px 12px;
+  }
+
+  .audio-console__sliders {
+    grid-template-columns: 1fr;
+  }
+
+  .audio-console__actions button {
+    flex: 1 1 145px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio-console *,
+  .audio-console *::before,
+  .audio-console *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+

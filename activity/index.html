@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- missing-interior-sidequest-launch-bypass -->
+    <script>
+      (() => {
+        const url = new URL(window.location.href);
+        if (!url.searchParams.has('sidequest')) return;
+        const removed = url.searchParams.get('sidequest');
+        url.searchParams.delete('sidequest');
+        window.history.replaceState(
+          null,
+          '',
+          url.pathname + url.search + url.hash
+        );
+        console.warn('[Missing Interior] Sidequest bypassed:', removed);
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#111310" />
+    <meta
+      name="description"
+      content="The Missing Interior distributed analysis console."
+    />
+    <title>The Missing Interior — Activity Console</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

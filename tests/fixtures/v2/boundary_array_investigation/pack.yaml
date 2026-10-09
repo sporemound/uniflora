@@ -1,0 +1,321 @@
+schema_version: 2
+
+pack:
+  id: boundary_array_synthetic
+  title: Boundary Array Synthetic Investigation
+  content_version: 0.3.0
+  initial_position_id: boundary_event
+
+locations:
+  - id: boundary_array
+    name: Boundary Array
+    description: >
+      A utilitarian observation site combining radio, optical, timing,
+      diagnostic, and environmental records.
+
+positions:
+  - id: boundary_event
+    ordinal: 1
+    title: First Return
+    focus_location_id: boundary_array
+    initially_available_location_ids:
+      - boundary_array
+    required_location_ids:
+      - boundary_array
+    completion:
+      minimum_examined_source_classes: 3
+      minimum_confirmation_count: 1
+      required_completed_action_ids:
+        - compare_optical_radio_timing
+        - test_atmospheric_propagation
+        - document_upper_atmosphere_gap
+      required_tested_ordinary_explanation_ids:
+        - atmospheric_propagation
+      required_preserved_contradiction_ids:
+        - optical_radio_timing_offset
+      required_documented_information_gap_ids:
+        - upper_atmosphere_conditions
+
+roles:
+  - id: instrument_operator
+    name: Instrument Operator
+    scope: position
+    description: >
+      Reviews receiver state, calibration history, and raw instrument output.
+    allowed_location_ids:
+      - boundary_array
+
+  - id: protocol_auditor
+    name: Protocol Auditor
+    scope: position
+    description: >
+      Distinguishes direct records from interpretations and checks whether
+      conclusions exceed the available evidence.
+    allowed_location_ids:
+      - boundary_array
+
+instruments:
+  - id: optical_array
+    name: Optical Array
+    location_id: boundary_array
+    intended_purpose: >
+      Records directional optical intensity and timing changes across the array.
+    operational_reliability: >
+      Reliable for ordinary calibrated observations within its documented field.
+    scientific_suitability: >
+      Suitable for relative timing and direction, but not direct material
+      identification.
+    calibration_status: Current calibration record available.
+    alignment_status: Array alignment was checked before the event.
+    resolution: Directional intensity samples at the configured array interval.
+    coverage_limits:
+      - Several low-elevation sectors are partially occluded.
+      - Saturation prevents direct recovery of peak brightness.
+    assumptions:
+      - Timestamp synchronization remained within the documented tolerance.
+
+  - id: radio_receiver
+    name: Radio Receiver
+    location_id: boundary_array
+    intended_purpose: >
+      Records directional radio-frequency activity and receiver status.
+    operational_reliability: >
+      Reliable for detecting returns inside its configured frequency range.
+    scientific_suitability: >
+      Suitable for timing and spectral comparison, but not for inferring
+      object size or composition without additional evidence.
+    calibration_status: Post-event diagnostic is incomplete.
+    resolution: Frequency bins and timestamps from the configured receiver mode.
+    coverage_limits:
+      - Out-of-band activity is not recorded.
+      - Automatic gain control may alter apparent amplitude.
+    assumptions:
+      - Receiver clock drift remained within its last measured range.
+
+  - id: weather_station
+    name: Weather Station
+    location_id: boundary_array
+    intended_purpose: >
+      Records local atmospheric conditions near the observation site.
+    operational_reliability: >
+      Reliable for local temperature, pressure, wind, and precipitation.
+    scientific_suitability: >
+      Provides environmental context but cannot characterize the entire
+      propagation path.
+    calibration_status: Routine maintenance current.
+    resolution: Standard local weather-station sampling interval.
+    coverage_limits:
+      - Conditions above the local station require external records.
+    assumptions:
+      - Local measurements are representative only near the site.
+
+evidence_sources:
+  - id: optical_record
+    name: Optical Array Record
+    source_class: imagery
+    origin_location_id: boundary_array
+    instrument_id: optical_array
+    provenance: >
+      Immutable export from the Boundary Array optical recorder.
+    independence_group: boundary_optical
+    raw_or_derived: raw
+    processing_history: []
+    uncertainty: >
+      Peak intensity is unresolved because several samples reached saturation.
+    limitations:
+      - The record does not directly establish distance.
+      - The record does not directly establish material composition.
+    supported_conclusions:
+      - The array recorded a luminous directional event.
+      - Multiple optical channels registered related timing changes.
+    unsupported_extrapolations:
+      - Exact physical size
+      - Exact distance
+      - Exact material composition
+    initially_available: true
+
+  - id: radio_return
+    name: Directional Radio Return
+    source_class: signal
+    origin_location_id: boundary_array
+    instrument_id: radio_receiver
+    provenance: >
+      Receiver export preserved before later interpretive processing.
+    independence_group: boundary_radio
+    raw_or_derived: processed
+    processing_history:
+      - Receiver firmware applied configured filtering.
+      - Automatic gain control affected reported amplitude.
+    uncertainty: >
+      The return timing is usable, but absolute amplitude is processing-dependent.
+    limitations:
+      - The receiver does not cover all possible frequencies.
+      - Directional accuracy depends on the incomplete diagnostic.
+    supported_conclusions:
+      - The configured receiver generated a directional return.
+    unsupported_extrapolations:
+      - Exact object speed
+      - Exact object shape
+      - Exact emission power
+    initially_available: true
+
+  - id: weather_record
+    name: Local Weather Record
+    source_class: environmental_measurement
+    origin_location_id: boundary_array
+    instrument_id: weather_station
+    provenance: >
+      Local weather-station record awaiting retrieval from the station archive.
+    independence_group: boundary_weather
+    raw_or_derived: raw
+    processing_history: []
+    uncertainty: >
+      Local observations cannot describe the full atmospheric propagation path.
+    limitations:
+      - Upper-atmosphere conditions require an external source.
+    supported_conclusions:
+      - Local conditions can constrain some ordinary optical explanations.
+    unsupported_extrapolations:
+      - Complete regional atmospheric state
+    initially_available: false
+
+  - id: receiver_diagnostic
+    name: Receiver Diagnostic
+    source_class: instrument_diagnostic
+    origin_location_id: boundary_array
+    instrument_id: radio_receiver
+    provenance: >
+      Diagnostic output requested after the event but not yet completed.
+    independence_group: boundary_radio_diagnostic
+    raw_or_derived: derived
+    processing_history:
+      - Diagnostic procedure initiated after the event.
+    uncertainty: >
+      Receiver alignment and gain behavior remain incompletely characterized.
+    limitations:
+      - The incomplete diagnostic cannot yet validate receiver alignment.
+    supported_conclusions: []
+    unsupported_extrapolations:
+      - Instrument accuracy during the event
+    initially_available: false
+
+ordinary_explanations:
+  - id: atmospheric_propagation
+    title: Atmospheric propagation
+    description: >
+      A local or regional atmospheric condition altered the apparent optical
+      or radio behavior without requiring a novel source.
+
+contradictions:
+  - id: optical_radio_timing_offset
+    title: Optical-radio timing offset
+    description: >
+      The optical and radio records converge on one event but do not align
+      within the simplest single-trajectory timing model.
+
+information_gaps:
+  - id: upper_atmosphere_conditions
+    title: Upper-atmosphere conditions
+    description: >
+      The local weather station does not characterize the complete propagation
+      path above and beyond the site.
+
+actions:
+  - id: inspect_optical_record
+    title: Inspect the optical record
+    description: >
+      Review the optical export as a direct record and separate its supported
+      conclusions from distance, size, and composition claims.
+    action_type: inspect
+    location_id: boundary_array
+    prerequisites:
+      required_examined_evidence_ids:
+        - optical_record
+    effects: {}
+
+  - id: inspect_radio_return
+    title: Inspect the radio return
+    description: >
+      Review the receiver export while preserving its filtering, gain-control,
+      and incomplete-diagnostic limitations.
+    action_type: inspect
+    location_id: boundary_array
+    prerequisites:
+      required_examined_evidence_ids:
+        - radio_return
+    effects: {}
+
+  - id: calibrate_receiver
+    title: Complete the receiver diagnostic
+    description: >
+      Use the instrument-operator role to complete the diagnostic request after
+      the radio return has been inspected.
+    action_type: calibrate
+    location_id: boundary_array
+    prerequisites:
+      required_role_ids:
+        - instrument_operator
+      required_completed_action_ids:
+        - inspect_radio_return
+    effects:
+      unlock_evidence_ids:
+        - receiver_diagnostic
+
+  - id: request_weather_record
+    title: Retrieve the local weather record
+    description: >
+      Use the protocol-auditor role to retrieve the environmental record without
+      treating local conditions as a complete atmospheric reconstruction.
+    action_type: request
+    location_id: boundary_array
+    prerequisites:
+      required_role_ids:
+        - protocol_auditor
+    effects:
+      unlock_evidence_ids:
+        - weather_record
+
+  - id: compare_optical_radio_timing
+    title: Compare optical and radio timing
+    description: >
+      Compare independently preserved timing features after both primary records
+      have been inspected.
+    action_type: compare
+    location_id: boundary_array
+    prerequisites:
+      required_completed_action_ids:
+        - inspect_optical_record
+        - inspect_radio_return
+    effects:
+      preserve_contradiction_ids:
+        - optical_radio_timing_offset
+
+  - id: test_atmospheric_propagation
+    title: Test atmospheric propagation
+    description: >
+      Test whether the retrieved local weather record explains the combined
+      optical and radio timing pattern.
+    action_type: test_explanation
+    location_id: boundary_array
+    prerequisites:
+      required_examined_evidence_ids:
+        - weather_record
+      required_completed_action_ids:
+        - compare_optical_radio_timing
+    effects:
+      mark_ordinary_explanation_tested_ids:
+        - atmospheric_propagation
+
+  - id: document_upper_atmosphere_gap
+    title: Document the upper-atmosphere gap
+    description: >
+      Record that local weather evidence does not characterize the entire
+      propagation path.
+    action_type: document_gap
+    location_id: boundary_array
+    prerequisites:
+      required_examined_evidence_ids:
+        - weather_record
+    effects:
+      document_information_gap_ids:
+        - upper_atmosphere_conditions

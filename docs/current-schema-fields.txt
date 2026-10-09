@@ -1,0 +1,320 @@
+PuzzleDefinition
+  - schema_version: <class 'int'> [optional/defaulted]
+  - content_version: <class 'str'> [required]
+  - position: <class 'int'> [required]
+  - key: <class 'str'> [required]
+  - title: <class 'str'> [required]
+  - status: <enum 'PositionStatus'> [required]
+  - public_premise: <class 'str'> [required]
+  - entities: tuple[uniflora.content.schema.EntityDefinition, ...] [optional/defaulted]
+  - observations: tuple[uniflora.content.schema.ObservationDefinition, ...] [optional/defaulted]
+  - allowed_actions: tuple[str, ...] [optional/defaulted]
+  - relational_requirements: uniflora.content.schema.RelationalRequirements | None [optional/defaulted]
+  - resource_values: dict[str, float] [optional/defaulted]
+  - sustainability: uniflora.content.schema.SustainabilityConstraints | None [optional/defaulted]
+  - reconstruction: uniflora.content.schema.ReconstructionRequirements | None [optional/defaulted]
+  - circulation: uniflora.content.schema.CirculationRequirements | None [optional/defaulted]
+  - translation: uniflora.content.schema.TranslationRequirements | None [optional/defaulted]
+  - confirmation: uniflora.content.schema.ConfirmationRequirements | None [optional/defaulted]
+  - completion: <class 'uniflora.content.schema.CompletionEffects'> [required]
+  - narration_keys: dict[str, str] [optional/defaulted]
+  - accessibility: <class 'uniflora.content.schema.AccessibilityDefinition'> [required]
+  - orientation: uniflora.content.schema.OrientationDefinition | None [optional/defaulted]
+  - presentation: uniflora.content.schema.PositionPresentation | None [optional/defaulted]
+  - triggered_presentations: tuple[uniflora.content.schema.TriggeredPresentation, ...] [optional/defaulted]
+  - tactical: uniflora.content.schema.TacticalDefinition | None [optional/defaulted]
+  - provision_arc: uniflora.content.schema.ProvisionArcDefinition | None [optional/defaulted]
+  - provision_requirements: uniflora.content.schema.ProvisionPositionRequirements | None [optional/defaulted]
+  - expansion: uniflora.content.schema.ExpansionFramework | None [optional/defaulted]
+  - response_profile_changes: dict[str, str] [optional/defaulted]
+  - reinterpretation_rules: dict[str, str] [optional/defaulted]
+  - vocabulary: tuple[str, ...] [optional/defaulted]
+  - world_flags: dict[str, bool | int | float | str] [optional/defaulted]
+
+  EntityDefinition
+    - id: <class 'str'> [required]
+    - title: <class 'str'> [required]
+    - kind: <class 'str'> [required]
+    - aliases: tuple[str, ...] [optional/defaulted]
+    - discovery_label: str | None [optional/defaulted]
+    - public_description: <class 'str'> [required]
+    - resources: dict[str, float] [optional/defaulted]
+    - measurements: dict[str, float | str | bool] [optional/defaulted]
+
+  ObservationDefinition
+    - id: <class 'str'> [required]
+    - entity_id: <class 'str'> [required]
+    - public_text: <class 'str'> [required]
+    - fact_key: <class 'str'> [required]
+    - unlock: <class 'uniflora.content.schema.UnlockCondition'> [required]
+    - contribution_function: <class 'str'> [required]
+    - classification: typing.Literal['confirmed', 'historical_baseline', 'current_measurement', 'forecast', 'conditional_projection', 'obsolete_expectation', 'unresolved_discrepancy', 'provenance', 'preserved_difference'] [optional/defaulted]
+
+    UnlockCondition
+      - action: <class 'str'> [required]
+      - entity_id: str | None [optional/defaulted]
+      - requires_observations: tuple[str, ...] [optional/defaulted]
+      - distinct_user_count: <class 'int'> [optional/defaulted]
+
+  RelationalRequirements
+    - minimum_distinct_users: <class 'int'> [optional/defaulted]
+    - minimum_distinct_functions: <class 'int'> [optional/defaulted]
+    - non_author_confirmation: <class 'bool'> [optional/defaulted]
+
+  SustainabilityConstraints
+    - donor_entity_id: <class 'str'> [required]
+    - recipient_entity_id: <class 'str'> [required]
+    - resource_id: <class 'str'> [required]
+    - pathway_entity_id: <class 'str'> [required]
+    - minimum_donor_reserve: <class 'float'> [required]
+    - minimum_recipient_viability: <class 'float'> [required]
+    - allowed_pathway_actions: tuple[str, ...] [optional/defaulted]
+
+  ReconstructionRequirements
+    - required_observations: tuple[str, ...] [required]
+    - required_fields: tuple[str, ...] [required]
+    - maintenance_terms: tuple[str, ...] [required]
+
+  CirculationRequirements
+    - source_entity_id: <class 'str'> [required]
+    - recipient_entity_id: <class 'str'> [required]
+    - relay_entity_id: <class 'str'> [required]
+    - source_pathway_id: <class 'str'> [required]
+    - destination_pathway_id: <class 'str'> [required]
+    - reserve_entity_id: <class 'str'> [required]
+    - archive_entity_id: <class 'str'> [required]
+    - central_basin_entity_id: <class 'str'> [required]
+    - support_source_entity_ids: tuple[str, ...] [required]
+    - resource_id: <class 'str'> [required]
+    - required_observations: tuple[str, ...] [required]
+    - burden_observations: tuple[str, ...] [required]
+    - source_output: <class 'float'> [required]
+    - unassessed_efficiency: <class 'float'> [required]
+    - reassessed_efficiency: <class 'float'> [required]
+    - relay_capacity: <class 'float'> [required]
+    - destination_pathway_capacity: <class 'float'> [required]
+    - archive_coherence_floor: <class 'float'> [required]
+    - archive_viability_floor: <class 'float'> [required]
+    - reserve_floor: <class 'float'> [required]
+    - eastern_recovery_buffer: <class 'float'> [required]
+    - maintenance_terms: tuple[str, ...] [required]
+    - reassessment_terms: tuple[str, ...] [required]
+    - branch_terms: tuple[str, ...] [required]
+    - branch_action_terms: tuple[str, ...] [required]
+
+  TranslationRequirements
+    - record_entity_ids: tuple[str, ...] [required]
+    - glossary_entity_id: <class 'str'> [required]
+    - provenance_entity_id: <class 'str'> [required]
+    - minority_entity_id: <class 'str'> [required]
+    - required_observations: tuple[str, ...] [required]
+    - required_comparisons: <class 'int'> [optional/defaulted]
+    - allowed_classifications: tuple[str, ...] [required]
+    - correct_classification: <class 'str'> [required]
+    - mapping_terms: tuple[str, ...] [required]
+    - preservation_terms: tuple[str, ...] [required]
+    - required_public_relays: <class 'int'> [optional/defaulted]
+
+  ConfirmationRequirements
+    - minimum_confirmations: <class 'int'> [optional/defaulted]
+    - non_author_required: <class 'bool'> [optional/defaulted]
+
+  CompletionEffects
+    - world_flags: dict[str, bool | int | float | str] [optional/defaulted]
+    - next_position: int | None [optional/defaulted]
+    - response_profile: <class 'str'> [optional/defaulted]
+
+  AccessibilityDefinition
+    - summary: <class 'str'> [required]
+    - explicit_command_help: tuple[str, ...] [optional/defaulted]
+    - public_recap_available: <class 'bool'> [optional/defaulted]
+    - explicit_action_equivalents: <class 'bool'> [optional/defaulted]
+    - no_timing_penalty: <class 'bool'> [optional/defaulted]
+    - accepted_input_modes: tuple[typing.Literal['natural_language', 'explicit_command'], ...] [optional/defaulted]
+
+  OrientationDefinition
+    - local_response: <class 'str'> [required]
+    - specificity_invitation: <class 'str'> [required]
+    - prohibited_automatic_reveals: tuple[str, ...] [optional/defaulted]
+
+  PositionPresentation
+    - image_asset: <class 'str'> [required]
+    - image_alt_text: <class 'str'> [required]
+    - introduction: <class 'str'> [required]
+    - additional_images: tuple[uniflora.content.schema.PresentationImage, ...] [optional/defaulted]
+
+    PresentationImage
+      - image_asset: <class 'str'> [required]
+      - image_alt_text: <class 'str'> [required]
+
+  TriggeredPresentation
+    - id: <class 'str'> [required]
+    - condition: <class 'uniflora.content.schema.RevealCondition'> [required]
+    - introduction: <class 'str'> [required]
+    - image_asset: <class 'str'> [required]
+    - image_alt_text: <class 'str'> [required]
+
+    RevealCondition
+      - counter: <class 'str'> [required]
+      - target: str | None [optional/defaulted]
+      - minimum: <class 'float'> [optional/defaulted]
+
+  TacticalDefinition
+    - max_stack_depth: <class 'int'> [optional/defaulted]
+    - allowed_stack_reactions: tuple[str, ...] [required]
+    - allowed_kickers: tuple[str, ...] [required]
+    - strain_threshold: <class 'int'> [optional/defaulted]
+    - strain_reserve_penalty: <class 'float'> [optional/defaulted]
+    - repair_threshold: <class 'int'> [optional/defaulted]
+    - coherence_threshold: <class 'int'> [optional/defaulted]
+
+  ProvisionArcDefinition
+    - entity_roles: dict[str, str] [optional/defaulted]
+    - contaminant_classes: tuple[uniflora.content.schema.ContaminantClassDefinition, ...] [optional/defaulted]
+    - fungal_cultures: tuple[uniflora.content.schema.FungalCultureDefinition, ...] [optional/defaulted]
+    - compatibility_rules: tuple[uniflora.content.schema.CompatibilityRule, ...] [optional/defaulted]
+    - remediation_systems: tuple[uniflora.content.schema.RemediationSystemDefinition, ...] [optional/defaulted]
+    - substrates: tuple[uniflora.content.schema.SubstrateDefinition, ...] [optional/defaulted]
+    - thresholds: <class 'uniflora.content.schema.ArcCounterThresholds'> [optional/defaulted]
+    - climate_record: uniflora.content.schema.ClimateRecordDefinition | None [optional/defaulted]
+    - remediation_hierarchy: tuple[typing.Literal['refuse_unnecessary_production', 'reduce_harmful_inputs', 'redesign_production', 'reuse_verified_safe_material', 'separate_clean_and_contaminated_flows', 'contain_unavoidable_waste', 'remediate_compatible_contamination', 'monitor_long_term_effects', 'manage_spent_substrate'], ...] [optional/defaulted]
+    - counter_defaults: dict[str, int] [optional/defaulted]
+    - target_counter_defaults: dict[str, dict[str, int]] [optional/defaulted]
+    - evidence_measures: tuple[str, ...] [optional/defaulted]
+    - visual_only_measures: tuple[str, ...] [optional/defaulted]
+    - reduction_measures: tuple[str, ...] [optional/defaulted]
+    - redesign_changes: tuple[str, ...] [optional/defaulted]
+    - mitigation_risks: tuple[str, ...] [optional/defaulted]
+    - maintenance_conditions: tuple[str, ...] [optional/defaulted]
+    - record_types: tuple[str, ...] [optional/defaulted]
+
+    ContaminantClassDefinition
+      - id: <class 'str'> [required]
+      - public_label: <class 'str'> [required]
+      - biological_treatment_eligible: <class 'bool'> [required]
+      - visible_clarity_proves_safety: typing.Literal[False] [optional/defaulted]
+      - public_description: <class 'str'> [required]
+
+    FungalCultureDefinition
+      - id: <class 'str'> [required]
+      - public_label: <class 'str'> [required]
+      - compatible_contaminant_classes: tuple[str, ...] [optional/defaulted]
+      - heat_tolerance: typing.Literal['low', 'moderate', 'high'] [required]
+      - provenance: <class 'str'> [required]
+      - uncertainty: <class 'str'> [required]
+
+    CompatibilityRule
+      - contaminant_class: <class 'str'> [required]
+      - culture_id: <class 'str'> [required]
+      - compatible: <class 'bool'> [required]
+      - minimum_viability: <class 'int'> [optional/defaulted]
+      - maximum_saturation: <class 'int'> [optional/defaulted]
+      - required_evidence: <class 'int'> [optional/defaulted]
+
+    RemediationSystemDefinition
+      - entity_id: <class 'str'> [required]
+      - processes: tuple[typing.Literal['biodegradation', 'transformation', 'filtration', 'immobilization', 'adsorption', 'accumulation', 'containment', 'indicator_response', 'soil_restoration'], ...] [required]
+      - contaminant_classes: tuple[str, ...] [required]
+      - culture_ids: tuple[str, ...] [required]
+      - containment_destination_ids: tuple[str, ...] [required]
+      - moisture_required: typing.Literal[True] [optional/defaulted]
+      - temperature_required: typing.Literal[True] [optional/defaulted]
+      - contact_time_required: typing.Literal[True] [optional/defaulted]
+
+    SubstrateDefinition
+      - id: <class 'str'> [required]
+      - public_label: <class 'str'> [required]
+      - compatible_system_ids: tuple[str, ...] [required]
+      - contaminated_reuse_allowed: typing.Literal[False] [optional/defaulted]
+      - containment_required: typing.Literal[True] [optional/defaulted]
+
+    ArcCounterThresholds
+      - saturation_limit: <class 'int'> [optional/defaulted]
+      - minimum_viability: <class 'int'> [optional/defaulted]
+      - minimum_containment: <class 'int'> [optional/defaulted]
+      - minimum_evidence: <class 'int'> [optional/defaulted]
+      - maximum_throughput: <class 'int'> [optional/defaulted]
+
+    ClimateRecordDefinition
+      - historical_baseline: <class 'str'> [required]
+      - current_measurement: <class 'str'> [required]
+      - forecast: <class 'str'> [required]
+      - conditional_projection: <class 'str'> [required]
+      - obsolete_expectation: <class 'str'> [required]
+      - unresolved_discrepancy: <class 'str'> [required]
+
+  ProvisionPositionRequirements
+    - proposal_kind: typing.Literal['reciprocity', 'remediation_protocol', 'memory_archive', 'reconstruction'] [required]
+    - required_observations: tuple[str, ...] [required]
+    - required_actions: tuple[str, ...] [required]
+    - required_action_groups: tuple[tuple[str, ...], ...] [optional/defaulted]
+    - required_proposal_fields: tuple[str, ...] [required]
+    - required_persistent_effects: tuple[str, ...] [optional/defaulted]
+    - required_persistent_effect_groups: tuple[tuple[str, ...], ...] [optional/defaulted]
+    - completion_effects: tuple[str, ...] [required]
+    - maintenance_cycle_steps: tuple[str, ...] [optional/defaulted]
+    - minimum_distinct_users: <class 'int'> [optional/defaulted]
+    - minimum_distinct_functions: <class 'int'> [optional/defaulted]
+    - non_author_confirmation: typing.Literal[True] [optional/defaulted]
+
+  ExpansionFramework
+    - mechanics: tuple[uniflora.content.schema.ExpansionMechanic, ...] [required]
+    - temporary_functions: tuple[uniflora.content.schema.TemporaryPublicFunctionFixture, ...] [optional/defaulted]
+    - resource_circulation: tuple[uniflora.content.schema.ResourceCirculationFixture, ...] [optional/defaulted]
+    - contradictory_records: tuple[uniflora.content.schema.ContradictoryRecordFixture, ...] [optional/defaulted]
+    - maintenance_cycles: tuple[uniflora.content.schema.MaintenanceCycleFixture, ...] [optional/defaulted]
+    - shared_summary: uniflora.content.schema.SharedSummaryFixture | None [optional/defaulted]
+    - relational_progress: <class 'uniflora.content.schema.RelationalProgressFixture'> [required]
+    - response_profile_transitions: tuple[uniflora.content.schema.ResponseProfileTransitionFixture, ...] [optional/defaulted]
+    - event_reinterpretation: tuple[uniflora.content.schema.EventReinterpretationFixture, ...] [optional/defaulted]
+
+    TemporaryPublicFunctionFixture
+      - id: <class 'str'> [required]
+      - public_label: <class 'str'> [required]
+      - purpose: <class 'str'> [required]
+      - scope: typing.Literal['proposal', 'cycle', 'position'] [required]
+      - granted_by: typing.Literal['public_action', 'confirmed_event', 'shared_summary'] [required]
+      - allowed_actions: tuple[str, ...] [required]
+
+    ResourceCirculationFixture
+      - resource_id: <class 'str'> [required]
+      - source_ref: <class 'str'> [required]
+      - target_ref: <class 'str'> [required]
+      - conservation_required: typing.Literal[True] [optional/defaulted]
+      - reassessment_required: typing.Literal[True] [optional/defaulted]
+
+    ContradictoryRecordFixture
+      - record_refs: tuple[str, ...] [required]
+      - resolution_action: <class 'str'> [required]
+      - minimum_distinct_interpreters: <class 'int'> [optional/defaulted]
+      - preserve_disagreement: <class 'bool'> [optional/defaulted]
+
+    MaintenanceCycleFixture
+      - id: <class 'str'> [required]
+      - interval_events: <class 'int'> [required]
+      - required_public_actions: tuple[str, ...] [required]
+      - counter_key: <class 'str'> [required]
+      - threshold: <class 'int'> [required]
+
+    SharedSummaryFixture
+      - minimum_source_events: <class 'int'> [optional/defaulted]
+      - minimum_distinct_contributors: <class 'int'> [optional/defaulted]
+      - relay_required: <class 'bool'> [optional/defaulted]
+      - public_revision_allowed: <class 'bool'> [optional/defaulted]
+
+    RelationalProgressFixture
+      - minimum_distinct_users: <class 'int'> [optional/defaulted]
+      - minimum_distinct_functions: <class 'int'> [optional/defaulted]
+      - non_author_confirmation: <class 'bool'> [optional/defaulted]
+      - no_single_participant_completion: typing.Literal[True] [optional/defaulted]
+
+    ResponseProfileTransitionFixture
+      - from_profile: <class 'str'> [required]
+      - to_profile: <class 'str'> [required]
+      - public_trigger: <class 'str'> [required]
+
+    EventReinterpretationFixture
+      - source_positions: tuple[int, ...] [required]
+      - requires_confirmed_events: typing.Literal[True] [optional/defaulted]
+      - preserves_original_record: typing.Literal[True] [optional/defaulted]
+      - public_correction: typing.Literal[True] [optional/defaulted]

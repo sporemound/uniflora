@@ -1,0 +1,86 @@
+{
+  "analysisMethod": "line-voltage-timing-study",
+  "analysisMethodVersion": "1.0.0",
+  "artifactDefinitionHash": "abab142a2c132b3ce418080c88057bf7c460bed410f94490458ce00b799d23e8",
+  "artifactId": "artifact-phase3-sr03",
+  "environment": "test",
+  "files": {
+    "activity-data.json": "9674628a1a8b553ecb95cac7906be39789faf8e0686c1b82f9fc4d8a0d352033",
+    "activity-visualization.json": "bfa1bc139320cca9917e1e6d1d6cff74e540bc898d05d550a7fa27810e0e928c",
+    "scientific-plate.png": "b5c6f9ecf11b33dc8c11caaaa9998f4a49f3904f02c724ccbc89399801a8669b",
+    "scientific-plate.svg": "1c8894b1fff5a91ff73c0000e88c5083637689fcf4ce2a35e7abb2feea5e1735",
+    "visualization.json": "b55753d110899d68b4af72e486889970f2f9f80b36c75bc19957c07cb47b991a"
+  },
+  "generatedAt": "2026-07-24T03:17:15Z",
+  "inputDatasetHash": "ef6e52801d82152c7aff61ab95dc4e78f9aeafbf9c7bb595dc94861399d4c828",
+  "institutionId": "interfacility-intake",
+  "interactiveRenderer": "missing-interior-native-svg-canvas",
+  "limitations": [
+    "This deterministic Phase 3 fixture demonstrates the dashboard and publication path; it is not a production scientific observation.",
+    "A misconfigured source clock remains a viable ordinary explanation for the declared transmission offset.",
+    "The synthetic line-voltage waveform cannot establish the physical origin of the packet."
+  ],
+  "positionId": "position-0",
+  "projectionProvenance": {
+    "algorithms": {
+      "fileDigests": {
+        "id": "sha256"
+      },
+      "spectrogramAnalysis": {
+        "id": "scipy.signal.spectrogram",
+        "parameters": {
+          "decibelTransform": "10*log10(max(power,float64-tiny))",
+          "detrend": "linear",
+          "mode": "psd",
+          "noverlap": 192,
+          "nperseg": 256,
+          "scaling": "density",
+          "window": "hann"
+        }
+      },
+      "spectrogramProjection": {
+        "id": "missing_interior_dashboard.activity_projection._even_indices",
+        "maximumFrequencyBins": 64,
+        "maximumTimeBins": 96,
+        "publishedFrequencyBins": 64,
+        "publishedTimeBins": 61
+      },
+      "staticVectorRendering": {
+        "backend": "matplotlib",
+        "id": "holoviews.render"
+      },
+      "svgRasterization": {
+        "height": 1800,
+        "id": "resvg_py.svg_to_bytes",
+        "longEdgePixels": 1800,
+        "width": 1180
+      },
+      "waveformProjection": {
+        "fullSampleCount": 4096,
+        "id": "missing_interior_dashboard.activity_projection._envelope_sample_indices",
+        "maximumPoints": 640,
+        "publishedSampleCount": 640
+      }
+    },
+    "schemaVersion": "3.0.0"
+  },
+  "renderer": "holoviews-matplotlib-resvg",
+  "rendererVersions": {
+    "holoviews": "1.23.1",
+    "matplotlib": "3.11.1",
+    "resvg_py": "0.3.3"
+  },
+  "schemaVersion": "1.1.0",
+  "softwareVersions": {
+    "colorcet": "3.2.1",
+    "holoviews": "1.23.1",
+    "matplotlib": "3.11.1",
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "resvg_py": "0.3.3",
+    "scipy": "1.18.0",
+    "xarray": "2026.7.0"
+  },
+  "stateHeadHash": "531225e7d753e51510ba9b2bd0898853e71492e41433a708cba758a829636bcb",
+  "visualizationId": "viz_2a9e46b71ddb09824835b2f2"
+}

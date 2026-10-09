@@ -1,0 +1,544 @@
+schema_version: 1
+content_version: "3.3.1"
+position: 1
+key: interrupted_current
+title: The Interrupted Current
+status: complete
+public_premise: >-
+  Route 03 has revealed that the ecological districts are parts of one remote workers'
+  settlement: cisterns, planted courts, workshops, archives, and tightly joined homes depend
+  on the same maintained circulation. Establish a reassessable flow without shifting the cost
+  onto an already burdened reserve, a public archive, or the settlement's future cultivation.
+  Begin by inspecting one source, recipient, relay, route, burden, or forecast; the useful
+  relations must be made public before a plan can use them.
+entities:
+  - id: northern_reservoir
+    title: Northern Reservoir
+    kind: reservoir
+    aliases: [north, reservoir, northern reserve]
+    discovery_label: Northern Reservoir
+    public_description: A civic cistern inherited from the first reconstruction and repeatedly called upon by the settlement.
+    resources: {water: 7}
+    measurements: {base_safe_reserve: 4}
+  - id: eastern_growth
+    title: Eastern Growth
+    kind: growth_region
+    aliases: [east, eastern region]
+    discovery_label: Eastern Growth
+    public_description: The recovering region restored through Route 03.
+    resources: {water: 6}
+    measurements: {minimum_viability: 6, recovery_buffer: 6}
+  - id: central_relay
+    title: Central Relay
+    kind: relay
+    aliases: [relay, central]
+    discovery_label: Edge of Shared Workers' Court
+    public_description: A ration and route station where household, workshop, and planted-court channels meet.
+    resources: {water: 0}
+    measurements: {durable_storage: false, relay_capacity: 20}
+  - id: pale_nursery
+    title: Pale Nursery
+    kind: growth_region
+    aliases: [nursery, pale]
+    discovery_label: Shaded Planting Surface
+    public_description: A shaded planted court where substrate planners protect young growth from heat.
+    resources: {water: 2}
+    measurements: {stable_minimum: 8, accelerated_minimum: 11}
+  - id: lower_archive_bed
+    title: Lower Archive Bed
+    kind: archive_region
+    aliases: [archive, archive bed, lower archive]
+    discovery_label: Lower Archive Bed
+    public_description: A cool public archive assembled from discarded fragments beside a heat-sensitive planted bed.
+    resources: {water: 7}
+    measurements: {minimum_viability: 4, coherence_floor: 5}
+  - id: condensation_veil
+    title: Condensation Veil
+    kind: shared_source
+    aliases: [veil, condensation, condensation source]
+    discovery_label: Condensation Veil
+    public_description: A collectively maintained rooftop collection surface whose current output dissipates if unused.
+    resources: {water: 9}
+    measurements: {current_output: 9, maintained: false}
+  - id: route_07
+    title: Route 07
+    kind: pathway
+    aliases: [route seven, route 7, source route]
+    discovery_label: Plastered Channel Fragment
+    public_description: An unstable route connecting the Veil to Central Relay.
+    resources: {}
+    measurements: {unassessed_efficiency: 0.75, reassessed_efficiency: 1.0}
+  - id: route_11
+    title: Route 11
+    kind: pathway
+    aliases: [route eleven, route 11, nursery route]
+    discovery_label: Faded Nursery-bound channel mark
+    public_description: The functional route from Central Relay to Pale Nursery.
+    resources: {}
+    measurements: {maximum_safe_transfer: 14}
+  - id: return_channel
+    title: Return Channel
+    kind: pathway
+    aliases: [return, return route]
+    public_description: A closed route by which Eastern Growth could eventually relay surplus.
+    resources: {}
+    measurements: {open: false}
+  - id: first_bloom_basin
+    title: Dried Central Basin
+    kind: civic_garden
+    aliases: [basin, central basin, dried basin, first bloom]
+    discovery_label: Dried Garden Basin
+    public_description: An unfinished communal garden basin crossed by a faded planting diagram.
+    resources: {water: 0}
+    measurements: {indicator_species_present: false, planting_diagram_readable: false}
+  - id: production_intake_channel
+    title: Upper Allocation Channel
+    kind: allocation_pathway
+    aliases: [upper allocation, intake channel, allocation channel]
+    discovery_label: Broken blue branch ending at a question mark
+    public_description: A metered branch recorded as civic circulation even though its destination is not named on the public route plate.
+    resources: {}
+    measurements: {ledger_category: circulated, destination_disclosed: false}
+  - id: warm_return_channel
+    title: Warm Return Channel
+    kind: altered_water_pathway
+    aliases: [warm return, upper return, altered return]
+    discovery_label: Warm visibly altered return flow
+    public_description: A covered upper-district route returning warmer water toward the lower circulation network.
+    resources: {}
+    measurements: {temperature_state: elevated, treatment_status: unresolved, reuse_eligible: false}
+  - id: return_indicator_bed
+    title: Return-Route Indicator Bed
+    kind: fungal_indicator_bed
+    aliases: [indicator bed, return bed, channel bed]
+    discovery_label: Small color-changing bed
+    public_description: A small maintained fungal bed beside the return route; it can register and retain some compatible material but has finite capacity.
+    resources: {}
+    measurements: {moisture_state: suitable, viability: 3, saturation: 0, proves_safety: false}
+  - id: spent_indicator_hold
+    title: Sealed Indicator Substrate Hold
+    kind: containment_store
+    aliases: [substrate hold, sealed hold, spent hold]
+    discovery_label: Marked substrate isolation bay
+    public_description: A marked non-compost storage bay for indicator-bed material awaiting classification and long-term handling.
+    resources: {}
+    measurements: {isolated: true, food_soil_reuse_allowed: false}
+observations:
+  - id: nursery_projected_need
+    entity_id: pale_nursery
+    public_text: Pale Nursery is viable now but has a confirmed next-cycle deficit.
+    fact_key: nursery_projected_need
+    unlock: {action: observe, entity_id: pale_nursery, distinct_user_count: 1}
+    contribution_function: shade_reader
+  - id: nursery_variable_demand
+    entity_id: pale_nursery
+    public_text: >-
+      Shade and substrate readings make Nursery demand a public forecast rather than a fixed
+      appetite. Its absent blossom scent is distributed evidence of interrupted circulation.
+    fact_key: nursery_variable_demand
+    unlock:
+      action: observe
+      entity_id: pale_nursery
+      requires_observations: [nursery_projected_need]
+      distinct_user_count: 1
+    contribution_function: substrate_planner
+  - id: northern_inherited_burden
+    entity_id: northern_reservoir
+    public_text: Northern availability is reduced by inherited strain and repeated dependence.
+    fact_key: northern_inherited_burden
+    unlock: {action: observe, entity_id: northern_reservoir, distinct_user_count: 1}
+    contribution_function: burden_auditor
+  - id: condensation_shared_output
+    entity_id: condensation_veil
+    public_text: The Condensation Veil can provide 9 water units during this cycle if maintained.
+    fact_key: condensation_shared_output
+    unlock: {action: observe, entity_id: condensation_veil, distinct_user_count: 1}
+    contribution_function: water_tender
+  - id: veil_requires_maintenance
+    entity_id: condensation_veil
+    public_text: Veil output becomes available only after its collection surface is sustained.
+    fact_key: veil_requires_maintenance
+    unlock:
+      action: observe
+      entity_id: condensation_veil
+      requires_observations: [condensation_shared_output]
+      distinct_user_count: 1
+    contribution_function: collection_maintainer
+  - id: route_07_loss
+    entity_id: route_07
+    public_text: Unassessed Route 07 delivers only 75 percent of the water entering it.
+    fact_key: route_07_loss
+    unlock: {action: observe, entity_id: route_07, distinct_user_count: 1}
+    contribution_function: route_worker
+  - id: central_relay_no_storage
+    entity_id: central_relay
+    public_text: Central Relay can forward up to 20 units but cannot retain water as reserve.
+    fact_key: central_relay_no_storage
+    unlock: {action: observe, entity_id: central_relay, distinct_user_count: 1}
+    contribution_function: ration_station_surveyor
+  - id: eastern_relay_limit
+    entity_id: eastern_growth
+    public_text: Eastern Growth has a 6-unit minimum viability and a further 6-unit recovery buffer; only water above the resulting 12-unit protected level may be relayed.
+    fact_key: eastern_relay_limit
+    unlock: {action: observe, entity_id: eastern_growth, distinct_user_count: 1}
+    contribution_function: recovery_auditor
+  - id: archive_coherence_cost
+    entity_id: lower_archive_bed
+    public_text: Lower Archive may donate modestly, but falling below 5 water suspends coherence.
+    fact_key: archive_coherence_cost
+    unlock: {action: observe, entity_id: lower_archive_bed, distinct_user_count: 1}
+    contribution_function: scent_archivist
+  - id: circulation_requires_branch
+    entity_id: route_11
+    public_text: A viable circulation plan must change when Nursery demand or Veil output changes.
+    fact_key: circulation_requires_branch
+    unlock:
+      action: observe
+      entity_id: route_11
+      requires_observations: [nursery_variable_demand, central_relay_no_storage]
+      distinct_user_count: 1
+    contribution_function: contingency_reader
+  - id: first_bloom_basin_dry
+    entity_id: first_bloom_basin
+    public_text: >-
+      The village's central cultivated court contains a dried basin and an unreadable planting
+      diagram. It cannot be restored by stripping any supporting district; clean flow, substrate,
+      shade, and correctly interpreted records will eventually have to function together.
+    fact_key: first_bloom_basin_dry
+    unlock: {action: observe, entity_id: first_bloom_basin, distinct_user_count: 1}
+    contribution_function: living_space_surveyor
+  - id: condensation_historical_baseline
+    entity_id: condensation_veil
+    public_text: Earlier maintenance records expected longer condensation periods than the Veil now receives.
+    fact_key: condensation_historical_baseline
+    unlock:
+      action: observe
+      entity_id: condensation_veil
+      requires_observations: [condensation_shared_output]
+      distinct_user_count: 1
+    contribution_function: climate_record_reader
+    classification: historical_baseline
+  - id: condensation_current_shortfall
+    entity_id: condensation_veil
+    public_text: The current collection interval is shorter, evaporation is higher, and the old output expectation is no longer reliable.
+    fact_key: condensation_current_shortfall
+    unlock:
+      action: observe
+      entity_id: condensation_veil
+      requires_observations: [condensation_historical_baseline]
+      distinct_user_count: 1
+    contribution_function: climate_measurement_reader
+    classification: current_measurement
+  - id: condensation_conditional_projection
+    entity_id: condensation_veil
+    public_text: If the longer heat period persists, the next Veil cycle will require earlier maintenance and a lower public forecast.
+    fact_key: condensation_conditional_projection
+    unlock:
+      action: observe
+      entity_id: condensation_veil
+      requires_observations: [condensation_current_shortfall]
+      distinct_user_count: 1
+    contribution_function: forecast_auditor
+    classification: conditional_projection
+  - id: upper_allocation_unresolved
+    entity_id: production_intake_channel
+    public_text: One metered branch is categorized as civic circulation, but its public destination field is blank.
+    fact_key: upper_allocation_unresolved
+    unlock: {action: observe, entity_id: production_intake_channel, distinct_user_count: 1}
+    contribution_function: allocation_reader
+    classification: unresolved_discrepancy
+  - id: second_network_demand
+    entity_id: production_intake_channel
+    public_text: Maintenance intervals and reservoir decline show a repeated upper-district demand beyond household, archive, and planted-court use.
+    fact_key: second_network_demand
+    unlock:
+      action: observe
+      entity_id: production_intake_channel
+      requires_observations: [upper_allocation_unresolved, route_07_loss]
+      distinct_user_count: 1
+    contribution_function: demand_auditor
+  - id: warm_return_detected
+    entity_id: warm_return_channel
+    public_text: Water returns from the unnamed upper allocation warmer and visibly altered; returned volume does not establish civic usability.
+    fact_key: warm_return_detected
+    unlock:
+      action: observe
+      entity_id: warm_return_channel
+      requires_observations: [second_network_demand]
+      distinct_user_count: 1
+    contribution_function: return_route_reader
+    classification: current_measurement
+  - id: returned_volume_not_usable
+    entity_id: warm_return_channel
+    public_text: The route records quantity returned, while temperature, dissolved residue, treatment status, and destination remain separate unresolved measurements.
+    fact_key: returned_volume_not_usable
+    unlock:
+      action: observe
+      entity_id: warm_return_channel
+      requires_observations: [warm_return_detected]
+      distinct_user_count: 1
+    contribution_function: usability_auditor
+    classification: unresolved_discrepancy
+  - id: indicator_bed_changes_appearance
+    entity_id: return_indicator_bed
+    public_text: The small bed changes visible color and turbidity under slower flow, but that response is an indicator rather than proof of safety.
+    fact_key: indicator_bed_changes_appearance
+    unlock:
+      action: observe
+      entity_id: return_indicator_bed
+      requires_observations: [warm_return_detected]
+      distinct_user_count: 1
+    contribution_function: indicator_bed_reader
+  - id: indicator_bed_capacity_limited
+    entity_id: return_indicator_bed
+    public_text: Bed viability depends on moisture and heat, accumulated material remains in its substrate, and continued flow cannot expand its capacity.
+    fact_key: indicator_bed_capacity_limited
+    unlock:
+      action: observe
+      entity_id: return_indicator_bed
+      requires_observations: [indicator_bed_changes_appearance]
+      distinct_user_count: 1
+    contribution_function: bed_capacity_auditor
+  - id: spent_indicator_material_isolated
+    entity_id: spent_indicator_hold
+    public_text: Used indicator substrate is isolated from gardens and food-growing soil because retained material has not been shown safe for reuse.
+    fact_key: spent_indicator_material_isolated
+    unlock:
+      action: observe
+      entity_id: spent_indicator_hold
+      requires_observations: [indicator_bed_capacity_limited]
+      distinct_user_count: 1
+    contribution_function: substrate_containment_reader
+allowed_actions:
+  - orient_local
+  - observe
+  - connect
+  - offer
+  - request_support
+  - summarize
+  - sustain
+  - relay
+  - mitigate
+  - calculate_flow
+  - branch_proposal
+  - propose_circulation
+  - confirm_reconstruction
+  - begin_stack
+  - react_to_stack
+  - resolve_stack
+  - add_proposal_kicker
+  - use_triggered_reaction
+relational_requirements:
+  minimum_distinct_users: 3
+  minimum_distinct_functions: 3
+  non_author_confirmation: true
+resource_values: {water: 1.0}
+circulation:
+  source_entity_id: condensation_veil
+  recipient_entity_id: pale_nursery
+  relay_entity_id: central_relay
+  source_pathway_id: route_07
+  destination_pathway_id: route_11
+  reserve_entity_id: northern_reservoir
+  archive_entity_id: lower_archive_bed
+  central_basin_entity_id: first_bloom_basin
+  support_source_entity_ids: [northern_reservoir, lower_archive_bed]
+  resource_id: water
+  required_observations:
+    [nursery_projected_need, condensation_shared_output, veil_requires_maintenance,
+     route_07_loss, central_relay_no_storage, first_bloom_basin_dry]
+  burden_observations: [northern_inherited_burden, archive_coherence_cost]
+  source_output: 9
+  unassessed_efficiency: 0.75
+  reassessed_efficiency: 1.0
+  relay_capacity: 20
+  destination_pathway_capacity: 14
+  archive_coherence_floor: 5
+  archive_viability_floor: 4
+  reserve_floor: 4
+  eastern_recovery_buffer: 6
+  maintenance_terms: [maintain, sustain, clean, monitor, inspect, service]
+  reassessment_terms: [reassess, recheck, review, measure, inspect, forecast]
+  branch_terms: [demand, need, output, forecast, condensation, nursery]
+  branch_action_terms: [repair, support, reduce, release, reroute, protect, reassess, revise]
+confirmation: {minimum_confirmations: 1, non_author_required: true}
+tactical:
+  max_stack_depth: 4
+  allowed_stack_reactions:
+    [object_loss, reassess_demand, stabilize_relay, protect_archive, mitigate_north]
+  allowed_kickers: [monitoring, protect_donor, document_flow, adaptive_branch]
+  strain_threshold: 3
+  strain_reserve_penalty: 1
+  repair_threshold: 2
+  coherence_threshold: 2
+provision_arc:
+  entity_roles:
+    climate_source: condensation_veil
+    public_reserve: northern_reservoir
+    production_intake_channel: production_intake_channel
+    warm_return_channel: warm_return_channel
+    limited_indicator_bed: return_indicator_bed
+    spent_substrate_hold: spent_indicator_hold
+  contaminant_classes:
+    - id: organic_dye_residue
+      public_label: Organic dye residue
+      biological_treatment_eligible: true
+      visible_clarity_proves_safety: false
+      public_description: A broad fictional class of compatible organic color residue; treatment response does not establish final safety.
+    - id: mixed_unknown_discharge
+      public_label: Mixed unknown discharge
+      biological_treatment_eligible: false
+      visible_clarity_proves_safety: false
+      public_description: An unresolved mixture that cannot be accepted for biological treatment without further public characterization.
+  fungal_cultures:
+    - id: return_indicator_culture
+      public_label: Return-route indicator culture
+      compatible_contaminant_classes: [organic_dye_residue]
+      heat_tolerance: low
+      provenance: Preserved from a public archive culture with only indicator-scale outcomes recorded.
+      uncertainty: Compatibility outside the recorded organic residue class remains unresolved.
+  compatibility_rules:
+    - {contaminant_class: organic_dye_residue, culture_id: return_indicator_culture, compatible: true, minimum_viability: 2, maximum_saturation: 3, required_evidence: 2}
+    - {contaminant_class: mixed_unknown_discharge, culture_id: return_indicator_culture, compatible: false, minimum_viability: 2, maximum_saturation: 3, required_evidence: 3}
+  remediation_systems:
+    - entity_id: return_indicator_bed
+      processes: [filtration, accumulation, indicator_response]
+      contaminant_classes: [organic_dye_residue]
+      culture_ids: [return_indicator_culture]
+      containment_destination_ids: [spent_indicator_hold]
+      moisture_required: true
+      temperature_required: true
+      contact_time_required: true
+  substrates:
+    - id: indicator_bed_substrate
+      public_label: Classified indicator-bed substrate
+      compatible_system_ids: [return_indicator_bed]
+      contaminated_reuse_allowed: false
+      containment_required: true
+  thresholds:
+    saturation_limit: 3
+    minimum_viability: 2
+    minimum_containment: 2
+    minimum_evidence: 2
+    maximum_throughput: 6
+  climate_record:
+    historical_baseline: Earlier maintenance schedules assumed longer cool periods and steadier condensation.
+    current_measurement: The current heat period is longer, evaporation is higher, and Veil collection is shorter.
+    forecast: Condensation output is forecast below the obsolete historical expectation.
+    conditional_projection: Continued heat requires earlier maintenance and a lower next-cycle allocation forecast.
+    obsolete_expectation: The inherited interval treated past condensation reliability as a continuing constant.
+    unresolved_discrepancy: Reservoir decline still exceeds explained household, archive, and planted-court demand.
+  remediation_hierarchy:
+    - refuse_unnecessary_production
+    - reduce_harmful_inputs
+    - redesign_production
+    - reuse_verified_safe_material
+    - separate_clean_and_contaminated_flows
+    - contain_unavoidable_waste
+    - remediate_compatible_contamination
+    - monitor_long_term_effects
+    - manage_spent_substrate
+  counter_defaults:
+    containment: 2
+    evidence: 0
+    source_reduction: 0
+    throughput: 0
+    extraction: 0
+    public_benefit: 0
+    burden: 0
+    remediation: 0
+    archival_coherence: 0
+  target_counter_defaults:
+    saturation: {return_indicator_bed: 0}
+    viability: {return_indicator_bed: 3}
+  evidence_measures: [upstream_comparison, downstream_comparison, repeated_measurement, substrate_handling_record]
+  visual_only_measures: [color, odor, turbidity]
+  reduction_measures: [water_draw, throughput, harmful_input, waste_output]
+  redesign_changes: [durability, repairability, source_separation, closed_loop_reuse]
+  mitigation_risks: [heat, donor_strain, runoff, worker_burden, substrate_exposure]
+  maintenance_conditions: [maintain, monitor, inspect, reassess, rest, replace]
+  record_types: [measurement, provenance, uncertainty, failed_treatment, handling_requirement]
+completion:
+  world_flags:
+    adaptive_circulation_protocol: true
+    pale_nursery_viable: true
+    circulation_reassessable: true
+    village_system_recognized: true
+    first_bloom_basin_discovered: true
+  next_position: 2
+  response_profile: conditional_memory
+response_profile_changes: {on_completion: conditional_memory}
+narration_keys:
+  orient_local: local_orientation
+  observe_new: observation_unlocked
+  observe_repeat: observation_corroborated
+  action_accepted: accepted
+  proposal_rejected: proposal_rejected
+  proposal_accepted: proposal_accepted
+  confirmation_recorded: confirmation_recorded
+  position_completed: position_completed
+  industrial_draw_discovered: industrial_draw_discovered
+  returned_water_ambiguity: returned_water_ambiguity
+  fungal_bed_compatibility: fungal_bed_compatibility
+  saturation: saturation
+  visible_clarification_without_safety_evidence: visible_clarification_without_safety_evidence
+  substrate_containment: substrate_containment
+accessibility:
+  summary: >-
+    Ask Hypha about one visible source, recipient, relay, route, burden, or forecast, then use the
+    public response to infer a connection or intervention. Mention or reply to Hypha for ordinary
+    language; slash commands remain the reliable fallback. Recall separates confirmed conditions
+    from forecasts and proposals, while chart shows the action flow and completion checks. No
+    speed, voice, private clue, or manual arithmetic is required.
+  accepted_input_modes: [natural_language, explicit_command]
+  explicit_command_help:
+    - "Discover: orient, then observe an inspectable map cue from Discord's entity popup; the response publicly names what it establishes."
+    - "Coordinate: connect, offer, request support, sustain, relay, mitigate, or calculate using public entities."
+    - "Propose after the source, path, recipient, maintenance, and changing condition are public; enter the calculated amounts and select Discord's revision trigger while Hypha fills the fixed path and plan text."
+    - "Respond by branching, confirming, challenging a public stack, or using a visible trigger; authors cannot self-confirm."
+    - "Use /interior chart for the full flow, /interior map for known geography, and /interior recall for live facts and IDs."
+orientation:
+  local_response: A plastered channel, one shaded planting surface, and the edge of a shared work court are locally perceptible; their wider civic relation remains unresolved.
+  specificity_invitation: Name one source, recipient, relay, pathway, burden, or forecast and ask what can be established there.
+  prohibited_automatic_reveals:
+    - all entity names
+    - full circulation layout
+    - undiscovered pathway efficiencies
+    - unresolved forecasts
+    - complete public-state recap
+presentation:
+  image_asset: assets/position_1_interrupted_current_atmosphere.png
+  image_alt_text: >-
+    A wide sepia botanical-field-guide panorama titled The Interrupted Current, showing the
+    remote settlement after Route 03 reopens: uneven channel flow, maintained collection
+    surfaces, a central relay, planted courts, a dried circular basin, and public workers.
+  introduction: |-
+    ## POSITION 1 — THE INTERRUPTED CURRENT
+
+    Route 03 remains open.
+
+    The disconnected ecological regions now resolve as parts of one remote, purpose-built workers' settlement. Its cisterns, tightly joined homes, workshops, planted courts, ration stations, and fragment archive depend on circulation that is collectively maintained.
+
+    The settlement is not balanced. Workloads are uneven. Supply failures have accumulated. The Northern Reservoir carries the memory of repeated extraction, while drawing from the Lower Archive may preserve growth at the cost of public records. Route 07 can carry temporary condensation quickly at a loss, or be maintained for efficient delivery. Shared support can close a deficit, but it transfers burden onto a civic system that must remain viable.
+
+    At the centre, a dried garden basin holds the first unreadable evidence of a larger civic design. It is not ready to bloom. Construction is incomplete until the built system can support life, memory, and continued participation.
+
+    No district is currently collapsing. The circulation pattern is still not viable.
+
+    Several plans may work: spend more temporary output through the lossy route, maintain Route 07 before sending, or combine condensation with protected Northern or Archive support. A public reassessment can change demand while a proposal is on the stack.
+
+    Functions remain temporary. Substrate planners, water tenders, shade readers, archive auditors, route workers, and living-space surveyors may each expose a different consequence.
+
+    Begin with one visible relation. Mention or reply to Hypha to ask about it, or use `/interior chart` for the concise action flow. `/interior accessibility` remains a fallback when inference stalls.
+
+    Renewal is not bestowed. It is produced by maintained relations.
+vocabulary: [flow, forecast, source, delivered, relay, burden, maintenance, reassessment, village, cistern, substrate, shade, basin, cultivation, allocation, returned, usable, indicator, saturation, viability]
+world_flags:
+  adaptive_circulation_protocol: false
+  pale_nursery_viable: false
+  circulation_reassessable: false
+  village_system_recognized: false
+  first_bloom_basin_discovered: false
+  industrial_draw_identified: false
+  altered_return_distinguished: false
+  production_competes_with_civic_water: false

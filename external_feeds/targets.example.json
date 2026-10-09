@@ -1,0 +1,16 @@
+{
+  "targets": [
+    {
+      "name": "N0CALL",
+      "location": true,
+      "weather": false,
+      "enabled": true
+    },
+    {
+      "name": "N0CALL-2",
+      "location": false,
+      "weather": true,
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Copy to .dev.vars for local Worker development. Never commit .dev.vars.
+# Origins must match the browser and Python service exactly; only loopback may use HTTP.
+APP_ORIGIN=http://127.0.0.1:5173
+GAME_API_ORIGIN=http://127.0.0.1:8080
+
+# Use a verified Resend sending domain. No local magic-link token is printed to logs.
+RESEND_API_KEY=
+MAGIC_LINK_FROM_EMAIL=
+
+# Independent secrets of at least 32 characters each.
+ACTIVITY_IDENTITY_SECRET=
+ROOM_TICKET_SECRET=
+GAME_API_SECRET=
+
+# Shared with the Python service if it publishes public state or runs Hypha chat.
+HYPHA_ACTIVITY_SECRET=
+
+# Local test-only browser guests. Never configure true in production.
+ALLOW_TEST_GUESTS=true
+
+# Archival Discord Activity compatibility only. Not needed for web sign-in.
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+DISCORD_BOT_TOKEN=
+ACTIVITY_ALLOWED_GUILD_ID=
+ACTIVITY_ALLOWED_TEST_CHANNEL_ID=
+ACTIVITY_ALLOWED_DISCORD_USER_IDS=

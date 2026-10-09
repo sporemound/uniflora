@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2400" viewBox="0 0 1600 2400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="75%">
+      <stop offset="0" stop-color="#0a211a"/>
+      <stop offset="1" stop-color="#03100d"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#ddd6b5"/>
+    </marker>
+    <style>
+      text{font-family:'Segoe UI',Arial,sans-serif;fill:#dedcc9}
+      .title{font-size:58px;font-weight:800;letter-spacing:5px;fill:#e3d8ae}
+      .subtitle{font-size:27px;fill:#b8b68e}
+      .banner{font-size:25px;font-weight:800;letter-spacing:1px;fill:#efb936}
+      .phase-title{font-size:28px;font-weight:750}
+      .body{font-size:21px}
+      .small{font-size:18px}
+      .side-title{font-size:23px;font-weight:750}
+      .amber{fill:#efb936}.green{fill:#9dca61}.cyan{fill:#5ccada}.blue{fill:#7095ed}
+      .purple{fill:#c477e7}.orange{fill:#ee9c33}.red{fill:#ee6b55}.yellow{fill:#dfc73d}
+      .panel{fill:#0a1714;stroke:#b6a66f;stroke-width:2;rx:18}
+      .phase{fill:#0d201a;stroke-width:2.2;rx:20}
+      .note{fill:#0c1d18;stroke-width:2;stroke-dasharray:7 5;rx:14}
+      .arrow{fill:none;stroke:#ddd6b5;stroke-width:3;marker-end:url(#arrow)}
+      .dash{fill:none;stroke-width:2.2;stroke-dasharray:7 5;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect width="1600" height="2400" fill="url(#bg)"/>
+  <text x="800" y="72" text-anchor="middle" class="title">POSITION 1 — CYCLE FLOW CHART</text>
+  <text x="800" y="118" text-anchor="middle" class="subtitle">Preparation (Observation ↔ Coordination ↔ Calculation) → Proposal → Response → Reassessment</text>
+
+  <rect x="70" y="143" width="1460" height="86" class="panel" stroke="#d99919"/>
+  <text x="800" y="181" text-anchor="middle" class="banner">A CYCLE REPRESENTS ONE COLLECTIVE ATTEMPT TO MOVE THE SETTLEMENT FORWARD.</text>
+  <text x="800" y="211" text-anchor="middle" class="body">Preparation may revisit earlier work; only an open Response window pauses ordinary actions.</text>
+
+  <!-- New-cycle marker -->
+  <rect x="187" y="250" width="230" height="76" class="panel"/>
+  <text x="302" y="282" text-anchor="middle" class="body green">↻  NEW CYCLE</text>
+  <text x="302" y="309" text-anchor="middle" class="body">BEGINS</text>
+  <path d="M417 288 H478" class="arrow"/>
+
+  <!-- Left reference column -->
+  <rect x="62" y="370" width="258" height="500" class="panel"/>
+  <text x="84" y="415" class="side-title amber">SCALES OF PLAY</text>
+  <text x="84" y="465" class="body amber">Position</text>
+  <text x="84" y="500" class="small">The full chapter.</text>
+  <text x="84" y="528" class="small">Contains many cycles.</text>
+  <text x="84" y="585" class="body cyan">Cycle</text>
+  <text x="84" y="620" class="small">One attempt to</text>
+  <text x="84" y="648" class="small">intervene and stabilize</text>
+  <text x="84" y="676" class="small">the settlement.</text>
+  <text x="84" y="733" class="body cyan">Mycotroph Turn</text>
+  <text x="84" y="768" class="small">One accepted command</text>
+  <text x="84" y="796" class="small">from one participant.</text>
+  <text x="84" y="824" class="small">One primary action</text>
+  <text x="84" y="852" class="small">per cycle.</text>
+
+  <rect x="62" y="930" width="258" height="550" class="panel"/>
+  <text x="84" y="975" class="side-title amber">COMMAND TYPES</text>
+  <rect x="82" y="1010" width="32" height="32" fill="#54bfce"/>
+  <text x="128" y="1034" class="small cyan">Primary Actions</text>
+  <text x="84" y="1072" class="small">Use one per cycle.</text>
+  <rect x="82" y="1110" width="32" height="32" fill="#91bd4c"/>
+  <text x="128" y="1134" class="small green">Information (Free)</text>
+  <text x="84" y="1172" class="small">Does not use your action.</text>
+  <rect x="82" y="1210" width="32" height="32" fill="#c88843"/>
+  <text x="128" y="1234" class="small orange">Response Actions</text>
+  <text x="84" y="1272" class="small">One per stack,</text>
+  <text x="84" y="1300" class="small">after your action.</text>
+  <rect x="82" y="1340" width="32" height="32" fill="#888b77"/>
+  <text x="128" y="1364" class="small">Administrative</text>
+  <text x="84" y="1402" class="small">For moderators only.</text>
+  <text x="84" y="1430" class="small">Not part of play.</text>
+
+  <!-- Phase 1 -->
+  <rect x="490" y="250" width="610" height="280" class="phase" stroke="#98c65c"/>
+  <text x="515" y="294" class="phase-title green">1. RENEWAL PHASE <tspan font-size="22">(upkeep)</tspan></text>
+  <text x="545" y="335" class="body">Automatic — Hypha</text>
+  <text x="545" y="372" class="body">• Refresh action allowances</text>
+  <text x="545" y="405" class="body">• Apply maintenance &amp; decay/replenishment</text>
+  <text x="545" y="438" class="body">• Check persistent effects &amp; triggers</text>
+  <text x="545" y="471" class="body">• Expire or update forecasts</text>
+  <text x="545" y="504" class="body">• Report public state and open the cycle</text>
+  <path d="M795 530 V565" class="arrow"/>
+
+  <rect x="1185" y="270" width="350" height="265" class="note" stroke="#78a84e"/>
+  <text x="1205" y="305" class="side-title green">RESET (Temporary)</text>
+  <text x="1205" y="339" class="small">• Primary action allowance</text>
+  <text x="1205" y="367" class="small">• Used-this-cycle markers</text>
+  <text x="1205" y="395" class="small">• Open offers not in proposal</text>
+  <text x="1205" y="423" class="small">• Provisional forecasts</text>
+  <text x="1205" y="451" class="small">• Temporary mitigation &amp; tests</text>
+  <text x="1205" y="479" class="small">• Stack and response windows</text>
+  <text x="1205" y="507" class="small">• Short-lived bonuses</text>
+  <path d="M1100 390 H1180" class="dash" stroke="#78a84e"/>
+
+  <!-- Phase 2 -->
+  <rect x="490" y="570" width="610" height="270" class="phase" stroke="#78bd5a"/>
+  <text x="515" y="614" class="phase-title green">2. ORIENTATION ACTIVITY <tspan font-size="22">(discover)</tspan></text>
+  <text x="545" y="654" class="body">Information &amp; discovery</text>
+  <text x="545" y="693" class="body">Use: position • recall • accessibility • orient</text>
+  <text x="598" y="727" class="body">observe • summarize</text>
+  <text x="545" y="770" class="body">Reveal entities and facts.</text>
+  <text x="545" y="804" class="body">At least one observation contribution is required.</text>
+  <path d="M795 840 V875" class="arrow"/>
+
+  <rect x="1185" y="585" width="350" height="300" class="note" stroke="#78a84e"/>
+  <text x="1205" y="620" class="side-title green">PRESERVE (Persistent)</text>
+  <text x="1205" y="654" class="small">• Confirmed observations</text>
+  <text x="1205" y="682" class="small">• Public summaries &amp; archive</text>
+  <text x="1205" y="710" class="small">• Resource totals</text>
+  <text x="1205" y="738" class="small">• Strain, repair, coherence</text>
+  <text x="1205" y="766" class="small">• Established maintenance</text>
+  <text x="1205" y="794" class="small">• Persistent effects</text>
+  <text x="1205" y="822" class="small">• Contribution records</text>
+  <text x="1205" y="850" class="small">• Unresolved burdens</text>
+  <path d="M1100 710 H1180" class="dash" stroke="#78a84e"/>
+
+  <!-- Phase 3 -->
+  <rect x="490" y="880" width="610" height="265" class="phase" stroke="#4cc5d3"/>
+  <text x="515" y="924" class="phase-title cyan">3. COORDINATION ACTIVITY <tspan font-size="22">(prepare)</tspan></text>
+  <text x="545" y="964" class="body">Build relationships &amp; support</text>
+  <text x="545" y="1003" class="body">Use: connect • offer • request-support</text>
+  <text x="598" y="1037" class="body">sustain • relay • mitigate</text>
+  <text x="545" y="1080" class="body">Establish sources, pathways, and needs.</text>
+  <text x="545" y="1114" class="body">Each participant may use ONE primary command.</text>
+  <path d="M795 1145 V1180" class="arrow"/>
+
+  <rect x="1185" y="910" width="350" height="255" class="note" stroke="#4cc5d3"/>
+  <text x="1205" y="945" class="side-title cyan">PRIMARY ACTIONS</text>
+  <text x="1205" y="979" class="small">Use one per cycle (examples)</text>
+  <text x="1205" y="1015" class="small">• connect  • offer</text>
+  <text x="1205" y="1043" class="small">• sustain  • relay</text>
+  <text x="1205" y="1071" class="small">• mitigate  • sample</text>
+  <text x="1205" y="1099" class="small">• separate  • contain</text>
+  <text x="1205" y="1127" class="small">• reduce  • proposal (if unused)</text>
+  <path d="M1100 1025 H1180" class="dash" stroke="#4cc5d3"/>
+
+  <!-- Phase 4 -->
+  <rect x="490" y="1185" width="610" height="230" class="phase" stroke="#5684df"/>
+  <text x="515" y="1229" class="phase-title blue">4. CALCULATION ACTIVITY <tspan font-size="22">(verify)</tspan></text>
+  <text x="545" y="1269" class="body">Confirm the plan</text>
+  <text x="545" y="1305" class="body">Use: calculate (plus permitted audits or comparisons)</text>
+  <text x="545" y="1343" class="body">Verify amounts, losses, reserves, and viability.</text>
+  <text x="545" y="1380" class="body">Calculation is free once prerequisites are public.</text>
+  <path d="M795 1415 V1450" class="arrow"/>
+
+  <rect x="1185" y="1190" width="350" height="225" class="note" stroke="#5684df"/>
+  <text x="1205" y="1225" class="side-title blue">CALCULATION CHECKS</text>
+  <text x="1205" y="1261" class="small">• Source availability</text>
+  <text x="1205" y="1289" class="small">• Pathway loss</text>
+  <text x="1205" y="1317" class="small">• Delivered amount</text>
+  <text x="1205" y="1345" class="small">• Reserve thresholds</text>
+  <text x="1205" y="1373" class="small">• Existing burdens &amp; viability</text>
+  <path d="M1100 1300 H1180" class="dash" stroke="#5684df"/>
+
+  <!-- Phase 5 -->
+  <rect x="490" y="1455" width="610" height="210" class="phase" stroke="#b36bd7"/>
+  <text x="515" y="1499" class="phase-title purple">5. PROPOSAL PHASE <tspan font-size="22">(commit)</tspan></text>
+  <text x="545" y="1539" class="body">Submit the circulation proposal.</text>
+  <text x="545" y="1573" class="body">Use: propose circulation.</text>
+  <text x="545" y="1607" class="body">Enter calculated amounts; choose revision trigger.</text>
+  <text x="545" y="1641" class="body">Hypha fills the known path; author cannot self-confirm.</text>
+  <path d="M795 1665 V1700" class="arrow"/>
+
+  <rect x="1185" y="1440" width="350" height="240" class="note" stroke="#b36bd7"/>
+  <text x="1205" y="1475" class="side-title purple">PROPOSAL MUST INCLUDE</text>
+  <text x="1205" y="1511" class="small">• source_amount</text>
+  <text x="1205" y="1539" class="small">• delivered_amount</text>
+  <text x="1205" y="1567" class="small">• revision trigger choice</text>
+  <text x="1205" y="1595" class="small">• known path filled by Hypha</text>
+  <text x="1205" y="1623" class="small">• optional support pair</text>
+  <text x="1205" y="1651" class="small">• no branch prose required</text>
+  <path d="M1100 1555 H1180" class="dash" stroke="#b36bd7"/>
+
+  <!-- Withdrawal loop -->
+  <rect x="145" y="1690" width="245" height="240" class="note" stroke="#b36bd7"/>
+  <text x="165" y="1730" class="side-title purple">WINDOW REOPENS</text>
+  <text x="165" y="1762" class="side-title purple">IF WITHDRAWN</text>
+  <text x="165" y="1810" class="small">Return to Coordination</text>
+  <text x="165" y="1838" class="small">or Calculation</text>
+  <text x="165" y="1866" class="small">as needed.</text>
+  <path d="M490 1785 H410 V1660 H480" class="dash" stroke="#b36bd7"/>
+
+  <!-- Phase 6 -->
+  <rect x="490" y="1705" width="610" height="230" class="phase" stroke="#dc8e27"/>
+  <text x="515" y="1749" class="phase-title orange">6. RESPONSE PHASE <tspan font-size="22">(public stack)</tspan></text>
+  <text x="545" y="1789" class="body">Others may respond.</text>
+  <text x="545" y="1825" class="body">Use: react • revise • reassess • mitigate</text>
+  <text x="598" y="1859" class="body">add kicker • trigger • confirm</text>
+  <text x="545" y="1898" class="body">Stack resolves in reverse order (LIFO).</text>
+  <path d="M795 1935 V1970" class="arrow"/>
+
+  <rect x="1185" y="1695" width="350" height="250" class="note" stroke="#dc8e27"/>
+  <text x="1205" y="1730" class="side-title orange">STACK TOOLS</text>
+  <text x="1205" y="1764" class="small orange">Reactions</text>
+  <text x="1205" y="1792" class="small">object_loss • reassess_demand</text>
+  <text x="1205" y="1820" class="small">stabilize_relay • protect_archive</text>
+  <text x="1205" y="1854" class="small orange">Kickers</text>
+  <text x="1205" y="1882" class="small">monitoring • protect_donor</text>
+  <text x="1205" y="1916" class="small orange">Triggers may be used when eligible.</text>
+  <path d="M1100 1815 H1180" class="dash" stroke="#dc8e27"/>
+
+  <!-- Phase 7 -->
+  <rect x="490" y="1975" width="610" height="190" class="phase" stroke="#db5942"/>
+  <text x="515" y="2019" class="phase-title red">7. RESOLUTION PHASE <tspan font-size="22">(determine)</tspan></text>
+  <text x="545" y="2059" class="body">Hypha resolves proposal, stack, branches, and transfers.</text>
+  <text x="545" y="2095" class="body">Performs state-based checks.</text>
+  <text x="545" y="2131" class="body">Success applies changes; failure preserves discoveries.</text>
+  <path d="M795 2165 V2200" class="arrow"/>
+
+  <rect x="1185" y="1970" width="350" height="205" class="note" stroke="#db5942"/>
+  <text x="1205" y="2005" class="side-title red">STATE-BASED CHECKS</text>
+  <text x="1205" y="2041" class="small">• Viability &amp; thresholds</text>
+  <text x="1205" y="2069" class="small">• Conflicts &amp; saturation</text>
+  <text x="1205" y="2097" class="small">• Pathway usability</text>
+  <text x="1205" y="2125" class="small">• Participant requirements</text>
+  <text x="1205" y="2153" class="small">• Position completion</text>
+  <path d="M1100 2075 H1180" class="dash" stroke="#db5942"/>
+
+  <!-- Phase 8 -->
+  <rect x="490" y="2205" width="610" height="150" class="phase" stroke="#d6bc35"/>
+  <text x="515" y="2249" class="phase-title yellow">8. REASSESSMENT PHASE <tspan font-size="22">(cleanup)</tspan></text>
+  <text x="545" y="2285" class="body">Close the cycle; report new public state.</text>
+  <text x="545" y="2317" class="body">Apply triggers; expire temporary effects.</text>
+  <text x="545" y="2349" class="body">Check completion; next cycle begins.</text>
+
+  <rect x="108" y="2220" width="285" height="112" class="panel" stroke="#d6bc35"/>
+  <text x="250" y="2262" text-anchor="middle" class="side-title yellow">CYCLE COMPLETE</text>
+  <text x="250" y="2296" text-anchor="middle" class="small yellow">NEXT CYCLE BEGINS</text>
+  <text x="250" y="2324" text-anchor="middle" class="small yellow">FROM PHASE 1</text>
+  <path d="M490 2280 H402" class="arrow"/>
+
+  <rect x="1185" y="2200" width="350" height="155" class="note" stroke="#d6bc35"/>
+  <text x="1205" y="2235" class="side-title yellow">APPLIED AT CLEANUP</text>
+  <text x="1205" y="2271" class="small">• After-resolution triggers</text>
+  <text x="1205" y="2299" class="small">• Counters advance</text>
+  <text x="1205" y="2327" class="small">• Offers expire; forecasts created</text>
+  <path d="M1100 2280 H1180" class="dash" stroke="#d6bc35"/>
+
+  <!-- Footer -->
+  <rect x="60" y="2370" width="1480" height="0" fill="none"/>
+  <text x="90" y="2390" class="small amber">PARTICIPATION: 3 distinct primary contributors per cycle</text>
+  <text x="590" y="2390" class="small green">CONFIRMATION: by someone other than proposal author</text>
+  <text x="1120" y="2390" class="small cyan">NO REAL-TIME TIMER • PUBLIC RECORD</text>
+</svg>
