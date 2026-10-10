@@ -121,6 +121,7 @@ export function DisclaimerSplash({ onContinue }: DisclaimerSplashProps) {
 
         <footer className="disclaimer-splash__footer">
           <span>Fictional case / Public observation</span>
+          <a href="https://discord.gg/FMGHE7Yee" target="_blank" rel="noopener noreferrer">Join the Uniflora Discord</a>
           <span>Read before participating</span>
         </footer>
       </div>
