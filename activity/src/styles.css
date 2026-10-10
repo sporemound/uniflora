@@ -309,12 +309,21 @@ button, input, select, textarea { font: inherit; }
   cursor: not-allowed;
 }
 .disclaimer-splash__entry button:focus-visible,
-.footer-disclaimer-link:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; }
+.footer-disclaimer-link:focus-visible,
+.footer-discord-link:focus-visible,
+.disclaimer-splash__footer a:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; }
 .disclaimer-splash__entry button span { font-size: 1.1rem; }
 
 .disclaimer-splash__footer {
   border-top: 1px solid rgba(135, 168, 159, 0.36);
   padding-top: 18px;
+}
+
+.footer-discord-link,
+.disclaimer-splash__footer a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .footer-disclaimer-link {
