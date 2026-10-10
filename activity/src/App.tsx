@@ -1064,6 +1064,7 @@ export default function App({ onShowDisclaimer }: { onShowDisclaimer: () => void
 
         <footer>
           <span>Public scientific investigation workspace</span>
+          <a className="footer-discord-link" href="https://discord.gg/FMGHE7Yee" target="_blank" rel="noopener noreferrer">Join the Uniflora Discord</a>
           <button className="footer-disclaimer-link" type="button" onClick={onShowDisclaimer}>
             Disclaimer &amp; important information
           </button>
