@@ -41,6 +41,13 @@ limits still apply. Health readiness reports configuration, not successful
 inference or available credits. Verify one controlled request before reporting
 Hypha restored.
 
+Accepted signed-in messages are stored before reply generation. If the provider
+rejects a request, times out, or returns unusable output, the participant's message
+remains in the shared transcript with a failed Hypha connection notice. Safe
+failure categories distinguish credit, credential, model and temporary service
+problems without exposing API keys, upstream response bodies, or participant
+input. Failed generation never creates action proposals or audio.
+
 The existing live `missing-interior-web-preview` deployment contains modules from
 multiple projects. Neither repository alone reproduces it. Use
 `tools/patch_live_openai.mjs` against a freshly downloaded live module directory
@@ -49,6 +56,12 @@ modifies only the selected chat transport and its readiness checks, and refuses
 an unexpected baseline. Retain every other module, existing asset storage,
 bindings, Durable Object exports, domain and audience. Do not deploy an older
 full-site build over the live Fragment Room or music changes.
+
+Apply `tools/patch_live_chat_delivery.mjs` to those patched modules before upload
+to include the save-before-generation correction and safe failure notices. Its
+`tools/validate_live_chat_delivery.mjs` checks the actual patched handler against
+mocked successful and rejected model requests, including retained participant
+messages, failed reply status, action confirmation, and audio boundaries.
 
 OpenAI selection affects Hypha conversation and guest answers only. Other Gemini
 features, including image generation, retain their separate provider settings.

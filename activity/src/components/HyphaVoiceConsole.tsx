@@ -263,9 +263,11 @@ export function HyphaVoiceConsole({
       };
       setMessages((previous) => mergeMessages(previous, created.messages));
       if (clearDraft) setMessage("");
-      setDetail(created.messages.some((item) => item.senderType === "hypha" && item.status === "complete")
-        ? "Hypha's reply is in the chat below."
-        : "Your message was sent. Hypha is preparing a response.");
+      setDetail(created.messages.some((item) => item.senderType === "hypha" && item.status === "failed")
+        ? "Your message was saved. Hypha could not reply; see the connection notice below."
+        : created.messages.some((item) => item.senderType === "hypha" && item.status === "complete")
+          ? "Hypha's reply is in the chat below."
+          : "Your message was sent. Hypha is preparing a response.");
     } catch (error) {
       setDetail(error instanceof Error ? error.message : "Hypha request failed.");
     } finally {

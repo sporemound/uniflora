@@ -21,6 +21,7 @@ let quotaWrites = 0;
 let batches = 0;
 let storedRequest = null;
 let storedReply = "";
+let storedStatus = "complete";
 const chatDb = {
   prepare(sql) {
     return {
@@ -42,7 +43,7 @@ const chatDb = {
           message_id: storedRequest.hypha_message_id,
           request_id: storedRequest.request_id, environment: "live", stream_id: "web-preview",
           sender_type: "hypha", participant_id: null, working_name: null,
-          content_text: storedReply, delivery_status: "complete", created_at: 1, completed_at: 2,
+          content_text: storedReply, delivery_status: storedStatus, created_at: 1, completed_at: 2,
         }] };
         throw new Error(`Unexpected all query: ${sql}`);
       },
@@ -56,7 +57,10 @@ const chatDb = {
         request_id: first.values[0], environment: first.values[4], stream_id: first.values[5],
         hypha_message_id: first.values[8], status: "processing",
       };
-    } else if (first.sql.includes("UPDATE hypha_chat_messages")) storedReply = first.values[0];
+    } else if (first.sql.includes("UPDATE hypha_chat_messages")) {
+      storedReply = first.values[0];
+      storedStatus = first.values[1];
+    }
     return statements.map(() => ({ success: true, meta: { changes: 1 } }));
   },
 };
@@ -126,14 +130,8 @@ const assertHttpError = (promise, status, code) => assert.rejects(promise,
 try {
   await assertHttpError(handlePreviewChat(request({ message: "Hello" }, false), env), 401);
   await assertHttpError(handlePreviewChat(request({ message: "Hello" }, true, "https://evil.example"), env), 403);
-  await assertHttpError(handlePreviewChat(request({ message: "Hello" }), {
-    ...env, OPENAI_PRIVACY_ACKNOWLEDGED: "false",
-  }), 503);
-  await assertHttpError(handlePreviewChat(request({ message: "Hello" }), {
-    ...env, HYPHA_CHAT_PROVIDER: "unknown",
-  }), 503);
   assert.equal(calls.length, 0);
-  assert.equal(quotaWrites, 0, "configuration and authorization failures precede quota reservation");
+  assert.equal(quotaWrites, 0, "authorization failures precede quota reservation");
 
   const reply = await handlePreviewChat(request({
     message: "What is known, <@123456789012345678>?", workingName: "Do not transmit this name",
@@ -199,7 +197,8 @@ try {
     upstream = makeResponse;
     const before = calls.length;
     await assert.rejects(demoRequest(), (error) => error.status === 503 &&
-      error.code === "chat_unavailable" && !/secret|private/u.test(error.message));
+      ["chat_unavailable", "chat_credentials_rejected", "chat_provider_rate_limited"].includes(error.code)
+      && !/secret|private/u.test(error.message));
     assert.equal(calls.length, before + 1, "failures do not retry or fall back to Gemini");
   }
   for (const result of [
@@ -218,6 +217,19 @@ try {
   assert.equal(calls.at(-1).url, "https://generativelanguage.googleapis.com/v1beta/interactions");
   assert.equal(calls.at(-1).options.headers["x-goog-api-key"], "unused-gemini-key");
   assert.equal(calls.at(-1).options.headers.Authorization, undefined);
+
+  for (const overrides of [{ OPENAI_PRIVACY_ACKNOWLEDGED: "false" },
+    { HYPHA_CHAT_PROVIDER: "unknown" }]) {
+    const before = calls.length;
+    const response = await handlePreviewChat(request({ message: "Keep this message" }), {
+      ...env, ...overrides,
+    });
+    assert.equal(response.status, 201, "authenticated messages survive provider configuration failure");
+    const failed = await response.json();
+    assert.equal(failed.messages[0].status, "failed");
+    assert.match(failed.messages[0].text, /Your message was saved/u);
+    assert.equal(calls.length, before, "invalid provider configuration sends no model request");
+  }
 } finally {
   globalThis.fetch = originalFetch;
 }

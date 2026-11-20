@@ -50,8 +50,8 @@ export function chatProviderConfigured(env: PreviewChatEnv): boolean {
     OPENAI_REASONING_EFFORTS.has(env.OPENAI_CHAT_REASONING_EFFORT?.trim() || "none");
 }
 
-function requireChatConfig(env: PreviewChatEnv): void {
-  if (!env.CHAT_DB || !chatProviderConfigured(env)) {
+function requireChatDatabase(env: PreviewChatEnv): void {
+  if (!env.CHAT_DB) {
     throw new HttpError(503, "preview_chat_unconfigured", "Hypha conversation is not configured yet.");
   }
 }
@@ -362,6 +362,7 @@ async function requestOpenAI(
     reasoning: { effort: env.OPENAI_CHAT_REASONING_EFFORT?.trim() || "none" },
   };
   let result: unknown;
+  let httpStatus = 0;
   try {
     const response = await fetch(OPENAI_ENDPOINT, {
       method: "POST",
@@ -372,16 +373,43 @@ async function requestOpenAI(
       body: JSON.stringify(body),
       signal: AbortSignal.timeout(20_000),
     });
+    httpStatus = response.status;
+    result = await response.json().catch(() => null);
     if (!response.ok) {
-      throw new Error("Conversation service rejected the request");
+      const error = result && typeof result === "object" && "error" in result
+        ? (result as { error?: { code?: unknown } }).error : null;
+      const allowedCodes = new Set(["invalid_api_key", "insufficient_quota",
+        "credit_balance_exhausted", "model_not_found", "rate_limit_exceeded",
+        "invalid_request_error", "unsupported_parameter", "authentication_error"]);
+      const code = typeof error?.code === "string" && allowedCodes.has(error.code)
+        ? error.code : "upstream_rejected";
+      console.warn("Hypha OpenAI request failed.", { status: httpStatus, code });
+      const failureCode = code === "insufficient_quota" || code === "credit_balance_exhausted"
+        ? "chat_credit_exhausted"
+        : httpStatus === 401 || httpStatus === 403 ? "chat_credentials_rejected"
+          : code === "model_not_found" || httpStatus === 404 ? "chat_model_unavailable"
+            : httpStatus === 429 ? "chat_provider_rate_limited"
+              : httpStatus === 400 ? "chat_request_rejected" : "chat_unavailable";
+      throw new HttpError(503, failureCode, "Hypha could not prepare a reply right now.");
     }
-    result = await response.json();
-  } catch {
+    if (result === null) throw new Error("Invalid conversation response");
+  } catch (error) {
+    if (error instanceof HttpError) throw error;
     // Never return upstream bodies, credentials, or partial generated text.
+    console.warn("Hypha OpenAI request failed.", {
+      status: httpStatus, code: httpStatus ? "invalid_response" : "network_or_timeout",
+    });
     throw new HttpError(503, "chat_unavailable", "Hypha could not prepare a reply right now.");
   }
   const text = responsesText(result);
-  if (!text) throw new HttpError(503, "chat_empty_reply", "Hypha could not prepare a reply right now.");
+  if (!text) {
+    const incomplete = result && typeof result === "object" && "status" in result &&
+      result.status === "incomplete";
+    console.warn("Hypha OpenAI request failed.", {
+      status: httpStatus, code: incomplete ? "incomplete_response" : "empty_response",
+    });
+    throw new HttpError(503, "chat_empty_reply", "Hypha could not prepare a reply right now.");
+  }
   return text;
 }
 
@@ -411,7 +439,7 @@ export async function handlePreviewChat(request: Request, env: PreviewChatEnv): 
   requireSameOriginMutation(request, env);
   const session = await readWebSession(request, env);
   if (!session) throw new HttpError(401, "missing_session", "Sign in by email to speak with Hypha.");
-  requireChatConfig(env);
+  requireChatDatabase(env);
   const participantId = session.participant.participantId;
 
   const record = await readQuestion(request);
@@ -438,7 +466,6 @@ export async function handlePreviewChat(request: Request, env: PreviewChatEnv): 
   const now = Math.floor(Date.now() / 1000);
   await reserveQuota(env.CHAT_DB, participantId, now);
   const history = await recentSharedHistory(env.CHAT_DB);
-  const reply = boundedReply(await geminiReply(request, env, message, history), mode);
   const requestId = crypto.randomUUID();
   const participantMessageId = crypto.randomUUID();
   const hyphaMessageId = crypto.randomUUID();
@@ -459,11 +486,31 @@ export async function handlePreviewChat(request: Request, env: PreviewChatEnv): 
     `UPDATE hypha_chat_messages SET delivery_status = 'processing'
      WHERE message_id = ? AND delivery_status = 'pending'`,
   ).bind(hyphaMessageId).run();
+  let reply: string;
+  let failed = false;
+  let replyError: { code: string; status: number } | null = null;
+  try {
+    reply = boundedReply(await geminiReply(request, env, message, history), mode);
+  } catch (error) {
+    failed = true;
+    const notices: Record<string, string> = {
+      chat_unavailable: "Connection notice: Your message was saved, but Hypha cannot reply right now.",
+      chat_credit_exhausted: "Connection notice: Hypha cannot reply because its API credits are unavailable. Your message was saved.",
+      chat_credentials_rejected: "Connection notice: Hypha's API credentials were rejected. Your message was saved.",
+      chat_model_unavailable: "Connection notice: Hypha's AI model is unavailable. Your message was saved.",
+      chat_request_rejected: "Connection notice: Hypha's AI service rejected this request. Your message was saved.",
+      chat_provider_rate_limited: "Connection notice: Hypha's AI service is busy. Your message was saved. Please try again shortly.",
+    };
+    const code = error instanceof HttpError && Object.hasOwn(notices, error.code)
+      ? error.code : "chat_unavailable";
+    replyError = { code, status: 503 };
+    reply = notices[code];
+  }
   await completeHyphaChatRequest(env.CHAT_DB, {
     requestId, environment: ENVIRONMENT, streamId: STREAM_ID,
-    transcriptText: reply, audioBytes: null, completedAt: Math.floor(Date.now() / 1000), failed: false,
+    transcriptText: reply, audioBytes: null, completedAt: Math.floor(Date.now() / 1000), failed,
   });
   const messages = await getHyphaChatMessagesForRequest(env.CHAT_DB, requestId, ENVIRONMENT, STREAM_ID);
   return jsonResponse({ requestId, participantMessageId, hyphaMessageId,
-    messages: messages.map(publicMessage) }, 201);
+    messages: messages.map(publicMessage), replyError }, 201);
 }

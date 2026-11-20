@@ -37,6 +37,7 @@
     "validate:guest-demo": "node tools/validate_guest_demo.mjs",
     "validate:preview-chat": "node tools/validate_preview_chat.mjs",
     "validate:openai-chat": "node tools/validate_openai_chat.mjs",
+    "validate:chat-delivery": "node tools/validate_live_chat_delivery.mjs",
     "validate:live-public-record": "node tools/validate_live_public_record.mjs",
     "validate:preview-migrations": "node tools/validate_preview_migrations.mjs",
     "data:public-reports": "node tools/import_uapdrop_reports.mjs"
