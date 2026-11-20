@@ -5,6 +5,7 @@ import { HttpError } from "./errors";
 import { requireSameOriginMutation } from "./magic-link-auth";
 import { transformAlbuquerqueMarkdown } from "./preview-albuquerque";
 import {
+  chatProviderConfigured,
   geminiGuestDemoReply,
   requestedAlbuquerqueMode,
   type PreviewChatEnv,
@@ -28,7 +29,7 @@ export interface PreviewGuestDemoEnv extends PreviewChatEnv {
 
 export function guestDemoConfigured(env: PreviewGuestDemoEnv): boolean {
   return Boolean(env.DEMO_CHAT_ENABLED === "true" && env.ASSETS && env.CHAT_DB && env.APP_ORIGIN &&
-    env.GEMINI_API_KEY?.trim() &&
+    chatProviderConfigured(env) &&
     (env.ACTIVITY_IDENTITY_SECRET?.length ?? 0) >= 32 &&
     env.DEMO_IP_RATE_LIMIT?.limit && env.DEMO_GLOBAL_RATE_LIMIT?.limit);
 }

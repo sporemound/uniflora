@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Annotated
+from typing import Annotated, Literal
 
 from pydantic import Field, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
@@ -81,6 +81,9 @@ class Settings(BaseSettings):
     openai_privacy_acknowledged: bool = False
     openai_interpretation_model: str = "gpt-5.4-nano"
     openai_narration_model: str = "gpt-5.4-nano"
+    openai_chat_model: str = Field(default="gpt-6-luna", min_length=1)
+    openai_chat_max_output_tokens: int = Field(default=1500, ge=64, le=4000)
+    openai_chat_reasoning_effort: Literal["none", "low", "medium", "high", "xhigh", "max"] = "none"
     openai_interpretation_confidence_threshold: float = Field(default=0.78, ge=0, le=1)
     openai_request_timeout_seconds: float = Field(default=12.0, gt=0, le=60)
     openai_max_prompt_tokens: int = Field(default=1400, ge=256, le=16000)
@@ -100,6 +103,7 @@ class Settings(BaseSettings):
 
     # Optional Gemini dialogue path. This is presentation-only until explicitly
     # connected to an authenticated Activity/Discord chat surface.
+    hypha_chat_provider: Literal["gemini", "openai"] = "gemini"
     gemini_api_key: SecretStr | None = None
     gemini_enabled: bool = False
     gemini_dry_run: bool = False
@@ -268,7 +272,15 @@ class Settings(BaseSettings):
                 )
             if self.gemini_api_key is None or not self.gemini_api_key.get_secret_value().strip():
                 raise ValueError("GEMINI_API_KEY is required when GEMINI_ENABLED is true")
-        if self.feature_gemini_chat and not (self.gemini_enabled or self.gemini_dry_run):
+        if self.feature_gemini_chat and self.hypha_chat_provider == "openai" and not (
+            self.openai_enabled or self.openai_dry_run
+        ):
+            raise ValueError(
+                "Hypha OpenAI chat requires OPENAI_ENABLED=true or OPENAI_DRY_RUN=true"
+            )
+        if self.feature_gemini_chat and self.hypha_chat_provider == "gemini" and not (
+            self.gemini_enabled or self.gemini_dry_run
+        ):
             raise ValueError(
                 "FEATURE_GEMINI_CHAT requires GEMINI_ENABLED=true or GEMINI_DRY_RUN=true"
             )

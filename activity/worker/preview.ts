@@ -12,13 +12,13 @@ import {
   requireSameOriginMutation,
   revokeWebSession,
 } from "./lib/magic-link-auth";
-import { handlePreviewChat } from "./lib/preview-chat";
+import { chatProviderConfigured, handlePreviewChat, type PreviewChatEnv } from "./lib/preview-chat";
 import { guestDemoConfigured, handleGuestDemo } from "./lib/preview-guest-demo";
 import { jsonResponse, methodNotAllowed } from "./lib/responses";
 import { parseEnvironment, parseSnapshot } from "./lib/validation";
 import { readPublicRecord, readPublicRecordRevision } from "./lib/preview-public-record";
 
-interface PreviewEnv {
+interface PreviewEnv extends PreviewChatEnv {
   ASSETS: AssetBinding;
   PUBLIC_DB: D1Database;
   CHAT_DB: D1Database;
@@ -263,7 +263,7 @@ async function api(request: Request, env: PreviewEnv): Promise<Response> {
     return new Response(request.method === "HEAD" ? null : JSON.stringify({
       status: "preview",
       emailReady,
-      chatReady: Boolean(emailReady && chatSchemaReady && env.GEMINI_API_KEY?.trim()),
+      chatReady: Boolean(emailReady && chatSchemaReady && chatProviderConfigured(env)),
       chatReadReady,
       demoReady: Boolean(chatReadReady && guestDemoConfigured(env)),
       emailSchemaReady,

@@ -6,7 +6,7 @@ import re
 import sys
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any, Literal
+from typing import Any, Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -71,6 +71,18 @@ class GeminiChatResult:
     text: str
     model: str
     transmitted: bool = True
+
+
+class GameChatProvider(Protocol):
+    """Dialogue transport contract shared by Hypha's model providers."""
+
+    async def reply(
+        self, context: GeminiChatContext, *, plain_text_for_postprocessing: bool = False,
+    ) -> GeminiChatResult: ...
+
+    async def audio_title(self, context: GeminiChatContext, reply_text: str) -> str | None: ...
+
+    async def close(self) -> None: ...
 
 
 def _strip_spoken_emphasis(text: str) -> str:
@@ -327,7 +339,7 @@ Answer the substantive question while leaving presentation to the website.
 
 @dataclass(frozen=True, slots=True)
 class GeminiSpokenReply:
-    """Gemini-authored words rendered only by Hypha's sealed-stone eSpeak voice."""
+    """Model-authored words rendered only by Hypha's sealed-stone eSpeak voice."""
 
     text: str
     model: str
@@ -336,15 +348,15 @@ class GeminiSpokenReply:
 
 
 class GeminiVoiceReplyService:
-    """Audio-first presentation wrapper around the read-only Gemini dialogue provider.
+    """Audio-first presentation wrapper around a read-only dialogue provider.
 
-    Gemini decides only the wording. EspeakVoiceService is the sole voice renderer.
+    The model decides only the wording. EspeakVoiceService is the sole voice renderer.
     The service never receives an event writer or game-service mutation capability.
     """
 
     def __init__(
         self,
-        provider: GeminiGameChatProvider,
+        provider: GameChatProvider,
         voice: EspeakVoiceService,
     ) -> None:
         self.provider = provider

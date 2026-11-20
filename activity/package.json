@@ -36,6 +36,7 @@
     "validate:hypha-chat": "npm run build && node tools/validate_hypha_chat.mjs",
     "validate:guest-demo": "node tools/validate_guest_demo.mjs",
     "validate:preview-chat": "node tools/validate_preview_chat.mjs",
+    "validate:openai-chat": "node tools/validate_openai_chat.mjs",
     "validate:live-public-record": "node tools/validate_live_public_record.mjs",
     "validate:preview-migrations": "node tools/validate_preview_migrations.mjs",
     "data:public-reports": "node tools/import_uapdrop_reports.mjs"
@@ -54,6 +55,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.3",
+    "acorn": "8.15.0",
     "typescript": "7.0.2",
     "vite": "8.1.5",
     "wrangler": "4.114.0"
