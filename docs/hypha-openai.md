@@ -63,9 +63,56 @@ to include the save-before-generation correction and safe failure notices. Its
 mocked successful and rejected model requests, including retained participant
 messages, failed reply status, action confirmation, and audio boundaries.
 
-OpenAI selection affects Hypha conversation and guest answers only. Other Gemini
-features, including image generation, retain their separate provider settings.
 Setting `HYPHA_CHAT_PROVIDER=gemini` selects the original dialogue transport.
+Plate generation uses its own fixed OpenAI image configuration, described below.
+
+## Existing encrypted fax images
+
+The live Statement Clock already exposes generated plates inside Hypha Chat.
+`tools/patch_live_images.mjs` replaces its expired Gemini image transport using
+`worker/lib/low-cost-image.ts`. Apply it to a freshly downloaded live module
+directory, after the earlier dialogue patches. Preserve all existing modules,
+bindings, assets and Durable Object exports during upload.
+
+The image request is fixed on the server:
+
+| Setting | Value |
+| --- | --- |
+| API | Direct Images API, without an extra dialogue-model request |
+| Model | `gpt-image-2.6-flare` |
+| Quality | `high` |
+| Dimensions | `1536x864`, retaining the existing 16:9 presentation |
+| Format | JPEG at compression setting 100 |
+| Count | One image per exposure |
+| Timeout | 150 seconds |
+| Retry or provider fallback | None |
+
+Keep the existing six successful plates per user in a rolling 24-hour window,
+duplicate checks, room prompts, clock identity, encrypted carrier, fax overlay,
+and previously stored plates. Image output is not deterministic: the existing
+Flow Seed identifies the clock statement, rather than seeding the OpenAI model.
+The `era-v2` marker remains for compatibility with existing plate filters.
+The pinned client receives only provider disclosure corrections and removal of
+an inaccurate deterministic-image tooltip; no fax rendering code is changed.
+
+The official image calculator estimates about $0.03234 in output per high-quality
+1536x864 Flare image, plus prompt input at $5 per million tokens. Six images are
+about $0.194 in image output, plus prompts. These are estimates, not a monetary
+ceiling: the per-user limit is shared-site behavior and does not cap total site
+spend across users. Preserve the existing API balance and leave paid auto-recharge
+off. This change makes no credit purchases or billing-setting changes.
+
+- [Image generation and cost calculator](https://developers.openai.com/api/docs/guides/image-generation)
+- [GPT-Image-2.6 Flare](https://developers.openai.com/api/docs/models/gpt-image-2.6-flare)
+- [Image request schema](https://developers.openai.com/api/reference/resources/images/methods/generate)
+
+API credit availability and image-model access must still be verified in the
+credited organization. Image access may require organization verification.
+Configuration-only health checks do not establish either condition. Provider
+failures expose a safe notice, without saving a partial image or silently trying
+another paid request. JPEG output and response sizes are bounded to fit the
+existing D1 row. The existing quota counts saved plates, so an unsuccessful
+generation can incur provider costs without consuming a saved-plate slot.
 
 ## Python web service and Discord
 
@@ -89,6 +136,8 @@ cd activity
 npm run validate:openai-chat
 npm run validate:preview-chat
 npm run validate:guest-demo
+node tools/validate_low_cost_image.mjs
+node tools/validate_live_images.mjs /absolute/path/to/patched/modules
 npx tsc --noEmit
 ```
 

@@ -92,7 +92,7 @@ export function GuestHyphaDemo({
       </p>
       <p className="guest-hypha-demo__privacy">
         Your question and Hypha&apos;s reply are saved in the public chat log and can be read by anyone with this website link, even after you leave. Do not include personal information.
-        Your question is also sent to Google Gemini, which may use free-tier requests to improve its products.
+        Your question is also sent to OpenAI to generate a reply.
       </p>
       {exchanges.length > 0 ? (
         <div className="guest-hypha-demo__history" role="log" aria-label="Guest demo replies" aria-live="polite">

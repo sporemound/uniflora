@@ -93,11 +93,10 @@ export function DisclaimerSplash({ onContinue }: DisclaimerSplashProps) {
               <p>
                 This platform has a public, permanent game ledger. Messages you post to the shared
                 Hypha chat can be read by anyone with the website link, including after you leave.
-                Chat questions are sent to Google Gemini to generate replies. Google&apos;s use of
-                Gemini API content for product improvement, including model training, depends on
-                the project&apos;s API billing tier: unpaid-tier content may be used for that purpose;
-                Google says paid-tier prompts and responses are not. The public record and sending
-                a submitted chat question to Gemini are part of participating in those features.
+                Chat questions and recent shared chat are sent to OpenAI to generate replies.
+                Exposing a latent plate sends its image prompt to OpenAI; generated plates appear
+                in Hypha Chat. The public record and sending submitted questions or image prompts
+                to OpenAI are part of participating in those features.
                 Do not submit personal, sensitive, or confidential information.
               </p>
             </section>

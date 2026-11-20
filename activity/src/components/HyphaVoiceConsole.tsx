@@ -425,7 +425,7 @@ export function HyphaVoiceConsole({
           </div>
           {previewOnly ? <p className="hypha-voice-console__fallback">
             Anyone with this website link can read the shared chat, including your displayed name and message.
-            New messages and recent shared chat are sent to Google Gemini for Hypha's replies. Do not include private information.
+            New messages and recent shared chat are sent to OpenAI for Hypha's replies. Exposing a latent plate sends its image prompt to OpenAI. Do not include private information.
           </p> : null}
           {previewOnly && !sessionToken ? <p className="hypha-voice-console__fallback">
             Sign in with the email form above to post in the shared chat.
