@@ -15,6 +15,15 @@ GAME_API_SECRET=
 # Shared with the Python service if it publishes public state or runs Hypha chat.
 HYPHA_ACTIVITY_SECRET=
 
+# Optional direct Hypha dialogue. Use API project credentials for OpenAI;
+# keys remain on the Worker and must never use a VITE_ prefix.
+HYPHA_CHAT_PROVIDER=gemini
+GEMINI_API_KEY=
+OPENAI_API_KEY=
+OPENAI_PRIVACY_ACKNOWLEDGED=false
+OPENAI_CHAT_MODEL=gpt-6-luna
+OPENAI_CHAT_REASONING_EFFORT=none
+
 # Local test-only browser guests. Never configure true in production.
 ALLOW_TEST_GUESTS=true
 

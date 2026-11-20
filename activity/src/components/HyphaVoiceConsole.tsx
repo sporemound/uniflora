@@ -263,9 +263,11 @@ export function HyphaVoiceConsole({
       };
       setMessages((previous) => mergeMessages(previous, created.messages));
       if (clearDraft) setMessage("");
-      setDetail(created.messages.some((item) => item.senderType === "hypha" && item.status === "complete")
-        ? "Hypha's reply is in the chat below."
-        : "Your message was sent. Hypha is preparing a response.");
+      setDetail(created.messages.some((item) => item.senderType === "hypha" && item.status === "failed")
+        ? "Your message was saved. Hypha could not reply; see the connection notice below."
+        : created.messages.some((item) => item.senderType === "hypha" && item.status === "complete")
+          ? "Hypha's reply is in the chat below."
+          : "Your message was sent. Hypha is preparing a response.");
     } catch (error) {
       setDetail(error instanceof Error ? error.message : "Hypha request failed.");
     } finally {
@@ -423,7 +425,7 @@ export function HyphaVoiceConsole({
           </div>
           {previewOnly ? <p className="hypha-voice-console__fallback">
             Anyone with this website link can read the shared chat, including your displayed name and message.
-            New messages and recent shared chat are sent to Google Gemini for Hypha's replies. Do not include private information.
+            New messages and recent shared chat are sent to OpenAI for Hypha's replies. Exposing a latent plate sends its image prompt to OpenAI. Do not include private information.
           </p> : null}
           {previewOnly && !sessionToken ? <p className="hypha-voice-console__fallback">
             Sign in with the email form above to post in the shared chat.

@@ -38,6 +38,9 @@ Copy `activity/.dev.vars.example` to `activity/.dev.vars` for local Worker devel
 
 The game does not need an OpenAI or Gemini key for deterministic play. Optional model features require their own credentials and privacy settings. See the `.env.example` files for available settings.
 
+See [Hypha with OpenAI](docs/hypha-openai.md) for provider selection, eligible Pro
+API credits, and preserving the current live deployment during migration.
+
 ## Privacy and security
 
 Participant records belong in a private database. Never commit event streams, chat logs, emails, API keys, tokens, private keys, populated `.env` files, or generated public-state snapshots. The `.gitignore` excludes common local files, but review every commit before publication. A fresh Git history was used here so private commits and author metadata from the source repository are not copied.

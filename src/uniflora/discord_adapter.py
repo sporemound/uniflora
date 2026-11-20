@@ -101,6 +101,7 @@ from uniflora.gemini_chat import (
 )
 from uniflora.health import HealthService
 from uniflora.interpretation import MessageSignals, NaturalLanguageInterpreter
+from uniflora.openai_chat import OpenAIGameChatProvider
 from uniflora.openai_privacy import (
     DiscordPrivacyMetadata,
     ParticipantIdentity,
@@ -509,7 +510,9 @@ class InteriorBot(commands.Bot):
         self.gemini_voice: GeminiVoiceReplyService | None = None
         if settings.feature_gemini_chat:
             self.gemini_voice = GeminiVoiceReplyService(
-                GeminiGameChatProvider.from_settings(settings),
+                (OpenAIGameChatProvider.from_settings(settings)
+                 if settings.hypha_chat_provider == "openai"
+                 else GeminiGameChatProvider.from_settings(settings)),
                 self.voice,
             )
         self._commands_synced = False
@@ -712,7 +715,7 @@ class InteriorBot(commands.Bot):
                 return
             except Exception:
                 logger.exception(
-                    "Gemini sealed-stone chat reply failed",
+                    "Hypha sealed-stone chat reply failed",
                     extra={
                         "environment": decision.environment.value,
                         "message_id": message.id,

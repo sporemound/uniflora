@@ -21,7 +21,8 @@ from aiohttp import web
 
 from uniflora.activity_chat_relay import ActivityChatRelay
 from uniflora.content.v2 import load_missing_interior_static_pack
-from uniflora.gemini_chat import GeminiGameChatProvider, GeminiVoiceReplyService
+from uniflora.gemini_chat import GameChatProvider, GeminiGameChatProvider, GeminiVoiceReplyService
+from uniflora.openai_chat import OpenAIGameChatProvider
 from uniflora.v2_activity_projection import V2ActivityPublisher
 from uniflora.v2_test_runtime import V2TestRuntime
 from uniflora.voice_service import (
@@ -348,6 +349,45 @@ def create_app(
     return app
 
 
+def web_chat_provider() -> GameChatProvider:
+    """Select only the configured chat transport; never fall back across providers."""
+
+    name = os.environ.get("HYPHA_CHAT_PROVIDER", "gemini").strip().casefold()
+    if name not in {"gemini", "openai"}:
+        raise SystemExit("HYPHA_CHAT_PROVIDER must be gemini or openai")
+    prefix = name.upper()
+    dry_run = os.environ.get(f"{prefix}_DRY_RUN", "false").casefold() == "true"
+    model = os.environ.get(
+        f"{prefix}_CHAT_MODEL", "gpt-6-luna" if name == "openai" else "gemini-3.8-flash",
+    ).strip()
+    if not model:
+        raise SystemExit(f"{prefix}_CHAT_MODEL must not be empty")
+    options = {"timeout_seconds": 12.0, "max_output_tokens": 1500,
+               "dry_run": dry_run, "network_authorized": not dry_run}
+    api_key = os.environ.get(f"{prefix}_API_KEY", "").strip()
+    acknowledged = os.environ.get(
+        f"{prefix}_PRIVACY_ACKNOWLEDGED", "false",
+    ).casefold() == "true"
+    if not dry_run and (not api_key or not acknowledged):
+        raise SystemExit(f"Web Hypha chat requires {prefix} API key and privacy approval")
+    if name == "openai":
+        effort = os.environ.get("OPENAI_CHAT_REASONING_EFFORT", "none").strip()
+        if effort not in {"none", "low", "medium", "high", "xhigh", "max"}:
+            raise SystemExit("OPENAI_CHAT_REASONING_EFFORT is invalid")
+        client = None
+        if not dry_run:
+            from openai import AsyncOpenAI
+
+            client = AsyncOpenAI(api_key=api_key, timeout=12.0, max_retries=0)
+        return OpenAIGameChatProvider(client, model, reasoning_effort=effort, **options)
+    client = None
+    if not dry_run:
+        from google import genai
+
+        client = genai.Client(api_key=api_key)
+    return GeminiGameChatProvider(client, model, temperature=0.65, **options)
+
+
 def main() -> None:
     secret = os.environ.get("GAME_API_SECRET", "")
     if len(secret) < 32:
@@ -378,33 +418,7 @@ def main() -> None:
     if os.environ.get("WEB_HYPHA_CHAT_ENABLED", "false").casefold() == "true":
         if not base_url or not publish_secret:
             raise SystemExit("Web Hypha chat requires Activity URL and shared secret")
-        dry_run = os.environ.get("GEMINI_DRY_RUN", "false").casefold() == "true"
-        if dry_run:
-            provider = GeminiGameChatProvider(
-                None,
-                os.environ.get("GEMINI_CHAT_MODEL", "gemini-3.8-flash"),
-                timeout_seconds=12.0,
-                max_output_tokens=1500,
-                temperature=0.65,
-                dry_run=True,
-            )
-        else:
-            api_key = os.environ.get("GEMINI_API_KEY", "")
-            acknowledged = (
-                os.environ.get("GEMINI_PRIVACY_ACKNOWLEDGED", "false").casefold() == "true"
-            )
-            if not api_key or not acknowledged:
-                raise SystemExit("Web Hypha chat requires Gemini API key and privacy approval")
-            from google import genai
-
-            provider = GeminiGameChatProvider(
-                genai.Client(api_key=api_key),
-                os.environ.get("GEMINI_CHAT_MODEL", "gemini-3.8-flash"),
-                timeout_seconds=12.0,
-                max_output_tokens=1500,
-                temperature=0.65,
-                network_authorized=True,
-            )
+        provider = web_chat_provider()
         chat_reply = GeminiVoiceReplyService(provider, voice)
         chat_relay = ActivityChatRelay(
             base_url,
